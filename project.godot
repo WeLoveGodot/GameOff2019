@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://TmpRoot.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://scene/TmpRoot.tscn"
+config/icon="res://resource/art/icon.png"
 
 [rendering]
 
