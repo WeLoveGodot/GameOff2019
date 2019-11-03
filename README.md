@@ -25,4 +25,4 @@ repo for our game for game off 2019([itch.io](https://itch.io/jam/game-off-2019)
 # contributors
 * nalleyer
 * HubertSun7
-* kleon(资深顾问)
+* kleon
