@@ -6,11 +6,17 @@ extends Node2D
 # 视野半径
 var vision: float = 0.0
 
+var coor: Vector2 = Vector2(0, 0)
 # ...
 
 func _ready():
 	pass
 
+func set_coor(coor: Vector2):
+	self.coor = coor
+
+func get_coor():
+	return self.coor
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
