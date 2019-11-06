@@ -1,5 +1,6 @@
-extends Node2D
+extends CanvasLayer
 
+signal start_game
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -14,4 +15,12 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://scene/game.tscn")
+	get_tree().change_scene("res://scene/Game.tscn")
+
+
+func _on_AboutMenu_pressed():
+	$WindowDialog.show()
+
+
+func _on_CloseButton_pressed():
+	get_tree().quit()
