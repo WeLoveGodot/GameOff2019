@@ -35,3 +35,5 @@ script = ExtResource( 3 )
 [node name="Plantes" type="Node2D" parent="."]
 position = Vector2( 960, 540 )
 script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]

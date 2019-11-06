@@ -22,10 +22,9 @@ func update_coner(planet):
 	up_left.y = min(up_left.y, planet.coor.y)
 	bottom_right.x = max(bottom_right.x, planet.coor.x)
 	bottom_right.y = max(bottom_right.y, planet.coor.y)
-	print(up_left, bottom_right)
 
 func debug():
-	for i in [1, 2, 3, 4]:
+	for i in range(-4, 4):
 		var p = Planet.instance()
 		p.set_coor(Vector2(i*200, i*200))
 		add_planet(p)
