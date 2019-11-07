@@ -76,7 +76,7 @@
       * 剩余能量不足，总进度 /= DevelopFactor
   * 等级(Level)
     * 总进度达到一定阈值，触发Level提高
-    * Level = 向下取整(Log10(MileStone))
+    * Level = 向下取整(Log10(Progess))
   * 技能（Skills）
     * 技能使用快捷键快速触发
     * 加速（Enhance)
@@ -109,7 +109,7 @@
     * 摧毁（Eliminate）
       * 两阶段，现有能量 > 能量消耗则触发
       * 一阶段快捷键触发，根据鼠标位置选中距离最近的基地，沿基地与鼠标位置方向绘制路径
-      * 二阶段鼠标左键触发，沿上述路径放出武器(EliminateInstacen)
+      * 二阶段鼠标左键触发，沿上述路径放出武器(EliminateInstance)
       * 飞行距离(EliminateDistance) = 基地与鼠标位置的距离
       * 能量消耗(Cost) = EliminateDistance x Level +  EliminateR^2 x 基础消耗(BaseEliminateCost : 10) x Level
       * 武器飞行速度(EliminateVelocity) = Level x 基础速度(BaseEliminateVelocity : 1000)
