@@ -8,6 +8,14 @@ var bottom_right = Vector2(0, 0)
 
 var planets = []
 
+func new_planet(coor):
+	var p = Planet.instance()
+	p.set_coor(coor)
+	add_planet(p)
+
+func len():
+	return planets.size()
+
 func add_planet(planet):
 	planets.append(planet)
 	add_child(planet)
@@ -25,9 +33,7 @@ func update_coner(planet):
 
 func debug():
 	for i in range(-4, 4):
-		var p = Planet.instance()
-		p.set_coor(Vector2(i*200, i*200))
-		add_planet(p)
+		new_planet(Vector2(i*200, i*200))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,3 +44,4 @@ func _process(delta):
 	for planet in get_planets():
 		var view_coor = game.get_view_coor(planet.get_coor())
 		planet.position = view_coor
+		planet.update_scale(game.camera_scale)
