@@ -2,6 +2,9 @@ extends Node2D
 
 var me
 
+# debug相机的话，就不自动scale，由人来控制
+var is_debug_camera: bool = false
+
 func _ready():
 	# test code
 	init_camera()
@@ -44,7 +47,8 @@ func add_me():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_camera_zoom()
+	if !is_debug_camera:
+		update_camera_zoom()
 	# $RangeDrawer.update_field_r(1000)
 	$RangeDrawer.update_field_r(me.field_radius)
 
@@ -55,3 +59,17 @@ func update_camera_zoom():
 	# zoom==1 -> Global.WINDOW_SIZE.y
 	var zoom = half_height * 2 / Global.WINDOW_SIZE.y
 	$Camera.zoom = Vector2(zoom, zoom)
+
+func _on_DebugMenu_debug_camera(is_debug):
+	is_debug_camera = is_debug
+	print(is_debug_camera)
+
+
+func _on_DebugMenu_new_camera_scale(is_up):
+	if is_debug_camera:
+		print("scale", is_up)
+		if is_up:
+			$Camera.zoom /= 1.2
+		else:
+			$Camera.zoom *= 1.2
+		print($Camera.zoom)

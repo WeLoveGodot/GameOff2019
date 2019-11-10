@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/Planets.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://resource/shader/field.material" type="Material" id=5]
 [ext_resource path="res://scene/RangeDrawer.gd" type="Script" id=6]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -54,3 +55,20 @@ color = Color( 0, 0, 0, 1 )
 script = ExtResource( 6 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+
+[node name="DebugMenu" type="Control" parent="DebugUI"]
+margin_right = 1916.0
+margin_bottom = 1079.0
+script = ExtResource( 7 )
+
+[node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
+margin_left = 1689.37
+margin_top = 18.0379
+margin_right = 1879.37
+margin_bottom = 46.0379
+text = "Free Move"
+[connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
+[connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
+[connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]
