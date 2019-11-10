@@ -6,16 +6,18 @@ func _ready():
 	# test code
 	init_camera()
 	init_planets()
-	test_tween()
+	focus_me()
+	# test_tween()
 
 func test_tween():
 	var t = $Tween
 	# $Camera.zoom = Vector2(20, 10)
-	print("min scale = %s", Global.MIN_SCALE)
+	t.interpolate_property($Camera, "zoom", $Camera.zoom, Vector2(10, 10), 1, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+	t.start()
+	# print("min scale = %s", Global.MIN_SCALE)
 
 func init_camera():
 	$Camera.zoom = Vector2(0.5, 0.5)
-	$Camera.position = Vector2(Global.SIZE / 2, Global.SIZE / 2)
 
 func make_noise():
 	var noise = OpenSimplexNoise.new()
@@ -26,24 +28,24 @@ func make_noise():
 	return noise
 
 func init_planets():
+	var s = Global.GEN_SIZE
 	var noise = make_noise()
-	var half_size = Global.SIZE / 2
-	for row in range(0, Global.SIZE, 5):
-		for col in range(0, Global.SIZE, 5):
+	var half_size = s / 2
+	for row in range(0, s, 5):
+		for col in range(0, s, 5):
 			var x = noise.get_noise_2d(row, col)
 			if abs(x) < Global.PLANTE_GEN_PROB && $Planets.len() < Global.MAX_PLANETS:
 				var coor = Vector2(row - half_size, col - half_size)
-				var p = $Planets.new_planet(coor)
-				maybe_set_my_base(p, coor)
-	assert(me != null)	
+				$Planets.new_planet(coor)
+	add_me()
+	assert(me != null)
 
-const RANGE = 200
-func maybe_set_my_base(planet, coor: Vector2):
-	if me == null && abs(coor.x - Global.SIZE / 2) < RANGE && abs(coor.y - Global.SIZE / 2) < RANGE:
-		me = planet
+func add_me():
+		me = $Planets.new_planet(Vector2(0, 0))
 		print("got me", me.position)
 
-
+func focus_me():
+	$Camera.position = me.position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

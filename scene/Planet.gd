@@ -8,17 +8,17 @@ const MIN_SCALE = 0.4
 
 # 视野半径
 var vision: float = 0.0
+var resource: int = 0
 
 
 func _ready():
 	pass
 
 func set_coor(coor: Vector2):
-	$Sprite.set_position(coor)
+	set_position(coor)
 
-func update_scale(scale: float):
-	#TODO
-	pass
+func update_scale(camera_zoom: Vector2):
+	$Sprite.set_scale(camera_zoom)
 
 func get_coor():
 	return self.coor

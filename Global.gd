@@ -3,6 +3,7 @@ extends Node2D
 # 配置
 
 const SIZE = 4096
+const GEN_SIZE = SIZE * 0.75
 
 # fake const
 var WINDOW_SIZE
