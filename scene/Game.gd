@@ -16,7 +16,7 @@ func test_tween():
 	t.start()
 
 func init_camera():
-	$Camera.zoom = Vector2(0.5, 0.5)
+	$Camera.zoom = Vector2(0.2, 0.2)
 
 func make_noise():
 	var noise = OpenSimplexNoise.new()
@@ -44,7 +44,6 @@ func add_me():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print("my r = ", me.field_radius)
 	update_camera_zoom()
 	# $RangeDrawer.update_field_r(1000)
 	$RangeDrawer.update_field_r(me.field_radius)

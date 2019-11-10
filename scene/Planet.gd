@@ -27,7 +27,7 @@ func update_scale(camera_zoom: Vector2):
 	$Sprite.set_scale(camera_zoom * 0.5)
 
 func tick():
-	# field_radius += 20
+	# field_radius += 200
 	update_tech()
 	update_progress()
 	update_level()
