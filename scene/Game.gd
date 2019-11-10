@@ -6,15 +6,14 @@ func _ready():
 	# test code
 	init_camera()
 	init_planets()
-	focus_me()
+	add_me()
+	assert(me != null)
 	# test_tween()
 
 func test_tween():
 	var t = $Tween
-	# $Camera.zoom = Vector2(20, 10)
-	t.interpolate_property($Camera, "zoom", $Camera.zoom, Vector2(10, 10), 1, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+	t.interpolate_property(me, "field_radius", 50, 1000, 1, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
 	t.start()
-	# print("min scale = %s", Global.MIN_SCALE)
 
 func init_camera():
 	$Camera.zoom = Vector2(0.5, 0.5)
@@ -37,17 +36,23 @@ func init_planets():
 			if abs(x) < Global.PLANTE_GEN_PROB && $Planets.len() < Global.MAX_PLANETS:
 				var coor = Vector2(row - half_size, col - half_size)
 				$Planets.new_planet(coor)
-	add_me()
-	assert(me != null)
 
 func add_me():
 		me = $Planets.new_planet(Vector2(0, 0))
 		print("got me", me.position)
 
-func focus_me():
-	$Camera.position = me.position
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	print("my r = ", me.field_radius)
+	update_camera_zoom()
+	# $RangeDrawer.update_field_r(1000)
+	$RangeDrawer.update_field_r(me.field_radius)
+
+# func _draw():
+
+func update_camera_zoom():
+	var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)
+	# zoom==1 -> Global.WINDOW_SIZE.y
+	var zoom = half_height * 2 / Global.WINDOW_SIZE.y
+	$Camera.zoom = Vector2(zoom, zoom)

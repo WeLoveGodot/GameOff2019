@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
-[ext_resource path="res://scene/Planets.gd" type="Script" id=2]
-[ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=3]
-[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scene/RangeDrawer.gd" type="Script" id=5]
+[ext_resource path="res://scene/RangeDrawer.gd" type="Script" id=2]
+[ext_resource path="res://scene/Planets.gd" type="Script" id=3]
+[ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=4]
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,15 +20,18 @@ margin_right = 2048.0
 margin_bottom = 2048.0
 color = Color( 0.12549, 0.117647, 0.141176, 1 )
 
-[node name="Planets" type="Node2D" parent="."]
+[node name="RangeDrawer" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="Planets" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 
 [node name="Fog" type="ColorRect" parent="."]
 visible = false
-material = ExtResource( 3 )
+material = ExtResource( 4 )
 margin_left = -42.9207
 margin_top = -42.5582
 margin_right = 1953.08
@@ -43,9 +46,5 @@ margin_right = 575.917
 margin_bottom = 167.35
 custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
-
-[node name="RangeDrawer" type="Node2D" parent="."]
-position = Vector2( 960, 540 )
-script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
