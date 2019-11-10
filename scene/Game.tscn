@@ -4,7 +4,7 @@
 [ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=2]
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scene/RangeDrawer.gd" type="Script" id=4]
-[ext_resource path="res://scene/Plantes.gd" type="Script" id=5]
+[ext_resource path="res://scene/Planets.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -16,11 +16,12 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -133.818
 margin_top = -65.2678
-margin_right = 2115.18
-margin_bottom = 1185.73
+margin_right = 3962.18
+margin_bottom = 4030.73
 color = Color( 0.12549, 0.117647, 0.141176, 1 )
 
 [node name="Fog" type="ColorRect" parent="."]
+visible = false
 material = ExtResource( 2 )
 margin_left = -42.9207
 margin_top = -42.5582
@@ -46,3 +47,6 @@ position = Vector2( 960, 540 )
 script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 960, 540 )

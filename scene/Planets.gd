@@ -41,7 +41,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for planet in get_planets():
-		var view_coor = game.get_view_coor(planet.get_coor())
-		planet.position = view_coor
-		planet.update_scale(game.camera_scale)
+	pass

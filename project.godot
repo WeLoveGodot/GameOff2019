@@ -19,6 +19,10 @@ config/name="New Game Project"
 run/main_scene="res://scene/Menu.tscn"
 config/icon="res://resource/art/icon.png"
 
+[autoload]
+
+Global="*res://scene/Global.tscn"
+
 [display]
 
 window/size/width=1920

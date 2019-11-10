@@ -16,11 +16,11 @@ func _ready():
 	pass
 
 func set_coor(coor: Vector2):
-	self.coor = coor
+	$Sprite.set_position(coor)
 
 func update_scale(scale: float):
-	scale = max(min(scale, MAX_SCALE), MIN_SCALE)
-	$Sprite.set_scale(Vector2(scale, scale))
+	#TODO
+	pass
 
 func get_coor():
 	return self.coor
