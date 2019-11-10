@@ -2,13 +2,17 @@ extends Node2D
 
 func _ready():
 	# test code
+	init_camera()
 	init_planets()
 	test_tween()
 
 func test_tween():
 	var t = $Tween
+	# $Camera.zoom = Vector2(20, 10)
 	print("min scale = %s", Global.MIN_SCALE)
 
+func init_camera():
+	$Camera.position = Vector2(Global.SIZE / 2, Global.SIZE / 2)
 
 func init_planets():
 	var noise = OpenSimplexNoise.new()
