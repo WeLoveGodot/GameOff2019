@@ -9,8 +9,6 @@ const MIN_SCALE = 0.4
 # 视野半径
 var vision: float = 0.0
 
-var coor: Vector2 = Vector2(0, 0)
-# ...
 
 func _ready():
 	pass

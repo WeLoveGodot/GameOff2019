@@ -12,6 +12,7 @@ func new_planet(coor):
 	var p = Planet.instance()
 	p.set_coor(coor)
 	add_planet(p)
+	return p
 
 func len():
 	return planets.size()
@@ -26,10 +27,10 @@ func get_planets():
 	return planets
 
 func update_coner(planet):
-	up_left.x = min(up_left.x, planet.coor.x)
-	up_left.y = min(up_left.y, planet.coor.y)
-	bottom_right.x = max(bottom_right.x, planet.coor.x)
-	bottom_right.y = max(bottom_right.y, planet.coor.y)
+	up_left.x = min(up_left.x, planet.position.x)
+	up_left.y = min(up_left.y, planet.position.y)
+	bottom_right.x = max(bottom_right.x, planet.position.x)
+	bottom_right.y = max(bottom_right.y, planet.position.y)
 
 func debug():
 	for i in range(-4, 4):
