@@ -69,6 +69,10 @@ margin_top = 18.0379
 margin_right = 1879.37
 margin_bottom = 46.0379
 text = "Free Move"
+
+[node name="r" type="Label" parent="DebugUI/DebugMenu"]
+margin_right = 235.0
+margin_bottom = 32.0
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]

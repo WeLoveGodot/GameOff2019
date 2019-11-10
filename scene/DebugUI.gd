@@ -2,17 +2,16 @@ extends Control
 signal debug_camera(is_debug)
 signal new_camera_scale(is_up)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var game
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	game = get_parent().get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if game.me:
+		$r.set_text("r: " + String(game.me.field_radius))
+	pass
 
 func _input(event):
 	# print(event.type)

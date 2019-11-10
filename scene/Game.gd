@@ -7,7 +7,7 @@ var is_debug_camera: bool = false
 
 func _ready():
 	# test code
-	init_camera()
+	# init_camera()
 	init_planets()
 	add_me()
 	assert(me != null)
@@ -19,7 +19,7 @@ func test_tween():
 	t.start()
 
 func init_camera():
-	$Camera.zoom = Vector2(0.2, 0.2)
+	$Camera.zoom = Vector2(1, 1)
 
 func make_noise():
 	var noise = OpenSimplexNoise.new()
