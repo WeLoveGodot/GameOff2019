@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
 shader_param/color = Plane( 0, 0, 0, 0 )
-shader_param/fdr = 0.05
+shader_param/fdr = 0.8
 shader_param/s = 4096
 shader_param/holes_tex = ExtResource( 3 )
 
