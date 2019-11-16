@@ -79,7 +79,7 @@
     * Level = 向下取整(Log10(Progess))
   * 技能（Skills）
     * 技能使用快捷键快速触发
-    * 加速（Enhance)
+    * 加速（Accelerate)
       * 瞬发
       * 效果：提高进度速度与持续能量消耗
       * 发展速度 + 1
@@ -98,14 +98,6 @@
       * 探测器飞行速度(ExploreVelocity) = Level x 基础探测器飞行速度(BaseExploreVelocity : 200)
       * 探测器生命周期，到达最大飞行距离后Destroy
       * 探测器效果：绘制探测器视野半径内的物体，并在历史信息图层上绘制基地信息
-    * 占领（Encroach）
-      * 两阶段，现有能量 > 能量消耗则触发
-      * 一阶段快捷键触发，根据鼠标位置选中距离最近的基地，沿基地与鼠标位置方向绘制路径
-      * 二阶段鼠标左键触发，沿上述路径放出殖民舰(EncroachInstance)
-      * 飞行距离(EncroachDistance) = 基地与鼠标位置的距离
-      * 能量消耗(Cost) = EncroachDistance x Level + EncroachR^2 x 基础消耗(BaseEncroachCost : 100) x Level
-      * 殖民舰飞行速度(EncroachVelocity) = Level x 基础殖民舰飞行速度(BaseEncroachVelocity : 100)
-      * 殖民舰效果：获得殖民舰半径(EncroachR)内的所有基地的控制权，获取失败（Level不够或基地不存在应通知玩家），转移获得对应基地权重的能量
     * 摧毁（Eliminate）
       * 两阶段，现有能量 > 能量消耗则触发
       * 一阶段快捷键触发，根据鼠标位置选中距离最近的基地，沿基地与鼠标位置方向绘制路径
