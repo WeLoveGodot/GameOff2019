@@ -18,7 +18,7 @@ float get_hole_alpha(vec4 hole) {
 }
 
 float mix_alpha(float a1, float a2) {
-	return min(min(a1, a2), a1 * a2);
+	return min(a1, a2);
 }
 
 float dis_alpha(float hole_alpha, float dis, float rr, float rr2) {

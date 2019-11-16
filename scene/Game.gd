@@ -59,6 +59,8 @@ func draw_holes():
 func collect_holes():
 	$Holes.clear_holes()
 	$Holes.add_hole(me.field_radius, me.get_coor())
+	for i in range(4):
+		$Holes.add_hole_a(150, Vector2(i * 150, i * 150), i * 0.25)
 
 func update_camera_zoom():
   var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)
