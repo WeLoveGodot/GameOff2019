@@ -1,13 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/Planets.gd" type="Script" id=2]
 [ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=3]
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://resource/shader/field.material" type="Material" id=5]
-[ext_resource path="res://scene/RangeDrawer.gd" type="Script" id=6]
-[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=8]
+[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -46,17 +44,7 @@ margin_bottom = 167.35
 custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
-[node name="RangeDrawer" type="ColorRect" parent="."]
-visible = false
-material = ExtResource( 5 )
-margin_left = -2048.0
-margin_top = -2048.0
-margin_right = 2048.0
-margin_bottom = 2048.0
-color = Color( 0, 0, 0, 1 )
-script = ExtResource( 6 )
-
-[node name="Holes" parent="." instance=ExtResource( 7 )]
+[node name="Holes" parent="." instance=ExtResource( 5 )]
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -65,7 +53,7 @@ script = ExtResource( 6 )
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 8 )
+script = ExtResource( 6 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37

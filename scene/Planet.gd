@@ -42,7 +42,7 @@ func update_level():
 	level = Global.tech_2_level(tech)
 
 func get_coor():
-	return self.coor
+	return position
 
 func _process(delta):
 	var now = OS.get_ticks_msec()
