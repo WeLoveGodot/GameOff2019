@@ -28,6 +28,7 @@ script = ExtResource( 2 )
 current = true
 
 [node name="Fog" type="ColorRect" parent="."]
+visible = false
 material = ExtResource( 3 )
 margin_left = -2048.0
 margin_top = -2048.0
