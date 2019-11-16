@@ -5,6 +5,7 @@ var me
 # debug相机的话，就不自动scale，由人来控制
 var is_debug_camera: bool = false
 
+var debug = 1.0
 func _ready():
   # test code
   # init_camera()
@@ -15,7 +16,7 @@ func _ready():
 
 func test_tween():
   var t = $Tween
-  t.interpolate_property(me, "field_radius", 50, 1000, 1, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+  t.interpolate_property(self, "debug", 1.0, 0.0, 2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
   t.start()
 
 func init_camera():
@@ -58,6 +59,8 @@ func draw_holes():
 func collect_holes():
 	$Holes.clear_holes()
 	$Holes.add_hole(me.field_radius, me.get_coor())
+	for i in range(4):
+		$Holes.add_hole_a(150, Vector2(i * 150, i * 150), i * 0.25)
 
 func update_camera_zoom():
   var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)
