@@ -9,3 +9,6 @@ export_presets.cfg
 
 # node
 node_modules/
+
+# Mac File
+.DS_Store
