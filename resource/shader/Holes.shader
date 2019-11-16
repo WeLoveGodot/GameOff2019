@@ -13,12 +13,21 @@ vec2 get_pos(vec4 hole) {
 	return hole.gb;
 }
 
+float get_hole_alpha(vec4 hole) {
+	return hole.a;
+}
+
 float mix_alpha(float a1, float a2) {
 	return min(min(a1, a2), a1 * a2);
 }
 
-float dis_alpha(float dis, float rr, float rr2) {
-	return pow(clamp((dis - rr) / (rr - rr2) + 1., 0., 1.), 2.);
+float dis_alpha(float hole_alpha, float dis, float rr, float rr2) {
+	float a  = (1. - hole_alpha) / pow(rr - rr2, 2.) * pow(dis - rr2, 2.) + hole_alpha;
+	if (dis > rr2) {
+		return a;
+	} else {
+		return hole_alpha;
+	}
 }
 
 void fragment() {
@@ -34,7 +43,7 @@ void fragment() {
 		vec2 pos2 = vec2(pos) / fs + vec2(0.5, 0.5); // map (0, 0) to (0.5, 0.5)
 
 		float dis = distance(pos2, UV);
-		alpha = mix_alpha(alpha, dis_alpha(dis, rr, rr2));
+		alpha = mix_alpha(alpha, dis_alpha(get_hole_alpha(hole), dis, rr, rr2));
 		if (alpha == 0.) {
 			break;
 		}

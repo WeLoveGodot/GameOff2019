@@ -5,6 +5,7 @@ var me
 # debug相机的话，就不自动scale，由人来控制
 var is_debug_camera: bool = false
 
+var debug = 1.0
 func _ready():
   # test code
   # init_camera()
@@ -15,7 +16,7 @@ func _ready():
 
 func test_tween():
   var t = $Tween
-  t.interpolate_property(me, "field_radius", 50, 1000, 1, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+  t.interpolate_property(self, "debug", 1.0, 0.0, 2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
   t.start()
 
 func init_camera():
