@@ -11,9 +11,10 @@ var last: float = 0.0
 
 # 一个星球的建模，不管是自己还是ai
 
-var field_radius: float = Global.DEFAULT_FIELD_RADIUS
+var field_radius = Global.DEFAULT_FIELD_RADIUS
 var level: int = Global.tech_2_level(Global.INITIAL_TECH)
-var energy : int = Global.area(Global.DEFAULT_FIELD_RADIUS) * Global.ENERGY_DENSITY
+var energy : int = floor(Global.area(Global.DEFAULT_FIELD_RADIUS) * Global.ENERGY_DENSITY)
+# var energy : int = 3
 var tech: int = Global.INITIAL_TECH
 var tech_factor = Global.INITIAL_DEVELOP_FACTOR
 var progress: float = Global.tech_2_progress(Global.INITIAL_TECH)
@@ -57,6 +58,12 @@ func update_level():
 
 func get_coor():
 	return position
+
+func get_energy():
+	return self.energy
+
+func set_energy(energy: int):
+	self.energy = energy
 
 func _process(delta):
 	var now = OS.get_ticks_msec()

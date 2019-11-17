@@ -92,6 +92,7 @@ func acc_effect(planet, game, extra_param):
 func expand_effect(planet, game, extra_param):
   var old_r = planet.field_radius
   var new_r = old_r * 1.1
+  print("old new", old_r, new_r)
   if planet.is_me:
     var t = planet.get_node("Tween")
     var duration = 0.3
@@ -104,22 +105,22 @@ func expand_effect(planet, game, extra_param):
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
-	# user input from extra_param
-	var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
-	var r = explore_radius(planet)
-	print(planet.level)
-	print(r)
-	var speed = explore_velocity(planet)
-	if planet.is_me:
-		game.add_explore(r, speed, pos)
+  # user input from extra_param
+  var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
+  var r = explore_radius(planet)
+  print(planet.level)
+  print(r)
+  var speed = explore_velocity(planet)
+  if planet.is_me:
+    game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-	pass
-	
+  pass
+  
 
 func global_pos_2_explore_pos(d, pos):
-	var a = atan2(pos.y, pos.x)
-	return Vector2(d * cos(a), d * sin(a))
+  var a = atan2(pos.y, pos.x)
+  return Vector2(d * cos(a), d * sin(a))
 
 ## special
 
@@ -128,7 +129,7 @@ func explore_radius(planet):
 
 # 单位 距离 / 秒
 func explore_velocity(planet):
-	return planet.level * BASE_EXPLORE_VELOCITY * 1.0
+  return planet.level * BASE_EXPLORE_VELOCITY * 1.0
 
 func explore_distance(planet):
   return planet.field_radius * EXPLORE_FACTOR

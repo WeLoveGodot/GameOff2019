@@ -79,7 +79,7 @@ func collect_holes():
   $Holes.clear_holes()
   $Holes.add_hole(me.field_radius, me.get_coor())
   for node in $Explores.get_children():
-    $Holes.add_hole(node.r, node.get_position())
+    $Holes.add_hole(float(node.r), node.get_position())
 
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
@@ -93,7 +93,6 @@ func eat_resource(p):
     p.position,
     p.field_radius
   )
-  print(typeof(got_energy))
   p.energy += got_energy
 
 func _on_DebugMenu_debug_camera(is_debug):
