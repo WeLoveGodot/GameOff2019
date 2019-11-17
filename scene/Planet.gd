@@ -1,19 +1,26 @@
 extends Node2D
 
+signal enegy_changed
+
 const MAX_SCALE = 1
 const MIN_SCALE = 0.4
+
+const EXTRA_SCALE = 0.25
 
 var last: float = 0.0
 
 # 一个星球的建模，不管是自己还是ai
 # 所以这个scene不能包含ai逻辑，但可包含行为的接口，之后accept一个控制者（玩家或ai）即可工作
 
-var field_radius: int = Global.DEFAULT_FIELD_RADIUS
+var field_radius: float = Global.DEFAULT_FIELD_RADIUS
 var level: int = 0
 var energy : int = 0
 var tech: int = 1
 var tech_factor = 1
 var progress: float = 0.0
+
+# 特殊标记是不是主角
+var is_me: bool = false
 
 func _ready():
 	pass
@@ -24,7 +31,14 @@ func set_coor(coor: Vector2):
 	set_position(coor)
 
 func update_scale(camera_zoom: Vector2):
-	$Sprite.set_scale(camera_zoom * 0.5)
+	$Sprite.set_scale(camera_zoom * EXTRA_SCALE)
+
+func try_cost(cost: int):
+	if cost > energy:
+		return false
+	else:
+		energy -= cost
+		emit_signal("enegy_changed")
 
 func tick():
 	# field_radius += 200

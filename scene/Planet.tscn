@@ -10,3 +10,5 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 2 )
 texture = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
