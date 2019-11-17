@@ -46,6 +46,9 @@ func add_me():
   me.is_me = true
   print("got me", me.position, me.field_radius)
 
+## skills
+func add_explore(r, speed, target):
+  $Explores.add_explore(r, speed, Vector2(0, 0), target)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -60,6 +63,8 @@ func draw_holes():
 func collect_holes():
   $Holes.clear_holes()
   $Holes.add_hole(me.field_radius, me.get_coor())
+  for node in $Explores.get_children():
+    $Holes.add_hole(node.r, node.get_position())
 
 func update_camera_zoom():
   var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)

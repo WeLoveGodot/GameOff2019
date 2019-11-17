@@ -77,11 +77,25 @@ func expand_effect(planet, game, extra_param):
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
-  # var use_select_pos = extra_param.pos
-  pass
+	# user input from extra_param
+	var pos = extra_param.pos
+	var r = explore_r(planet)
+	var speed = explore_speed(planet)
+	if planet.is_me:
+		game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-  pass
+	pass
+
+## special
+
+func explore_r(planet):
+	#TODO: game logic
+	return 120.0
+
+# 单位 距离 / 秒
+func explore_speed(planet):
+	return 100.0
 
 enum ESkill {
   ACC,
@@ -106,7 +120,7 @@ var SKILL_DICT = {
     name = "Explore",
     cost = funcref(self, "explore_cost"),
     distance = funcref(self, "explore_distance"),
-    effect = funcref(self, "explore_effect"),
+		effect = funcref(self, "explore_effect"),
   },
   ESkill.ATK : {
     name = "Attack",

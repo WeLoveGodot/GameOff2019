@@ -31,3 +31,13 @@ func _on_CheckBox_toggled(button_pressed):
 
 func _on_ExpdButton_pressed():
 	game.get_node("Skill").use_skill(game.me, Global.ESkill.EXPD, null)
+
+
+func _on_ExprButton_pressed():
+	game.get_node("Skill").use_skill(
+		game.me,
+		Global.ESkill.EXPR,
+		{
+			pos = Vector2(500, 600)
+		}
+	)
