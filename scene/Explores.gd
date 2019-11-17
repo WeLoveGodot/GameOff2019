@@ -1,9 +1,10 @@
 extends Node2D
 
 var Explore = preload("res://scene/Explore.tscn")
+var game
 
 func _ready():
-	pass # Replace with function body.
+	 game = get_parent()
 
 func add_explore(r, speed, start: Vector2, target: Vector2):
 	var expr = Explore.instance()
@@ -11,5 +12,6 @@ func add_explore(r, speed, start: Vector2, target: Vector2):
 	add_child(expr)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	for expr in get_children():
+		expr.update_scale(game.get_node("Camera").zoom)

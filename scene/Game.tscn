@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/Skill.gd" type="Script" id=2]
@@ -7,8 +7,7 @@
 [ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=5]
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scene/MainGUI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=9]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -58,14 +57,12 @@ text = "Game Scene"
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="MainGUI" parent="." instance=ExtResource( 8 )]
-
 [node name="DebugUI" type="CanvasLayer" parent="."]
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37

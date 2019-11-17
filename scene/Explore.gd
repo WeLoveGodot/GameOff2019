@@ -4,8 +4,14 @@ var r = 0
 var target: Vector2
 var speed: float
 
+const EXTRA_SCALE = 0.1
+
 func _ready():
-  pass # Replace with function body.
+  pass
+
+func update_scale(camera_zoom: Vector2):
+	$Sprite.set_scale(camera_zoom * EXTRA_SCALE)
+
 
 func launch(r, speed, start: Vector2, target: Vector2):
   self.r = r
@@ -13,6 +19,7 @@ func launch(r, speed, start: Vector2, target: Vector2):
   self.speed = speed
   var t = $Tween
   var dis = start.distance_to(target)
+  $Sprite.look_at(target)
   print("dis = ", dis)
   var duration = dis / speed
   t.interpolate_property(self, "position", start, target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
