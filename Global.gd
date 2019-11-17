@@ -4,12 +4,11 @@ extends Node2D
 
 const SIZE = 4096
 const GEN_SIZE = SIZE * 0.75
-const MAX_LEVEL = 10
+const MAX_LEVEL = 9
 
-const EXRA_CAMERA_HEIGHT = 50
 const DEFAULT_FIELD_RADIUS = 100.0
 
-const TECH_INTERVAL = 1000.0 # 毫秒
+const TECH_INTERVAL = 10000.0 # 毫秒
 const AI_INTERVAL = 500.0 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
@@ -18,18 +17,36 @@ var WINDOW_SIZE
 var MIN_SCALE
 
 ## 星球生成概率
-const PLANTE_GEN_PROB = 0.0001
+const PLANTE_GEN_PROB = 0.00001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
+## 资源能量值
+const RESOURCE_ENERGY = 10
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
-## 资源能量值
-const RESOURCE_ENEGY = 10
+## 基础宇宙常量
+const ENERGY_DENSITY = 800
+const PAI = 3
+const COSMOS_RADIUS = 1024
+
+const INITIAL_FIELD_RADIUS = 5
+const INITIAL_TECH = 16
+const INITIAL_DEVELOP_FACTOR = 2
+ 
+const EXPAND_COST_FACTOR = 1.0
+const EXPLORE_COST_FACTOR = 1.0
+const ATTACK_COST_FACTOR = 1.0
+const EXPLORE_FACTOR = 2.0
+const BASE_EXPLORE_RADIUS = 35.0
+const BASE_EXPLORE_VELOCITY = 100
+const BASE_ATTACK_RADIUS = 1
+const BASE_ATTACK_VELOCITY = 50
+const EXPAND_RADIUS_FACTOR = 1.1
 
 # Int -> Int
 func tech_2_level(tech: int):
-  return floor(log(tech))
+  return floor(log(tech)/log(10))
 
 # Int -> float(0~1)
 func tech_2_progress(tech: int):
@@ -41,20 +58,23 @@ func _ready():
 
 # --------------------- 技能逻辑配置 ---------------------#
 ## cost
+func area(r):
+  return PAI * r * r
+
 func acc_cost(planet):
-  return planet.position.x
+  return 0
 
 func explore_cost(planet):
-  return 0
+  return explore_distance(planet) * explore_radius(planet) * EXPLORE_COST_FACTOR
 
 func expand_cost(planet):
-  return 0
+  var expand_radius = ceil(planet.field_radius * EXPAND_RADIUS_FACTOR)
+  var increased_area = area(expand_radius) -  area(planet.field_radius)
+  return increased_area * EXPAND_COST_FACTOR
 
 func attack_cost(planet):
-  return 0
-
-func explore_distance(planet):
-  return planet.field_radius * 2
+  var attack_radius = planet.level * BASE_ATTACK_RADIUS
+  return area(attack_radius) * ATTACK_COST_FACTOR
 
 func attack_distance(planet):
   return 0
@@ -66,7 +86,7 @@ func attack_distance(planet):
 # 技能效果允许对自身和世界产生影响
 func acc_effect(planet, game, extra_param):
   # bla bla
-  pass
+  planet.tech_factor += 1
 
 # 我写个示范
 func expand_effect(planet, game, extra_param):
@@ -79,31 +99,40 @@ func expand_effect(planet, game, extra_param):
     t.interpolate_callback(game, duration, "eat_resource", planet)
     t.start()
   else:
-    planet.field_radius  = new_r
-    game.eat_resource(planet)
+    planet.field_radius = new_r
   pass
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
-  # user input from extra_param
-  var pos = extra_param.pos
-  var r = explore_r(planet)
-  var speed = explore_speed(planet)
-  if planet.is_me:
-    game.add_explore(r, speed, pos)
+	# user input from extra_param
+	var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
+	var r = explore_radius(planet)
+	print(planet.level)
+	print(r)
+	var speed = explore_velocity(planet)
+	if planet.is_me:
+		game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-  pass
+	pass
+	
+
+func global_pos_2_explore_pos(d, pos):
+	var a = atan2(pos.y, pos.x)
+	return Vector2(d * cos(a), d * sin(a))
 
 ## special
 
-func explore_r(planet):
-  #TODO: game logic
-  return 120.0
+func explore_radius(planet):
+  return planet.level * BASE_EXPLORE_RADIUS * 1.0
 
 # 单位 距离 / 秒
-func explore_speed(planet):
-  return 100.0
+func explore_velocity(planet):
+	return planet.level * BASE_EXPLORE_VELOCITY * 1.0
+
+func explore_distance(planet):
+  return planet.field_radius * EXPLORE_FACTOR
+
 
 enum ESkill {
   ACC,

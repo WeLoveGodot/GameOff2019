@@ -11,7 +11,7 @@ func _ready():
 # 星球吃资源
 func eat_resource(pos, r):
 	var rs = get_in_range(pos, r)
-	var sum = calc_enegy(rs)
+	var sum = calc_energy(rs)
 	delete_resources(rs)
 	return sum
 
@@ -22,9 +22,9 @@ func add_resource(pos):
 	add_child(resource)
 
 
-func calc_enegy(resources):
+func calc_energy(resources):
 	# 临时大家够一样，直接简单算了
-	return resources.size() * Global.RESOURCE_ENEGY
+	return resources.size() * Global.RESOURCE_ENERGY
 
 func get_in_range(pos, r):
 	var rs = []

@@ -82,18 +82,19 @@ func collect_holes():
     $Holes.add_hole(node.r, node.get_position())
 
 func update_camera_zoom():
-  var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)
+  var half_height = Global.explore_radius(me) + Global.explore_distance(me)
   # zoom==1 -> Global.WINDOW_SIZE.y
   var zoom = half_height * 2 / Global.WINDOW_SIZE.y
   $Camera.zoom = Vector2(zoom, zoom)
 
 func eat_resource(p):
   print("eat", p)
-  var got_enegy = $Resources.eat_resource(
+  var got_energy: int = $Resources.eat_resource(
     p.position,
     p.field_radius
   )
-  p.energy += got_enegy
+  print(typeof(got_energy))
+  p.energy += got_energy
 
 func _on_DebugMenu_debug_camera(is_debug):
   is_debug_camera = is_debug
