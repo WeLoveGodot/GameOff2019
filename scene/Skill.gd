@@ -18,10 +18,11 @@ func can_use_skill(planet, skill):
 func use_skill(planet, skill, extra_param): 
   var skill_table = get_skill_table(skill)
   var cost = skill_table.cost.call_func(planet)
-
-  skill_table.effect.call_func(planet, game, extra_param)
+  # 一手交钱，一手交货
+  if planet.try_cost(cost):
+    skill_table.effect.call_func(planet, game, extra_param)
   # 最后扣钱
-  planet.try_cost(cost)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -67,7 +67,7 @@ func collect_holes():
     $Holes.add_hole(node.r, node.get_position())
 
 func update_camera_zoom():
-  var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)
+  var half_height = Global.explore_radius(me) + Global.explore_distance(me)
   # zoom==1 -> Global.WINDOW_SIZE.y
   var zoom = half_height * 2 / Global.WINDOW_SIZE.y
   $Camera.zoom = Vector2(zoom, zoom)
