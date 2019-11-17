@@ -10,6 +10,7 @@ const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 10000.0 # 毫秒
 const AI_INTERVAL = 500.0 # 毫秒
+const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
 var WINDOW_SIZE
@@ -17,6 +18,10 @@ var MIN_SCALE
 
 ## 星球生成概率
 const PLANTE_GEN_PROB = 0.00001
+## 资源生成概率
+const RESOURCE_GEN_PROB = 0.003
+## 资源能量值
+const RESOURCE_ENERGY = 10
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
@@ -88,9 +93,12 @@ func acc_effect(planet, game, extra_param):
 func expand_effect(planet, game, extra_param):
   var old_r = planet.field_radius
   var new_r = old_r * 1.1
+  print("old new", old_r, new_r)
   if planet.is_me:
     var t = planet.get_node("Tween")
-    t.interpolate_property(planet, "field_radius", old_r, new_r, 0.3, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+    var duration = 0.3
+    t.interpolate_property(planet, "field_radius", old_r, new_r, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+    t.interpolate_callback(game, duration, "eat_resource", planet)
     t.start()
   else:
     planet.field_radius = new_r
@@ -113,8 +121,8 @@ func attack_effect(planet, game, extra_param):
 		game.add_attack(6, r, speed, pos)
 
 func global_pos_2_explore_pos(d, pos):
-	var a = atan2(pos.y, pos.x)
-	return Vector2(d * cos(a), d * sin(a))
+  var a = atan2(pos.y, pos.x)
+  return Vector2(d * cos(a), d * sin(a))
 
 ## special
 
@@ -126,7 +134,7 @@ func attack_radius(planet):
 
 # 单位 距离 / 秒
 func explore_velocity(planet):
-	return planet.level * BASE_EXPLORE_VELOCITY * 1.0
+  return planet.level * BASE_EXPLORE_VELOCITY * 1.0
 
 func attack_velocity(planet):
 	return planet.level * BASE_ATTACK_VELOCITY * 1.0
@@ -158,7 +166,7 @@ var SKILL_DICT = {
     name = "Explore",
     cost = funcref(self, "explore_cost"),
     distance = funcref(self, "explore_distance"),
-		effect = funcref(self, "explore_effect"),
+    effect = funcref(self, "explore_effect"),
   },
   ESkill.ATK : {
     name = "Attack",

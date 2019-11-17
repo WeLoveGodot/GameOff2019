@@ -1,6 +1,6 @@
 extends Node2D
 
-signal enegy_changed
+signal energy_changed
 
 const MAX_SCALE = 1
 const MIN_SCALE = 0.4
@@ -10,11 +10,11 @@ const EXTRA_SCALE = 0.15
 var last: float = 0.0
 
 # 一个星球的建模，不管是自己还是ai
-# 所以这个scene不能包含ai逻辑，但可包含行为的接口，之后accept一个控制者（玩家或ai）即可工作
 
-var field_radius: float = Global.DEFAULT_FIELD_RADIUS
+var field_radius = Global.DEFAULT_FIELD_RADIUS
 var level: int = Global.tech_2_level(Global.INITIAL_TECH)
-var energy : int = Global.area(Global.DEFAULT_FIELD_RADIUS) * Global.ENERGY_DENSITY
+var energy : int = floor(Global.area(Global.DEFAULT_FIELD_RADIUS) * Global.ENERGY_DENSITY)
+# var energy : int = 3
 var tech: int = Global.INITIAL_TECH
 var tech_factor = Global.INITIAL_DEVELOP_FACTOR
 var progress: float = Global.tech_2_progress(Global.INITIAL_TECH)
@@ -38,7 +38,7 @@ func try_cost(cost: int):
 		return false
 	else:
 		energy -= cost
-		emit_signal("enegy_changed")
+		emit_signal("energy_changed")
 		return true
 
 func tick():
@@ -58,6 +58,12 @@ func update_level():
 
 func get_coor():
 	return position
+
+func get_energy():
+	return self.energy
+
+func set_energy(energy: int):
+	self.energy = energy
 
 func _process(delta):
 	var now = OS.get_ticks_msec()

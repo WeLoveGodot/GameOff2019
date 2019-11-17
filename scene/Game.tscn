@@ -1,18 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/Skill.gd" type="Script" id=2]
 [ext_resource path="res://scene/Planets.gd" type="Script" id=3]
-[ext_resource path="res://scene/Explores.gd" type="Script" id=4]
-[ext_resource path="res://scene/Attacks.gd" type="Script" id=5]
-[ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=6]
-[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=9]
+[ext_resource path="res://scene/Resources.gd" type="Script" id=4]
+[ext_resource path="res://scene/Explores.gd" type="Script" id=5]
+[ext_resource path="res://scene/Attacks.gd" type="Script" id=6]
+[ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=7]
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,18 +31,21 @@ script = ExtResource( 2 )
 [node name="Planets" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="Explores" type="Node2D" parent="."]
+[node name="Resources" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="Attacks" type="Node2D" parent="."]
+[node name="Explores" type="Node2D" parent="."]
 script = ExtResource( 5 )
+
+[node name="Attacks" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 
 [node name="Fog" type="ColorRect" parent="."]
 visible = false
-material = ExtResource( 6 )
+material = ExtResource( 7 )
 margin_left = -2048.0
 margin_top = -2048.0
 margin_right = 2048.0
@@ -57,7 +61,7 @@ margin_bottom = 167.35
 custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
-[node name="Holes" parent="." instance=ExtResource( 8 )]
+[node name="Holes" parent="." instance=ExtResource( 9 )]
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -66,7 +70,7 @@ text = "Game Scene"
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37
@@ -76,8 +80,16 @@ margin_bottom = 46.0379
 text = "Free Move"
 
 [node name="r" type="Label" parent="DebugUI/DebugMenu"]
-margin_right = 235.0
-margin_bottom = 32.0
+margin_left = 1.32687
+margin_top = 0.663437
+margin_right = 236.327
+margin_bottom = 32.6634
+
+[node name="energy" type="Label" parent="DebugUI/DebugMenu"]
+margin_left = 2.0
+margin_top = 19.0
+margin_right = 218.0
+margin_bottom = 36.0
 
 [node name="ExpdButton" type="Button" parent="DebugUI/DebugMenu"]
 margin_left = 1701.06
