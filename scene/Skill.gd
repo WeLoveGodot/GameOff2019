@@ -21,9 +21,6 @@ func use_skill(planet, skill, extra_param):
   # 一手交钱，一手交货
   if planet.try_cost(cost):
     skill_table.effect.call_func(planet, game, extra_param)
-  # 最后扣钱
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

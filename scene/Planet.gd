@@ -5,7 +5,7 @@ signal enegy_changed
 const MAX_SCALE = 1
 const MIN_SCALE = 0.4
 
-const EXTRA_SCALE = 0.25
+const EXTRA_SCALE = 0.15
 
 var last: float = 0.0
 

@@ -35,9 +35,11 @@ const ATTACK_COST_FACTOR = 1.0
 const EXPLORE_FACTOR = 2.0
 const BASE_EXPLORE_RADIUS = 35.0
 const BASE_EXPLORE_VELOCITY = 100
-const BASE_ATTACK_RADIUS = 1
-const BASE_ATTACK_VELOCITY = 50
+const BASE_ATTACK_RADIUS = 50
+const BASE_ATTACK_VELOCITY = 200
 const EXPAND_RADIUS_FACTOR = 1.1
+
+const BASE_ATTACK_FIELD_RADIUS = 8
 
 # Int -> Int
 func tech_2_level(tech: int):
@@ -68,8 +70,7 @@ func expand_cost(planet):
   return increased_area * EXPAND_COST_FACTOR
 
 func attack_cost(planet):
-  var attack_radius = planet.level * BASE_ATTACK_RADIUS
-  return area(attack_radius) * ATTACK_COST_FACTOR
+  return area(attack_radius(planet)) * ATTACK_COST_FACTOR
 
 func attack_distance(planet):
   return 0
@@ -100,15 +101,16 @@ func explore_effect(planet, game, extra_param):
 	# user input from extra_param
 	var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
 	var r = explore_radius(planet)
-	print(planet.level)
-	print(r)
 	var speed = explore_velocity(planet)
 	if planet.is_me:
 		game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-	pass
-	
+	var pos = extra_param.pos
+	var r = attack_radius(planet)
+	var speed = attack_velocity(planet)
+	if planet.is_me:
+		game.add_attack(6, r, speed, pos)
 
 func global_pos_2_explore_pos(d, pos):
 	var a = atan2(pos.y, pos.x)
@@ -119,9 +121,15 @@ func global_pos_2_explore_pos(d, pos):
 func explore_radius(planet):
   return planet.level * BASE_EXPLORE_RADIUS * 1.0
 
+func attack_radius(planet):
+  return planet.level * BASE_ATTACK_RADIUS * 1.0
+
 # 单位 距离 / 秒
 func explore_velocity(planet):
 	return planet.level * BASE_EXPLORE_VELOCITY * 1.0
+
+func attack_velocity(planet):
+	return planet.level * BASE_ATTACK_VELOCITY * 1.0
 
 func explore_distance(planet):
   return planet.field_radius * EXPLORE_FACTOR

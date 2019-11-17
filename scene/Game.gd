@@ -50,6 +50,9 @@ func add_me():
 func add_explore(r, speed, target):
   $Explores.add_explore(r, speed, Vector2(0, 0), target)
 
+func add_attack(field_r, attack_r, speed, target):
+  $Attacks.add_attack(field_r, attack_r, speed, Vector2(0, 0), target)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   if !is_debug_camera:
@@ -64,6 +67,8 @@ func collect_holes():
   $Holes.clear_holes()
   $Holes.add_hole(me.field_radius, me.get_coor())
   for node in $Explores.get_children():
+    $Holes.add_hole(node.r, node.get_position())
+  for node in $Attacks.get_children():
     $Holes.add_hole(node.r, node.get_position())
 
 func update_camera_zoom():

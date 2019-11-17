@@ -41,3 +41,12 @@ func _on_ExprButton_pressed():
 			pos = Vector2(500, 600)
 		}
 	)
+
+func _on_AtkButton_pressed():
+	game.get_node("Skill").use_skill(
+		game.me,
+		Global.ESkill.ATK,
+		{
+			pos = Vector2(-300, 0)
+		}
+	)
