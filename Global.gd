@@ -40,19 +40,19 @@ func acc_cost(planet):
   return planet.position.x
 
 func explore_cost(planet):
-  pass
+	return 0
 
 func expand_cost(planet):
-  pass
+	return 0
 
 func attack_cost(planet):
-  pass
+	return 0
 
 func explore_distance(planet):
   return planet.field_radius * 2
 
 func attack_distance(planet):
-  pass
+	return 0
 
 ## effect
 

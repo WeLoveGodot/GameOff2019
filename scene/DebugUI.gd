@@ -27,3 +27,7 @@ func _input(event):
 
 func _on_CheckBox_toggled(button_pressed):
 	emit_signal("debug_camera", button_pressed)
+
+
+func _on_ExpdButton_pressed():
+	game.get_node("Skill").use_skill(game.me, Global.ESkill.EXPD, null)

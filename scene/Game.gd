@@ -42,8 +42,9 @@ func init_planets():
         $Planets.new_planet(coor)
 
 func add_me():
-	me = $Planets.new_planet(Vector2(0, 0))
-	print("got me", me.position, me.field_radius)
+  me = $Planets.new_planet(Vector2(0, 0))
+  me.is_me = true
+  print("got me", me.position, me.field_radius)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,12 +54,12 @@ func _process(delta):
   draw_holes()
 
 func draw_holes():
-	collect_holes()
-	$Holes.draw_holes()
+  collect_holes()
+  $Holes.draw_holes()
 
 func collect_holes():
-	$Holes.clear_holes()
-	$Holes.add_hole(me.field_radius, me.get_coor())
+  $Holes.clear_holes()
+  $Holes.add_hole(me.field_radius, me.get_coor())
 
 func update_camera_zoom():
   var half_height = Global.EXRA_CAMERA_HEIGHT + Global.explore_distance(me)

@@ -54,7 +54,6 @@ text = "Game Scene"
 [node name="Tween" type="Tween" parent="."]
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
@@ -71,6 +70,14 @@ text = "Free Move"
 [node name="r" type="Label" parent="DebugUI/DebugMenu"]
 margin_right = 235.0
 margin_bottom = 32.0
+
+[node name="ExpdButton" type="Button" parent="DebugUI/DebugMenu"]
+margin_left = 1701.06
+margin_top = 49.4738
+margin_right = 1846.06
+margin_bottom = 88.4738
+text = "expand"
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="DebugUI/DebugMenu/ExpdButton" to="DebugUI/DebugMenu" method="_on_ExpdButton_pressed"]
