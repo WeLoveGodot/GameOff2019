@@ -10,7 +10,6 @@ const EXTRA_SCALE = 0.25
 var last: float = 0.0
 
 # 一个星球的建模，不管是自己还是ai
-# 所以这个scene不能包含ai逻辑，但可包含行为的接口，之后accept一个控制者（玩家或ai）即可工作
 
 var field_radius: float = Global.DEFAULT_FIELD_RADIUS
 var level: int = 0

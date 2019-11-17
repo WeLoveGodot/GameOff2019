@@ -11,6 +11,7 @@ func _ready():
 func _process(delta):
 	if game.me:
 		$r.set_text("r: " + String(game.me.field_radius))
+		$enegy.set_text("enegy: " + String(game.me.energy))
 	pass
 
 func _input(event):

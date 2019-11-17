@@ -4,12 +4,13 @@ var me
 
 # debug相机的话，就不自动scale，由人来控制
 var is_debug_camera: bool = false
-
 var debug = 1.0
+
 func _ready():
   # test code
   # init_camera()
   init_planets()
+  init_resources()
   add_me()
   assert(me != null)
   # test_tween()
@@ -41,20 +42,34 @@ func init_planets():
         var coor = Vector2(row - half_size, col - half_size)
         $Planets.new_planet(coor)
 
+func init_resources():
+  var s = Global.GEN_SIZE
+  var noise = make_noise()
+  var half_size = s / 2
+  for row in range(0, s, 5):
+    for col in range(0, s, 5):
+      var x = noise.get_noise_2d(row, col)
+      if abs(x) < Global.RESOURCE_GEN_PROB:
+        var coor = Vector2(row - half_size, col - half_size)
+        $Resources.add_resource(coor)
+
+
+
 func add_me():
   me = $Planets.new_planet(Vector2(0, 0))
   me.is_me = true
+  eat_resource(me)
   print("got me", me.position, me.field_radius)
 
 ## skills
 func add_explore(r, speed, target):
   $Explores.add_explore(r, speed, Vector2(0, 0), target)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   if !is_debug_camera:
     update_camera_zoom()
   draw_holes()
+  var now = OS.get_ticks_msec()
 
 func draw_holes():
   collect_holes()
@@ -71,6 +86,14 @@ func update_camera_zoom():
   # zoom==1 -> Global.WINDOW_SIZE.y
   var zoom = half_height * 2 / Global.WINDOW_SIZE.y
   $Camera.zoom = Vector2(zoom, zoom)
+
+func eat_resource(p):
+  print("eat", p)
+  var got_enegy = $Resources.eat_resource(
+    p.position,
+    p.field_radius
+  )
+  p.energy += got_enegy
 
 func _on_DebugMenu_debug_camera(is_debug):
   is_debug_camera = is_debug

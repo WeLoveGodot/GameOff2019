@@ -11,16 +11,21 @@ const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 1000.0 # 毫秒
 const AI_INTERVAL = 500.0 # 毫秒
+const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
 var WINDOW_SIZE
 var MIN_SCALE
 
 ## 星球生成概率
-const PLANTE_GEN_PROB = 0.0003
+const PLANTE_GEN_PROB = 0.0001
+## 资源生成概率
+const RESOURCE_GEN_PROB = 0.003
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
+## 资源能量值
+const RESOURCE_ENEGY = 10
 
 # Int -> Int
 func tech_2_level(tech: int):
@@ -40,19 +45,19 @@ func acc_cost(planet):
   return planet.position.x
 
 func explore_cost(planet):
-	return 0
+  return 0
 
 func expand_cost(planet):
-	return 0
+  return 0
 
 func attack_cost(planet):
-	return 0
+  return 0
 
 func explore_distance(planet):
   return planet.field_radius * 2
 
 func attack_distance(planet):
-	return 0
+  return 0
 
 ## effect
 
@@ -69,33 +74,36 @@ func expand_effect(planet, game, extra_param):
   var new_r = old_r * 1.1
   if planet.is_me:
     var t = planet.get_node("Tween")
-    t.interpolate_property(planet, "field_radius", old_r, new_r, 0.3, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+    var duration = 0.3
+    t.interpolate_property(planet, "field_radius", old_r, new_r, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+    t.interpolate_callback(game, duration, "eat_resource", planet)
     t.start()
   else:
     planet.field_radius  = new_r
+    game.eat_resource(planet)
   pass
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
-	# user input from extra_param
-	var pos = extra_param.pos
-	var r = explore_r(planet)
-	var speed = explore_speed(planet)
-	if planet.is_me:
-		game.add_explore(r, speed, pos)
+  # user input from extra_param
+  var pos = extra_param.pos
+  var r = explore_r(planet)
+  var speed = explore_speed(planet)
+  if planet.is_me:
+    game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-	pass
+  pass
 
 ## special
 
 func explore_r(planet):
-	#TODO: game logic
-	return 120.0
+  #TODO: game logic
+  return 120.0
 
 # 单位 距离 / 秒
 func explore_speed(planet):
-	return 100.0
+  return 100.0
 
 enum ESkill {
   ACC,
@@ -120,7 +128,7 @@ var SKILL_DICT = {
     name = "Explore",
     cost = funcref(self, "explore_cost"),
     distance = funcref(self, "explore_distance"),
-		effect = funcref(self, "explore_effect"),
+    effect = funcref(self, "explore_effect"),
   },
   ESkill.ATK : {
     name = "Attack",
