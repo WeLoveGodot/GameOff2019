@@ -42,6 +42,9 @@ script = ExtResource( 6 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+script = ExtResource( 5 )
 
 [node name="Fog" type="ColorRect" parent="."]
 visible = false

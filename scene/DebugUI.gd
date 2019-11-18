@@ -14,16 +14,16 @@ func _process(delta):
 		$energy.set_text("energy: " + String(game.me.energy))
 	pass
 
-func _input(event):
+#func _input(event):
 	# print(event.type)
 	# if event.type == InputEvent.MOUSE_BUTTON:
-	if event is InputEventMouseButton:
+#	if event is InputEventMouseButton:
 		# zoom in
-		if event.button_index == BUTTON_WHEEL_UP:
-			emit_signal("new_camera_scale", true)
+		#if event.button_index == BUTTON_WHEEL_UP:
+			#emit_signal("new_camera_scale", true)
 		# zoom out
-		if event.button_index == BUTTON_WHEEL_DOWN:
-			emit_signal("new_camera_scale", false)
+		#if event.button_index == BUTTON_WHEEL_DOWN:
+			#emit_signal("new_camera_scale", false)
 
 
 func _on_CheckBox_toggled(button_pressed):
