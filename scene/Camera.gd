@@ -39,13 +39,25 @@ var __rmbk = false
 # Move camera by keys: left, top, right, bottom.
 var __keys = [false, false, false, false]
 
+onready var draw_arrow_mode = false
+onready var end_draw_arrow_action = null
+onready var end_draw_arrow_key = null
+var mouse_position
+
+onready var game = get_parent()
+
 func _ready():
 	set_h_drag_enabled(false)
 	set_v_drag_enabled(false)
 	set_enable_follow_smoothing(true)
 	set_follow_smoothing(10)
+	set_process(false)
+
+func _process(delta):
+	update()
 
 func _physics_process(delta):
+	
 	
 	# Move camera by keys defined in InputMap (ui_left/top/right/bottom).
 	if key:
@@ -83,6 +95,11 @@ func _physics_process(delta):
 	# Set camera movement to zero, update old mouse position.
 	camera_movement = Vector2(0,0)
 	_prev_mouse_pos = get_local_mouse_position()
+	
+	var pre_clamp_pos = get_global_mouse_position() - Vector2(0,0)
+	var pos_x = clamp( pre_clamp_pos.x, -Global.WINDOW_SIZE.x/2, Global.WINDOW_SIZE.x/2)
+	var pos_y = clamp( pre_clamp_pos.y, -Global.WINDOW_SIZE.y/2, Global.WINDOW_SIZE.y/2)
+	mouse_position = Vector2(pos_x, pos_y)
 
 func _input( event ):
 	if event is InputEventMouseButton:
@@ -114,7 +131,21 @@ func _input( event ):
 			get_tree().quit()
 		if event.pressed and event.scancode == KEY_SPACE:
 			position = Vector2(0, 0)
-				
+		if event.pressed and event.scancode == end_draw_arrow_key  and draw_arrow_mode == true:
+			draw_arrow_mode = false
+			game.get_node("Skill").use_skill(
+				# 这里假定 Camera 只有玩家能用
+				game.me,
+				end_draw_arrow_action,
+				{
+					pos = mouse_position
+				}
+			)
+			end_draw_arrow_action = null
+			end_draw_arrow_key = null
+			
+			
+
 	# Control by keyboard handled by InpuMap.
 	if event.is_action_pressed("ui_left"):
 		__keys[0] = true
@@ -132,3 +163,14 @@ func _input( event ):
 		__keys[2] = false
 	if event.is_action_released("ui_down"):
 		__keys[3] = false
+		
+		
+func enter_draw_arrow_mode(action, action_key):
+	draw_arrow_mode = true
+	end_draw_arrow_action = action
+	end_draw_arrow_key = action_key
+	set_process(true)
+
+func _draw():
+	if draw_arrow_mode == true:
+		draw_line(Vector2(0,0), mouse_position , Color(255, 0, 0), 20)

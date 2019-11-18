@@ -3,9 +3,11 @@ signal debug_camera(is_debug)
 signal new_camera_scale(is_up)
 
 var game
+var camera
 
 func _ready():
 	game = get_parent().get_parent()
+	camera = game.get_node("Camera")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,10 +46,11 @@ func _on_ExprButton_pressed():
 	)
 
 func _on_AtkButton_pressed():
-	game.get_node("Skill").use_skill(
-		game.me,
-		Global.ESkill.ATK,
-		{
-			pos = Vector2(-300, 0)
-		}
-	)
+	camera.enter_draw_arrow_mode(Global.ESkill.ATK, KEY_F)
+#	game.get_node("Skill").use_skill(
+#		game.me,
+#		Global.ESkill.ATK,
+#		{
+#			pos = Vector2(-300, 0)
+#		}
+#	)

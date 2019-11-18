@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/Skill.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=7]
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=10]
+[ext_resource path="res://scene/Camera.gd" type="Script" id=10]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -40,12 +41,6 @@ script = ExtResource( 5 )
 [node name="Attacks" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
-[node name="Camera" type="Camera2D" parent="."]
-current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-script = ExtResource( 5 )
-
 [node name="Fog" type="ColorRect" parent="."]
 visible = false
 material = ExtResource( 7 )
@@ -65,15 +60,24 @@ custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
 [node name="Holes" parent="." instance=ExtResource( 9 )]
+position = Vector2( -2.58533, 0 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+script = ExtResource( 10 )
+edge = false
+
 [node name="DebugUI" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37
