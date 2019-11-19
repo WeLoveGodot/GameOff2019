@@ -72,7 +72,6 @@ script = ExtResource( 10 )
 edge = false
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0

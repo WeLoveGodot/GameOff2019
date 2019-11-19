@@ -57,8 +57,8 @@ func _process(delta):
 	update()
 
 func _physics_process(delta):
-	
-	
+
+
 	# Move camera by keys defined in InputMap (ui_left/top/right/bottom).
 	if key:
 		if __keys[0]:
@@ -69,7 +69,7 @@ func _physics_process(delta):
 			camera_movement.x += camera_speed * delta
 		if __keys[3]:
 			camera_movement.y += camera_speed * delta
-	
+
 	# Move camera by mouse, when it's on the margin (defined by camera_margin).
 	if edge:
 		#var rec = get_viewport().get_visible_rect()
@@ -84,18 +84,18 @@ func _physics_process(delta):
 			camera_movement.y += camera_speed * delta
 		if v.y <= camera_margin:
 			camera_movement.y -= camera_speed * delta
-	
+
 	# When RMB is pressed, move camera by difference of mouse position
 	if drag and __rmbk:
 		camera_movement = _prev_mouse_pos - get_local_mouse_position()
-	
+
 	# Update position of the camera.
 	position += camera_movement * get_zoom()
-	
+
 	# Set camera movement to zero, update old mouse position.
 	camera_movement = Vector2(0,0)
 	_prev_mouse_pos = get_local_mouse_position()
-	
+
 	var pre_clamp_pos = get_global_mouse_position() - Vector2(0,0)
 	var pos_x = clamp( pre_clamp_pos.x, -Global.WINDOW_SIZE.x/2, Global.WINDOW_SIZE.x/2)
 	var pos_y = clamp( pre_clamp_pos.y, -Global.WINDOW_SIZE.y/2, Global.WINDOW_SIZE.y/2)
@@ -143,8 +143,8 @@ func _input( event ):
 			)
 			end_draw_arrow_action = null
 			end_draw_arrow_key = null
-			
-			
+
+
 
 	# Control by keyboard handled by InpuMap.
 	if event.is_action_pressed("ui_left"):
@@ -163,8 +163,8 @@ func _input( event ):
 		__keys[2] = false
 	if event.is_action_released("ui_down"):
 		__keys[3] = false
-		
-		
+
+
 func enter_draw_arrow_mode(action, action_key):
 	draw_arrow_mode = true
 	end_draw_arrow_action = action
@@ -173,4 +173,4 @@ func enter_draw_arrow_mode(action, action_key):
 
 func _draw():
 	if draw_arrow_mode == true:
-		draw_line(Vector2(0,0), mouse_position , Color(255, 0, 0), 20)
+		draw_line(- self.position, mouse_position - self.position , Color(255, 0, 0), 20)
