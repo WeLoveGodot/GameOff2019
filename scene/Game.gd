@@ -65,8 +65,8 @@ func add_me():
 func add_explore(r, speed, target):
   $Explores.add_explore(r, speed, Vector2(0, 0), target)
 
-func add_attack(field_r, attack_r, speed, target):
-  $Attacks.add_attack(field_r, attack_r, speed, Vector2(0, 0), target)
+func add_attack(field_r, attack_r, speed, start, target):
+  $Attacks.add_attack(field_r, attack_r, speed, start, target)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
