@@ -125,6 +125,20 @@ func _input( event ):
 			camera_zoom.y + camera_zoom_speed.y < zoom_out_limit:
 				camera_zoom += camera_zoom_speed
 				set_zoom(camera_zoom)
+				
+		if event.button_index == end_draw_arrow_key  and draw_arrow_mode == true:
+			draw_arrow_mode = false
+			game.get_node("Skill").use_skill(
+				# 这里假定 Camera 只有玩家能用
+				game.me,
+				end_draw_arrow_action,
+				{
+					pos = mouse_position
+				}
+			)
+			end_draw_arrow_action = null
+			end_draw_arrow_key = null
+		
 	# Control the input of keyboard
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ESCAPE:
@@ -173,4 +187,4 @@ func enter_draw_arrow_mode(action, action_key):
 
 func _draw():
 	if draw_arrow_mode == true:
-		draw_line(- self.position, mouse_position - self.position , Color(255, 0, 0), 20)
+		draw_line(- self.position, mouse_position - self.position , Color(0.2, 0.8, 1), 1.5)

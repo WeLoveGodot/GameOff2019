@@ -46,7 +46,7 @@ func _on_ExprButton_pressed():
 	)
 
 func _on_AtkButton_pressed():
-	camera.enter_draw_arrow_mode(Global.ESkill.ATK, KEY_F)
+	camera.enter_draw_arrow_mode(Global.ESkill.ATK, BUTTON_LEFT)
 #	game.get_node("Skill").use_skill(
 #		game.me,
 #		Global.ESkill.ATK,

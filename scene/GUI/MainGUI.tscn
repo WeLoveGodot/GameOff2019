@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/GUI/MainGUI.gd" type="Script" id=1]
+[ext_resource path="res://resource/art/icon.png" type="Texture" id=2]
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-BoldItalic.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 3 )
+
+[node name="MainGUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -52.66
+margin_bottom = -2.6593
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 182.386, 59.5269 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="Energy" type="Label" parent="."]
+margin_left = 238.583
+margin_top = 7.33008
+margin_right = 372.583
+margin_bottom = 102.33
+custom_fonts/font = SubResource( 1 )
+text = "100"

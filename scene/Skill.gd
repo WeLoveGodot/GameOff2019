@@ -8,10 +8,16 @@ func _ready():
 func get_skill_table(skill):
   return Global.SKILL_DICT[skill]
 
+# 懒人接口
+func try_use_skill(planet, skill, extra_param):
+  if can_use_skill(planet, skill):
+    use_skill(planet, skill, extra_param)
+
+
 # 先检查能用再用
 func can_use_skill(planet, skill):
   var skill_table = get_skill_table(skill)
-  return planet.cost >= skill_table.cost.call_func(planet)
+  return planet.energy >= skill_table.cost.call_func(planet)
 
 # 检查后同一帧赶紧用，防止bug
 # 不管自己还是ai都调这个

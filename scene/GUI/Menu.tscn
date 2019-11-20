@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scene/GUI/Menu.gd" type="Script" id=1]
+[ext_resource path="res://resource/art/dark_forest.png" type="Texture" id=2]
+[ext_resource path="res://resource/art/start_normal.png" type="Texture" id=3]
+[ext_resource path="res://resource/art/start_hover.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/settings.png" type="Texture" id=5]
+[ext_resource path="res://scene/GUI/HelpButton.gd" type="Script" id=6]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -534.5
+margin_top = -376.084
+margin_right = 534.5
+margin_bottom = -25.084
+texture = ExtResource( 2 )
+
+[node name="StartButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -269.5
+margin_top = -337.648
+margin_right = 269.5
+margin_bottom = -241.648
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="HelpButton" type="Node2D" parent="."]
+position = Vector2( 1763.46, 116.136 )
+rotation = 4.29351
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HelpButton" type="TextureButton" parent="HelpButton"]
+margin_left = -46.1759
+margin_top = -46.2451
+margin_right = 45.8241
+margin_bottom = 45.7549
+texture_normal = ExtResource( 5 )
+script = ExtResource( 6 )
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="HelpButton/HelpButton" to="." method="_on_HelpButton_pressed"]

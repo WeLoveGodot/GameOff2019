@@ -15,6 +15,8 @@ func update_scale(camera_zoom: Vector2):
 
 
 func launch(field_r, attack_r, speed, start: Vector2, target: Vector2):
+  self.position = start
+  $Sprite.visible = true
   self.r = field_r
   self.attack_r = attack_r
   self.target = target
