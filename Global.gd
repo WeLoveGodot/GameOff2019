@@ -9,7 +9,7 @@ const MAX_LEVEL = 9
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 10000.0 # 毫秒
-const AI_INTERVAL = 500.0 # 毫秒
+const AI_INTERVAL = 100.0 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
