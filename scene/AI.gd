@@ -28,13 +28,13 @@ func update(delta, planets):
     _last = now
 
 func ai_tick(plantes):
-  print("[ai] tick")
+  Log.log("ai", "tick")
   match _state:
     State.IDLE:
-      print("[ai] --> new it")
+      Log.log("ai", "--> new it")
       start_iterating(plantes)
     State.ITERATING:
-      print("[ai] --")
+      Log.log("ai", "--")
       continue_iterating()
 
 func start_iterating(planets):
@@ -44,11 +44,11 @@ func start_iterating(planets):
 
 func continue_iterating():
   if _idx >= _planets.size():
-    print("[ai] <-- finish it")
+    Log.log("ai", "<-- finish it")
     _state = State.IDLE
   else:
     var planet = _planets[_idx]
-    print("[ai] it on ", _idx)
+    Log.log("ai", "it on %s" % _idx)
     # TODO: null check?
     run_ai(planet)
     _idx += 1
@@ -57,7 +57,7 @@ func run_ai(planet):
   if planet.is_me:
     return
   var rd = randi() % 5
-  print("[ai] rd = ", rd)
+  Log.log("ai", "rd = %s" % rd)
   match rd:
     0:
       return
