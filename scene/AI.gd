@@ -79,7 +79,7 @@ func ai_atk(planet):
   while size > 1 && planets_in_range[target_idx] == planet:
     target_idx = (target_idx + 1) % size
   var target = planets_in_range[target_idx]
-  _game.get_node("Skill").use_skill(
+  _game.get_node("Skill").try_use_skill(
     planet,
     Global.ESkill.ATK,
     {
