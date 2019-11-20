@@ -173,4 +173,4 @@ func enter_draw_arrow_mode(action, action_key):
 
 func _draw():
 	if draw_arrow_mode == true:
-		draw_line(- self.position, mouse_position - self.position , Color(255, 0, 0), 20)
+		draw_line(- self.position, mouse_position - self.position , Color(0.2, 0.8, 1), 1.5)
