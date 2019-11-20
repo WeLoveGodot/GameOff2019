@@ -9,7 +9,7 @@ const MAX_LEVEL = 9
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 10000.0 # 毫秒
-const AI_INTERVAL = 100.0 # 毫秒
+const AI_INTERVAL = 500.0 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -17,7 +17,7 @@ var WINDOW_SIZE
 var MIN_SCALE
 
 ## 星球生成概率
-const PLANTE_GEN_PROB = 0.00001
+const PLANTE_GEN_PROB = 0.0001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
 ## 资源能量值
@@ -78,7 +78,7 @@ func attack_cost(planet):
   return area(attack_radius(planet)) * ATTACK_COST_FACTOR
 
 func attack_distance(planet):
-  return 0
+  return 400
 
 ## effect
 
@@ -106,19 +106,19 @@ func expand_effect(planet, game, extra_param):
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
-	# user input from extra_param
-	var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
-	var r = explore_radius(planet)
-	var speed = explore_velocity(planet)
-	if planet.is_me:
-		game.add_explore(r, speed, pos)
+  # user input from extra_param
+  var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
+  var r = explore_radius(planet)
+  var speed = explore_velocity(planet)
+  if planet.is_me:
+    game.add_explore(r, speed, pos)
 
 func attack_effect(planet, game, extra_param):
-	var pos = extra_param.pos
-	var r = attack_radius(planet)
-	var speed = attack_velocity(planet)
-	if planet.is_me:
-		game.add_attack(6, r, speed, pos)
+  var pos = extra_param.pos
+  var r = attack_radius(planet)
+  var speed = attack_velocity(planet)
+  # if planet.is_me:
+  game.add_attack(6, r, speed, planet.position, pos)
 
 func global_pos_2_explore_pos(d, pos):
   var a = atan2(pos.y, pos.x)
@@ -137,7 +137,7 @@ func explore_velocity(planet):
   return planet.level * BASE_EXPLORE_VELOCITY * 1.0
 
 func attack_velocity(planet):
-	return planet.level * BASE_ATTACK_VELOCITY * 1.0
+  return planet.level * BASE_ATTACK_VELOCITY * 1.0
 
 func explore_distance(planet):
   return planet.field_radius * EXPLORE_FACTOR
