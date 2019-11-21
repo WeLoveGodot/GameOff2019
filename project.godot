@@ -22,7 +22,6 @@ config/icon="res://resource/art/icon.png"
 [autoload]
 
 Global="*res://scene/Global.tscn"
-Log="*res://scene/Log.tscn"
 
 [display]
 
