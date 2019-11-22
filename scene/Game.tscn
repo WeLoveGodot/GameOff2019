@@ -60,7 +60,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
 [node name="Holes" parent="." instance=ExtResource( 9 )]
-position = Vector2( -2.58533, 0 )
 
 [node name="Tween" type="Tween" parent="."]
 

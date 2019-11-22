@@ -2,11 +2,15 @@ extends Node
 
 var _channel = {
 	ai = true,
+	debug = true, # 要经常关的
+	info = true,
+	warning = true,
+	error = true,
 }
 
 func log(channel: String, text):
 	if _channel[channel]:
-		print("[" + channel + "]" + text)
+		print("[%s] %s" % [channel, text])
 
 func _ready():
 	pass # Replace with function body.
