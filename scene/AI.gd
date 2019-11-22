@@ -24,25 +24,25 @@ func setup(planets, game):
 func update(delta, planets):
   var now = OS.get_ticks_msec()
   if now > _last + Global.AI_INTERVAL:
-    ai_tick(planets)
+    _ai_tick(planets)
     _last = now
 
-func ai_tick(plantes):
+func _ai_tick(plantes):
   Log.log("ai", "tick")
   match _state:
     State.IDLE:
       Log.log("ai", "--> new it")
-      start_iterating(plantes)
+      _start_iterating(plantes)
     State.ITERATING:
       Log.log("ai", "--")
-      continue_iterating()
+      _continue_iterating()
 
-func start_iterating(planets):
+func _start_iterating(planets):
   _planets = planets
   _state = State.ITERATING
   _idx = 0
 
-func continue_iterating():
+func _continue_iterating():
   if _idx >= _planets.size():
     Log.log("ai", "<-- finish it")
     _state = State.IDLE
@@ -50,10 +50,10 @@ func continue_iterating():
     var planet = _planets[_idx]
     Log.log("ai", "it on %s" % _idx)
     # TODO: null check?
-    run_ai(planet)
+    _run_ai(planet)
     _idx += 1
 
-func run_ai(planet):
+func _run_ai(planet):
   if planet.is_me:
     return
   var rd = randi() % 5
@@ -62,15 +62,15 @@ func run_ai(planet):
     0:
       return
     1:
-      ai_atk(planet)
+      _ai_atk(planet)
     2:
-      ai_expd(planet)
+      _ai_expd(planet)
     3:
-      ai_expr(planet)
+      _ai_expr(planet)
     4:
-      ai_acc(planet)
+      _ai_acc(planet)
 
-func ai_atk(planet):
+func _ai_atk(planet):
   var planets_in_range = _ps.get_planets_in_range(planet.position, Global.attack_distance(planet))
   var size = planets_in_range.size()
   if size == 0 || (size == 1 && planets_in_range[0] == planet):
@@ -83,15 +83,21 @@ func ai_atk(planet):
     planet,
     Global.ESkill.ATK,
     {
-      pos = target.position
+      pos = _get_random_pos(target.position, planet.field_radius)
     }
   )
 
-func ai_expd(planet):
+func _ai_expd(planet):
   pass
 
-func ai_expr(planet):
+func _ai_expr(planet):
   pass
 
-func ai_acc(planet):
+func _ai_acc(planet):
   pass
+
+func _get_random_pos(pos, offset):
+  return Vector2(
+    pos.x + (randf() - 0.5) * offset * 2,
+    pos.y + (randf() - 0.5) * offset * 2
+  )
