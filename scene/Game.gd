@@ -62,8 +62,8 @@ func add_me():
   print("got me", me.position, me.field_radius)
 
 ## skills
-func add_explore(r, speed, target):
-  $Explores.add_explore(r, speed, Vector2(0, 0), target)
+func add_explore(r, speed, start, target):
+  $Explores.add_explore(r, speed, start, target)
 
 func add_attack(field_r, attack_r, speed, start, target):
   $Attacks.add_attack(field_r, attack_r, speed, start, target)

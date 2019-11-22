@@ -88,13 +88,35 @@ func _ai_atk(planet):
   )
 
 func _ai_expd(planet):
-  pass
+  _game.get_node("Skill").try_use_skill(
+    planet,
+    Global.ESkill.EXPD,
+    null
+  )
 
 func _ai_expr(planet):
-  pass
+  # ai expr完全只是假装用一下然后可能被玩家发现，没意义
+  var dis = Global.explore_distance(planet) * max(0.5, randf())
+  var deg = randf() * 2 * PI
+  var target_pos = planet.position + Vector2(
+    dis * sin(deg),
+    dis * cos(deg)
+  )
+  Log.log("debug", "%s >> (%s, %s) -> %s" % [planet.position, dis, deg, target_pos])
+  _game.get_node("Skill").try_use_skill(
+    planet,
+    Global.ESkill.EXPR,
+    {
+      pos = target_pos
+    }
+  )
 
 func _ai_acc(planet):
-  pass
+  _game.get_node("Skill").try_use_skill(
+    planet,
+    Global.ESkill.ACC,
+    null
+  )
 
 func _get_random_pos(pos, offset):
   return Vector2(

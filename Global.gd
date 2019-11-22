@@ -107,11 +107,9 @@ func expand_effect(planet, game, extra_param):
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入
 func explore_effect(planet, game, extra_param):
   # user input from extra_param
-  var pos = global_pos_2_explore_pos(explore_distance(planet), extra_param.pos)
   var r = explore_radius(planet)
   var speed = explore_velocity(planet)
-  if planet.is_me:
-    game.add_explore(r, speed, pos)
+  game.add_explore(r, speed, planet.position, extra_param.pos)
 
 func attack_effect(planet, game, extra_param):
   var pos = extra_param.pos

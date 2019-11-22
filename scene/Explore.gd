@@ -14,14 +14,17 @@ func update_scale(camera_zoom: Vector2):
 
 
 func launch(r, speed, start: Vector2, target: Vector2):
+  self.position = start
   self.r = r
   self.target = target
   self.speed = speed
+  $Sprite.visible = true
   var t = $Tween
   var dis = start.distance_to(target)
   $Sprite.look_at(target)
   print("dis = ", dis)
   var duration = dis / speed
+  Log.log("debug", "explore: %s -> %s" % [start, target])
   t.interpolate_property(self, "position", start, target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
   t.interpolate_callback(self, duration, "on_reach")
   t.start()
