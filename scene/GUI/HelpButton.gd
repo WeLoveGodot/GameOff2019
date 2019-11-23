@@ -1,5 +1,7 @@
 extends TextureButton
 
+signal help_button_clicked
+
 const ROTATE_DURATION = 3
 
 var _rotate_tween = null
@@ -7,6 +9,7 @@ var _rotate_tween = null
 func _ready():
 	self.connect("mouse_entered", self, "_on_mouse_entered")
 	self.connect("mouse_exited", self, "_on_mouse_exited")
+	self.connect("pressed", self, "_on_mouse_pressed")
 	_rotate_tween = Tween.new()
 	add_child(_rotate_tween)
 	
@@ -22,3 +25,5 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	_rotate_tween.stop_all()
 	
+func _on_mouse_pressed():
+	emit_signal("help_button_clicked")
