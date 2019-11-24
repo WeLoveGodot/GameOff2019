@@ -64,7 +64,7 @@ func update_level():
 func destroy():
   if is_me:
     Log.log("warning", "i die")
-    get_tree().change_scene("res://scene/GUI/Menu.tscn")
+    # get_tree().change_scene("res://scene/GUI/Menu.tscn")
   else:
     self.queue_free()
 

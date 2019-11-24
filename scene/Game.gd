@@ -10,7 +10,10 @@ var _gui
 
 var _loading
 
+var _zoom_limit = Global.SIZE / Global.WINDOW_SIZE.y
+
 func _ready():
+  _init_camera()
   # _gui = load("res://scene/GUI/MainGUI.tscn").instance()
   # add_child(_gui)
   _loading = load("res://scene/Loading.tscn").instance()
@@ -48,9 +51,6 @@ func add_resource(noise, row, col, half_size):
     return true
   return false
 
-func init_camera():
-  $Camera.zoom = Vector2(1, 1)
-
 func add_me():
   me = $Planets.new_planet(Vector2(0, 0))
   me.is_me = true
@@ -84,10 +84,14 @@ func collect_holes():
     if node.config.is_me:
       $Holes.add_hole(node.r, node.get_position())
 
+func _init_camera():
+  # _zoom_limit = Global.SIZE / 2 / Global.WINDOW_SIZE.y
+  $Camera.zoom = Vector2(1, 1)
+
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
   # zoom==1 -> Global.WINDOW_SIZE.y
-  var zoom = half_height * 2 / Global.WINDOW_SIZE.y
+  var zoom = min(half_height * 2 / Global.WINDOW_SIZE.y, _zoom_limit)
   $Camera.zoom = Vector2(zoom, zoom)
 
 func eat_resource(p):
