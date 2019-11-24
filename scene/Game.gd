@@ -11,6 +11,8 @@ var _gui
 var _loading
 
 func _ready():
+  _gui = load("res://scene/GUI/MainGUI.tscn").instance()
+  add_child(_gui)
   _loading = load("res://scene/Loading.tscn").instance()
   _loading.setup(self)
   add_child(_loading)

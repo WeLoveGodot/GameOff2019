@@ -1,5 +1,7 @@
 # 整个Loading逻辑
 
+signal loading_finished
+
 extends Node
 
 var _game
@@ -33,6 +35,7 @@ func is_loading():
 
 func start_async_loading():
   _loading_gui= load("res://scene/GUI/LoadingUI.tscn").instance()
+  _loading_gui.layer = 10
   add_child(_loading_gui)
   _next_loading_stage()
 
@@ -97,6 +100,7 @@ func _loading_planets_tick():
   _next_loading_stage()
 
 func _post_loading():
+  emit_signal("loading_finished")
   _loading_gui.queue_free()
 
 const RESOURCES_PER_TICK = 500

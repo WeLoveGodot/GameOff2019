@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scene/GUI/MainGUI.gd" type="Script" id=1]
 [ext_resource path="res://resource/art/icon.png" type="Texture" id=2]
-[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-BoldItalic.ttf" type="DynamicFontData" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 80
-font_data = ExtResource( 3 )
+[ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=3]
 
 [node name="MainGUI" type="CanvasLayer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 960.686 ]
+}
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchor_top = 1.0
@@ -19,14 +18,80 @@ margin_top = -52.66
 margin_bottom = -2.6593
 
 [node name="Icon" type="Sprite" parent="."]
-position = Vector2( 182.386, 59.5269 )
+visible = false
+position = Vector2( 63.4888, 62.1116 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 
-[node name="Energy" type="Label" parent="."]
-margin_left = 238.583
-margin_top = 7.33008
-margin_right = 372.583
-margin_bottom = 102.33
-custom_fonts/font = SubResource( 1 )
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+margin_left = -213.399
+margin_top = 19.6439
+margin_right = 2133.6
+margin_bottom = 78.6439
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 0.5, 0.5 )
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer4"]
+margin_left = 236.0
+margin_right = 542.0
+margin_bottom = 59.0
+size_flags_horizontal = 6
+
+[node name="EnergyLabel" type="Label" parent="HBoxContainer4/HBoxContainer"]
+margin_right = 222.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "ENERGY: "
+valign = 1
+
+[node name="Energy" type="Label" parent="HBoxContainer4/HBoxContainer"]
+margin_left = 226.0
+margin_right = 306.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
 text = "100"
+valign = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer4"]
+margin_left = 1036.0
+margin_right = 1309.0
+margin_bottom = 59.0
+size_flags_horizontal = 6
+
+[node name="RLabel" type="Label" parent="HBoxContainer4/HBoxContainer2"]
+margin_right = 189.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "RADIUS:"
+valign = 1
+
+[node name="R" type="Label" parent="HBoxContainer4/HBoxContainer2"]
+margin_left = 193.0
+margin_right = 273.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "100"
+valign = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer4"]
+margin_left = 1833.0
+margin_right = 2079.0
+margin_bottom = 59.0
+size_flags_horizontal = 6
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer4/HBoxContainer3"]
+margin_right = 162.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "LEVEL:"
+valign = 1
+
+[node name="Level" type="Label" parent="HBoxContainer4/HBoxContainer3"]
+margin_left = 166.0
+margin_right = 246.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "100"
+valign = 1
