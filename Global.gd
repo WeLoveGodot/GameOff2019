@@ -4,7 +4,9 @@ extends Node2D
 
 const SIZE = 4096
 const GEN_SIZE = SIZE * 0.75
-const MAX_LEVEL = 9
+
+# 满级
+const MAX_LEVEL = 10
 
 const DEFAULT_FIELD_RADIUS = 100.0
 

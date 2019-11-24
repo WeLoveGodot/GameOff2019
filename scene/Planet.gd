@@ -42,10 +42,11 @@ func try_cost(cost: int):
     return true
 
 func tick():
-  # field_radius += 200
-  update_tech()
-  update_progress()
-  update_level()
+	# field_radius += 200
+	if level < Global.MAX_LEVEL:
+		update_tech()
+		update_progress()
+		update_level()
 
 func update_tech():
   var cost = (level + 1) * Global.BASE_TECH_COST
