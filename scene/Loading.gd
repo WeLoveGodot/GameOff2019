@@ -126,7 +126,7 @@ func _loading_resources_tick():
 
 func _make_noise():
   var noise = OpenSimplexNoise.new()
-  noise.seed = randi()
+  noise.seed = randf()
   noise.octaves = 4
   noise.period = 20.0
   noise.persistence = 0.8
