@@ -60,7 +60,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
 [node name="Holes" parent="." instance=ExtResource( 9 )]
-visible = false
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -72,7 +71,6 @@ script = ExtResource( 10 )
 edge = false
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
 margin_right = 1916.0
@@ -98,6 +96,30 @@ margin_top = 19.0
 margin_right = 218.0
 margin_bottom = 36.0
 
+[node name="level" type="Label" parent="DebugUI/DebugMenu"]
+margin_left = 2.88028
+margin_top = 37.4854
+margin_right = 218.88
+margin_bottom = 54.4854
+
+[node name="progress" type="Label" parent="DebugUI/DebugMenu"]
+margin_left = 1.55988
+margin_top = 55.9708
+margin_right = 217.56
+margin_bottom = 72.9708
+
+[node name="tech_factor" type="Label" parent="DebugUI/DebugMenu"]
+margin_left = 2.0
+margin_top = 99.5435
+margin_right = 218.0
+margin_bottom = 116.543
+
+[node name="tech" type="Label" parent="DebugUI/DebugMenu"]
+margin_left = 2.0
+margin_top = 139.595
+margin_right = 218.0
+margin_bottom = 156.595
+
 [node name="ExpdButton" type="Button" parent="DebugUI/DebugMenu"]
 margin_left = 1701.06
 margin_top = 49.4738
@@ -120,9 +142,18 @@ margin_right = 1845.49
 margin_bottom = 177.866
 rect_pivot_offset = Vector2( 144.06, 32 )
 text = "attack"
+
+[node name="AccButton" type="Button" parent="DebugUI/DebugMenu"]
+margin_left = 1700.17
+margin_top = 187.342
+margin_right = 1843.17
+margin_bottom = 222.342
+rect_pivot_offset = Vector2( 144.06, 32 )
+text = "acc"
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="DebugUI/DebugMenu/ExpdButton" to="DebugUI/DebugMenu" method="_on_ExpdButton_pressed"]
 [connection signal="pressed" from="DebugUI/DebugMenu/ExprButton" to="DebugUI/DebugMenu" method="_on_ExprButton_pressed"]
 [connection signal="pressed" from="DebugUI/DebugMenu/AtkButton" to="DebugUI/DebugMenu" method="_on_AtkButton_pressed"]
+[connection signal="pressed" from="DebugUI/DebugMenu/AccButton" to="DebugUI/DebugMenu" method="_on_AccButton_pressed"]

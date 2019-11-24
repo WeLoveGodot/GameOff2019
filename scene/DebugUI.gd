@@ -14,6 +14,10 @@ func _process(delta):
 	if game.me:
 		$r.set_text("r: " + String(game.me.field_radius))
 		$energy.set_text("energy: " + String(game.me.energy))
+		$level.set_text("level: " + String(game.me.level))
+		$progress.set_text("progress: " + String(game.me.progress))
+		$tech_factor.set_text("tech_factor: " + String(game.me.tech_factor))
+		$tech.set_text("tech: " + String(game.me.tech))
 	pass
 
 #func _input(event):
@@ -37,13 +41,14 @@ func _on_ExpdButton_pressed():
 
 
 func _on_ExprButton_pressed():
-	game.get_node("Skill").use_skill(
-		game.me,
-		Global.ESkill.EXPR,
-		{
-			pos = Vector2(500, 600)
-		}
-	)
+	camera.enter_draw_arrow_mode(Global.ESkill.EXPR, BUTTON_LEFT)
+	#game.get_node("Skill").use_skill(
+	#	game.me,
+	#	Global.ESkill.EXPR,
+	#	{
+	#		pos = Vector2(500, 600)
+	#	}
+	#)
 
 func _on_AtkButton_pressed():
 	camera.enter_draw_arrow_mode(Global.ESkill.ATK, BUTTON_LEFT)
@@ -54,3 +59,11 @@ func _on_AtkButton_pressed():
 #			pos = Vector2(-300, 0)
 #		}
 #	)
+
+
+func _on_AccButton_pressed():
+	game.get_node("Skill").use_skill(
+		game.me,
+		Global.ESkill.ACC,
+		null
+	)

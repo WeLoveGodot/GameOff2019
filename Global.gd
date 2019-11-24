@@ -8,8 +8,8 @@ const MAX_LEVEL = 9
 
 const DEFAULT_FIELD_RADIUS = 100.0
 
-const TECH_INTERVAL = 10000.0 # 毫秒
-const AI_INTERVAL = 1.0 # 毫秒
+const TECH_INTERVAL = 1000.0 # 毫秒
+const AI_INTERVAL = 1 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -21,15 +21,15 @@ const PLANTE_GEN_PROB = 0.0001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
 ## 资源能量值
-const RESOURCE_ENERGY = 10
+const RESOURCE_ENERGY = 100000
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
 ## 基础宇宙常量
-const ENERGY_DENSITY = 800
+const ENERGY_DENSITY = 5
 const PAI = 3
 const COSMOS_RADIUS = 1024
-
+ 
 const INITIAL_FIELD_RADIUS = 5
 const INITIAL_TECH = 16
 const INITIAL_DEVELOP_FACTOR = 2
@@ -43,12 +43,15 @@ const BASE_EXPLORE_VELOCITY = 100
 const BASE_ATTACK_RADIUS = 50
 const BASE_ATTACK_VELOCITY = 200
 const EXPAND_RADIUS_FACTOR = 1.1
+const BASE_ACC_COST = 2000
+const BASE_ACC_BOTTOM = 3
+const BASE_TECH_COST= 10  
 
 const BASE_ATTACK_FIELD_RADIUS = 8
 
 # Int -> Int
 func tech_2_level(tech: int):
-  return floor(log(tech)/log(10))
+  return max(floor(log(tech)/log(10)), 0)
 
 # Int -> float(0~1)
 func tech_2_progress(tech: int):
@@ -64,7 +67,7 @@ func area(r):
   return PAI * r * r
 
 func acc_cost(planet):
-  return 0
+  return pow(BASE_ACC_BOTTOM, planet.level) * BASE_ACC_COST
 
 func explore_cost(planet):
   return explore_distance(planet) * explore_radius(planet) * EXPLORE_COST_FACTOR
@@ -93,7 +96,6 @@ func acc_effect(planet, game, extra_param):
 func expand_effect(planet, game, extra_param):
   var old_r = planet.field_radius
   var new_r = old_r * 1.1
-  print("old new", old_r, new_r)
   if planet.is_me:
     var t = planet.get_node("Tween")
     var duration = 0.3
@@ -132,10 +134,10 @@ func attack_radius(planet):
 
 # 单位 距离 / 秒
 func explore_velocity(planet):
-  return planet.level * BASE_EXPLORE_VELOCITY * 1.0
+  return planet.level * BASE_EXPLORE_VELOCITY * 1.0 + 1
 
 func attack_velocity(planet):
-  return planet.level * BASE_ATTACK_VELOCITY * 1.0
+  return planet.level * BASE_ATTACK_VELOCITY * 1.0 + 1
 
 func explore_distance(planet):
   return planet.field_radius * EXPLORE_FACTOR
