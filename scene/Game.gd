@@ -32,8 +32,9 @@ func add_planet(noise, row, col, half_size):
   # Log.log("info", "try planet at %s %s | %s" % [row, col, x])
   if abs(x) < Global.PLANTE_GEN_PROB:# && $Planets.len() < Global.MAX_PLANETS:
     var coor = Vector2(row - half_size, col - half_size)
-    $Planets.new_planet(coor)
+    var p = $Planets.new_planet(coor)
     # Log.log("info", "add planet to %s %s" % [row, col])
+    eat_resource(p)
     return true
   return false
 

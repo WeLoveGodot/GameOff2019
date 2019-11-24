@@ -17,8 +17,8 @@ func setup(game):
 enum ELoadingStage {
   DEFAULT,
 
-  PLANETS,
   RESOURCES,
+  PLANETS,
   ME,
 
   FINISH,
@@ -56,10 +56,10 @@ func loading_tick(delta):
 func _next_loading_stage():
   match _loading_stage:
     ELoadingStage.DEFAULT:
-      _loading_stage = ELoadingStage.PLANETS
-    ELoadingStage.PLANETS:
       _loading_stage = ELoadingStage.RESOURCES
     ELoadingStage.RESOURCES:
+      _loading_stage = ELoadingStage.PLANETS
+    ELoadingStage.PLANETS:
       _loading_stage = ELoadingStage.ME
     ELoadingStage.ME:
       _loading_stage = ELoadingStage.FINISH
