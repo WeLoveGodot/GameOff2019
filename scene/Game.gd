@@ -14,11 +14,12 @@ var _zoom_limit = Global.SIZE / Global.WINDOW_SIZE.y
 
 func _ready():
   _init_camera()
+  _init_bg()
   # _gui = load("res://scene/GUI/MainGUI.tscn").instance()
   # add_child(_gui)
   _loading = load("res://scene/Loading.tscn").instance()
   _loading.setup(self)
-  add_child(_loading)
+  add_child(_loading)	
   _loading.start_async_loading()
 
 func _process(delta):
@@ -87,6 +88,11 @@ func collect_holes():
 func _init_camera():
   # _zoom_limit = Global.SIZE / 2 / Global.WINDOW_SIZE.y
   $Camera.zoom = Vector2(1, 1)
+
+func _init_bg():
+  var bg = $ColorRect
+  bg.rect_size = Vector2(Global.SIZE / Global.WINDOW_SIZE.y * Global.WINDOW_SIZE.x, Global.SIZE)
+  bg.rect_position = - bg.rect_size / 2
 
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
