@@ -51,7 +51,7 @@ const BASE_ATTACK_FIELD_RADIUS = 8
 
 # Int -> Int
 func tech_2_level(tech: int):
-  return max(floor(log(tech)/log(10)), 0)
+  return max(floor(log(tech)/log(10)), 1)
 
 # Int -> float(0~1)
 func tech_2_progress(tech: int):
@@ -112,13 +112,29 @@ func explore_effect(planet, game, extra_param):
   # user input from extra_param
   var r = explore_radius(planet)
   var speed = explore_velocity(planet)
-  game.add_explore(r, speed, planet.position, extra_param.pos, planet.is_me)
+  game.add_explore({
+    r = r,
+    speed = speed,
+    start = planet.position,
+    target = extra_param.pos,
+    is_me = planet.is_me,
+    source = planet
+  })
 
 func attack_effect(planet, game, extra_param):
   var pos = extra_param.pos
   var r = attack_radius(planet)
   var speed = attack_velocity(planet)
-  game.add_attack(6, r, speed, planet.position, pos, planet.level, planet.is_me)
+  game.add_attack({
+    r = 6,
+    attack_r = r,
+    speed = speed,
+    start = planet.position,
+    target = pos,
+    level = planet.level,
+    is_me = planet.is_me,
+    source = planet
+  })
 
 func global_pos_2_explore_pos(d, pos):
   var a = atan2(pos.y, pos.x)

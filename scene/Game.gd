@@ -57,11 +57,11 @@ func add_me():
   eat_resource(me)
 
 ## skills
-func add_explore(r, speed, start, target, is_me):
-  $Explores.add_explore(r, speed, start, target, is_me)
+func add_explore(config):
+  $Explores.add_explore(config)
 
-func add_attack(field_r, attack_r, speed, start, target, level, is_me):
-  $Attacks.add_attack(field_r, attack_r, speed, start, target, level, is_me)
+func add_attack(config):
+  $Attacks.add_attack(config)
 
 func _game_tick(delta):
   if !is_debug_camera:
@@ -78,11 +78,11 @@ func collect_holes():
   $Holes.clear_holes()
   $Holes.add_hole(me.field_radius, me.get_coor())
   for node in $Explores.get_children():
-    if node.is_me:
-      $Holes.add_hole(node.r, node.get_position())
+    if node.config.is_me:
+      $Holes.add_hole(node.config.r, node.get_position())
   for node in $Attacks.get_children():
-    if node.is_me:
-      $Holes.add_hole(float(node.r), node.get_position())
+    if node.config.is_me:
+      $Holes.add_hole(node.r, node.get_position())
 
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
