@@ -1,7 +1,8 @@
 extends Node
 
 var _channel = {
-	ai = true,
+	ai = false,
+	loading = false,
 	debug = true, # 要经常关的
 	info = true,
 	warning = true,

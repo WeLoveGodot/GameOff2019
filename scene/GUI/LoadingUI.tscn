@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Light.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[node name="LoadingUI" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -11.0
+margin_top = -16.0
+margin_right = 1993.0
+margin_bottom = 1169.0
+color = Color( 0.0745098, 0.0588235, 0.0823529, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 1918.0
+margin_bottom = 1078.0
+custom_fonts/font = SubResource( 1 )
+text = "Loading..."
+align = 1
+valign = 1

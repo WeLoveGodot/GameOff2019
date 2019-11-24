@@ -30,6 +30,11 @@ func get_planets_in_range(pos, r):
 			ps.append(p)
 	return ps
 
+func update_planets(delta):
+	for p in _planets:
+		p.update_scale(_game.get_node("Camera").zoom)
+	_ai.update(delta, _planets)
+
 func _add_planet(planet):
 	_planets.append(planet)
 	add_child(planet)
@@ -50,8 +55,3 @@ func _ready():
 	_game = get_parent()
 	_ai = load("res://scene/AI.tscn").instance()
 	_ai.setup(self, _game)
-
-func _process(delta):
-	for p in _planets:
-		p.update_scale(_game.get_node("Camera").zoom)
-	_ai.update(delta, _planets)
