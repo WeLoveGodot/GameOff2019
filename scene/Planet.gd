@@ -56,6 +56,10 @@ func update_progress():
 func update_level():
 	level = Global.tech_2_level(tech)	
 
+func destroy():
+	Log.log("info", "hahahahahahah")
+	self.queue_free()
+
 func get_coor():
 	return position
 

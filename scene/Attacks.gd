@@ -6,9 +6,10 @@ var game
 func _ready():
 	 game = get_parent()
 
-func add_attack(field_r, attack_r, speed, start: Vector2, target: Vector2):
+func add_attack(field_r, attack_r, speed, start: Vector2, target: Vector2, level, is_me: bool):
 	var atk = Attack.instance()
-	atk.launch(field_r, attack_r, speed, start, target)
+	atk.connect("destroy_planets", game, "on_destroy_planets")
+	atk.launch(field_r, attack_r, speed, start, target, level, is_me)
 	add_child(atk)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

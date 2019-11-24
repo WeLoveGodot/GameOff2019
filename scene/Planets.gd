@@ -7,8 +7,6 @@ var _ai
 var _up_left = Vector2(0, 0)
 var _bottom_right = Vector2(0, 0)
 
-var _planets = []
-
 func new_planet(coor):
 	var p = Planet.instance()
 	p.set_coor(coor)
@@ -16,14 +14,11 @@ func new_planet(coor):
 	return p
 
 func len():
-	return _planets.size()
-
-func get_planets():
-	return _planets
+	return get_child_count()
 
 func get_planets_in_range(pos, r):
 	var ps = []
-	for p in _planets:
+	for p in get_children():
 		# var x = p.position.x
 		# var y = p.position.y
 		if pos.distance_to(p.position) < r:
@@ -31,12 +26,12 @@ func get_planets_in_range(pos, r):
 	return ps
 
 func update_planets(delta):
-	for p in _planets:
+	var ps = get_children()
+	for p in ps:
 		p.update_scale(_game.get_node("Camera").zoom)
-	_ai.update(delta, _planets)
+	_ai.update(delta, ps)
 
 func _add_planet(planet):
-	_planets.append(planet)
 	add_child(planet)
 	_update_coner(planet)
 	# TODO: 更新镜头范围相关边界，比如最左点，最右点之类

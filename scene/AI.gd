@@ -49,11 +49,13 @@ func _continue_iterating():
   else:
     var planet = _planets[_idx]
     Log.log("ai", "it on %s" % _idx)
-    # TODO: null check?
-    _run_ai(planet)
+    Log.log("debug", planet)
+    if planet != null && is_instance_valid(planet):
+      _run_ai(planet)
     _idx += 1
 
 func _run_ai(planet):
+  Log.log("debug", planet)
   if planet.is_me:
     return
   var rd = randi() % 5

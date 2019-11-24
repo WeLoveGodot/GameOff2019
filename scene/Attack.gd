@@ -1,9 +1,13 @@
 extends Node2D
 
+signal destroy_planets(pos, r)
+
 var r = 0
 var attack_r = 0
 var target: Vector2
 var speed: float
+var level
+var is_me = false
 
 const EXTRA_SCALE = 0.1
 const DURATION_EXPLOSION = 0.5
@@ -17,13 +21,15 @@ func update_scale(camera_zoom: Vector2):
   $Sprite.set_scale(camera_zoom * EXTRA_SCALE * _explosion_scale)
 
 
-func launch(field_r, attack_r, speed, start: Vector2, target: Vector2):
+func launch(field_r, attack_r, speed, start: Vector2, target: Vector2, level, is_me):
   self.position = start
   $Sprite.visible = true
   self.r = field_r
   self.attack_r = attack_r
   self.target = target
   self.speed = speed
+  self.level = level
+  self.is_me = is_me
   var t = $Tween
   var dis = start.distance_to(target)
   $Sprite.look_at(target)
@@ -57,8 +63,12 @@ func on_reach():
 
 func on_remove():
   print("remove")
+  _destroy_planets()
   get_parent().remove_child(self)
 
 func _process(delta):
   # print(self.position)
   pass
+
+func _destroy_planets():
+  emit_signal("destroy_planets", position, self.attack_r, level)

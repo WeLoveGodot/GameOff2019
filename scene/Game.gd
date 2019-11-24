@@ -54,11 +54,11 @@ func add_me():
   eat_resource(me)
 
 ## skills
-func add_explore(r, speed, start, target):
-  $Explores.add_explore(r, speed, start, target)
+func add_explore(r, speed, start, target, is_me):
+  $Explores.add_explore(r, speed, start, target, is_me)
 
-func add_attack(field_r, attack_r, speed, start, target):
-  $Attacks.add_attack(field_r, attack_r, speed, start, target)
+func add_attack(field_r, attack_r, speed, start, target, level, is_me):
+  $Attacks.add_attack(field_r, attack_r, speed, start, target, level, is_me)
 
 func _game_tick(delta):
   if !is_debug_camera:
@@ -75,9 +75,11 @@ func collect_holes():
   $Holes.clear_holes()
   $Holes.add_hole(me.field_radius, me.get_coor())
   for node in $Explores.get_children():
-    $Holes.add_hole(node.r, node.get_position())
+    if node.is_me:
+      $Holes.add_hole(node.r, node.get_position())
   for node in $Attacks.get_children():
-    $Holes.add_hole(float(node.r), node.get_position())
+    if node.is_me:
+      $Holes.add_hole(float(node.r), node.get_position())
 
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
@@ -102,3 +104,9 @@ func _on_DebugMenu_new_camera_scale(is_up):
       $Camera.zoom /= 1.2
     else:
       $Camera.zoom *= 1.2
+
+func on_destroy_planets(pos, r, level):
+  var planets = $Planets.get_planets_in_range(pos, r)
+  for p in planets:
+    if p.level <= level:
+      p.destroy()

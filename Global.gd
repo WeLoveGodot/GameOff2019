@@ -9,7 +9,7 @@ const MAX_LEVEL = 9
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 10000.0 # 毫秒
-const AI_INTERVAL = 500.0 # 毫秒
+const AI_INTERVAL = 50.0 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -109,14 +109,13 @@ func explore_effect(planet, game, extra_param):
   # user input from extra_param
   var r = explore_radius(planet)
   var speed = explore_velocity(planet)
-  game.add_explore(r, speed, planet.position, extra_param.pos)
+  game.add_explore(r, speed, planet.position, extra_param.pos, planet.is_me)
 
 func attack_effect(planet, game, extra_param):
   var pos = extra_param.pos
   var r = attack_radius(planet)
   var speed = attack_velocity(planet)
-  # if planet.is_me:
-  game.add_attack(6, r, speed, planet.position, pos)
+  game.add_attack(6, r, speed, planet.position, pos, planet.level, planet.is_me)
 
 func global_pos_2_explore_pos(d, pos):
   var a = atan2(pos.y, pos.x)

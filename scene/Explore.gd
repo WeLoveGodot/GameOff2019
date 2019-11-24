@@ -3,6 +3,7 @@ extends Node2D
 var r = 0
 var target: Vector2
 var speed: float
+var is_me = false
 
 const EXTRA_SCALE = 0.1
 
@@ -13,11 +14,12 @@ func update_scale(camera_zoom: Vector2):
 	$Sprite.set_scale(camera_zoom * EXTRA_SCALE)
 
 
-func launch(r, speed, start: Vector2, target: Vector2):
+func launch(r, speed, start: Vector2, target: Vector2, is_me):
   self.position = start
   self.r = r
   self.target = target
   self.speed = speed
+  self.is_me = is_me
   $Sprite.visible = true
   var t = $Tween
   var dis = start.distance_to(target)
