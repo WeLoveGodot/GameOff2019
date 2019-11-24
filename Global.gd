@@ -194,3 +194,8 @@ var SKILL_DICT = {
   },
 }
 # --------------------- end ---------------------#
+
+var is_win = false
+func to_result(is_win):
+  self.is_win = is_win
+  get_tree().change_scene("res://scene/GUI/Result.tscn")

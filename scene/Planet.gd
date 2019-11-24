@@ -42,11 +42,11 @@ func try_cost(cost: int):
     return true
 
 func tick():
-	# field_radius += 200
-	if level < Global.MAX_LEVEL:
-		update_tech()
-		update_progress()
-		update_level()
+  # field_radius += 200
+  if level < Global.MAX_LEVEL:
+    update_tech()
+    update_progress()
+    update_level()
 
 func update_tech():
   var cost = (level + 1) * Global.BASE_TECH_COST
@@ -64,7 +64,7 @@ func update_level():
 func destroy():
   if is_me:
     Log.log("warning", "i die")
-    # get_tree().change_scene("res://scene/GUI/Menu.tscn")
+    Global.to_result(false)
   else:
     self.queue_free()
 
