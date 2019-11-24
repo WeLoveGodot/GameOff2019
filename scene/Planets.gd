@@ -32,6 +32,7 @@ func update_planets(delta):
 	_ai.update(delta, ps)
 
 func _add_planet(planet):
+	Log.log("debug", "add planet %s" % planet.field_radius)
 	add_child(planet)
 	_update_coner(planet)
 	# TODO: 更新镜头范围相关边界，比如最左点，最右点之类

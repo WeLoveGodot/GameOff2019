@@ -9,7 +9,7 @@ const MAX_LEVEL = 9
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 10000.0 # 毫秒
-const AI_INTERVAL = 50.0 # 毫秒
+const AI_INTERVAL = 1.0 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -102,6 +102,7 @@ func expand_effect(planet, game, extra_param):
     t.start()
   else:
     planet.field_radius = new_r
+    game.eat_resource(planet)
   pass
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入

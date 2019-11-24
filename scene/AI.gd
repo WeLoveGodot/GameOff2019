@@ -7,7 +7,6 @@ enum State {
 
 var _state = State.IDLE
 var _idx = 1
-var _planets
 # 这个是星球管理类
 var _ps
 var _game
@@ -38,24 +37,22 @@ func _ai_tick(plantes):
       _continue_iterating()
 
 func _start_iterating(planets):
-  _planets = planets
   _state = State.ITERATING
   _idx = 0
 
 func _continue_iterating():
-  if _idx >= _planets.size():
+  var planets = _ps.get_children()
+  if _idx >= planets.size():
     Log.log("ai", "<-- finish it")
     _state = State.IDLE
   else:
-    var planet = _planets[_idx]
+    var planet = planets[_idx]
     Log.log("ai", "it on %s" % _idx)
-    Log.log("debug", planet)
     if planet != null && is_instance_valid(planet):
       _run_ai(planet)
     _idx += 1
 
 func _run_ai(planet):
-  Log.log("debug", planet)
   if planet.is_me:
     return
   var rd = randi() % 5
@@ -104,7 +101,7 @@ func _ai_expr(planet):
     dis * sin(deg),
     dis * cos(deg)
   )
-  Log.log("debug", "%s >> (%s, %s) -> %s" % [planet.position, dis, deg, target_pos])
+  # Log.log("debug", "%s >> (%s, %s) -> %s" % [planet.position, dis, deg, target_pos])
   _game.get_node("Skill").try_use_skill(
     planet,
     Global.ESkill.EXPR,

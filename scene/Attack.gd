@@ -33,14 +33,12 @@ func launch(field_r, attack_r, speed, start: Vector2, target: Vector2, level, is
   var t = $Tween
   var dis = start.distance_to(target)
   $Sprite.look_at(target)
-  print("dis = ", dis)
   var duration = dis / speed
   t.interpolate_property(self, "position", start, target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
   t.interpolate_callback(self, duration, "on_reach")
   t.start()
 
 func on_reach():
-  print("reach")
   var t = $Tween
   # $Sprite.visible = false
   var duration = 0.5
@@ -48,7 +46,7 @@ func on_reach():
         r, attack_r, DURATION_EXPLOSION,
         Tween.TRANS_EXPO, Tween.EASE_OUT)
   var target_explosion_scale = attack_r / BASE_SIZE_EXPLS / $Sprite.scale.x
-  Log.log("debug", target_explosion_scale)
+  # Log.log("debug", target_explosion_scale)
   t.interpolate_property(self, "_explosion_scale",
         1.0, target_explosion_scale, DURATION_EXPLOSION,
         Tween.TRANS_EXPO, Tween.EASE_OUT, 0.15)
@@ -62,12 +60,10 @@ func on_reach():
   t.start()
 
 func on_remove():
-  print("remove")
   _destroy_planets()
   get_parent().remove_child(self)
 
 func _process(delta):
-  # print(self.position)
   pass
 
 func _destroy_planets():

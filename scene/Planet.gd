@@ -57,8 +57,11 @@ func update_level():
 	level = Global.tech_2_level(tech)	
 
 func destroy():
-	Log.log("info", "hahahahahahah")
-	self.queue_free()
+	if is_me:
+		Log.log("warning", "i die")
+		get_tree().change_scene("res://scene/GUI/Menu.tscn")
+	else:
+		self.queue_free()
 
 func get_coor():
 	return position
