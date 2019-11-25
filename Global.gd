@@ -11,7 +11,7 @@ const MAX_LEVEL = 10
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 1000.0 # 毫秒
-const AI_INTERVAL = 100 # 毫秒
+const AI_INTERVAL = 10 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -150,7 +150,7 @@ func global_pos_2_explore_pos(d, pos):
 ## special
 
 func explore_radius(planet):
-  return planet.level * planet.field_radius * 1.0 / MAX_LEVEL
+  return planet.level * planet.field_radius * 0.8 / MAX_LEVEL
 
 func attack_radius(planet):
   return planet.level * planet.field_radius * 0.2 / MAX_LEVEL
