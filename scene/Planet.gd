@@ -52,9 +52,9 @@ func tick():
 func update_tech():
   var cost = (level + 1) * Global.BASE_TECH_COST
   if try_cost(cost):
-    tech = tech * tech_factor
+    tech = tech + tech_factor
   else:
-    tech = tech / tech_factor
+    tech = tech - tech_factor
 
 func update_progress():
   progress = Global.tech_2_progress(tech)

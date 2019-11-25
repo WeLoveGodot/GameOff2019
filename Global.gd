@@ -11,7 +11,7 @@ const MAX_LEVEL = 10
 const DEFAULT_FIELD_RADIUS = 100.0
 
 const TECH_INTERVAL = 1000.0 # 毫秒
-const AI_INTERVAL = 1 # 毫秒
+const AI_INTERVAL = 100 # 毫秒
 const RESOURCE_EATING_INTERVAL = 100.0 # 10fps
 
 ## fake consts
@@ -23,7 +23,7 @@ const PLANTE_GEN_PROB = 0.0001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
 ## 资源能量值
-const RESOURCE_ENERGY = 50000
+const RESOURCE_ENERGY = 30000
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
@@ -36,15 +36,15 @@ const INITIAL_FIELD_RADIUS = 5
 const INITIAL_TECH = 16
 const INITIAL_DEVELOP_FACTOR = 2
 
-const EXPAND_COST_FACTOR = 1.0
+const EXPAND_COST_FACTOR = 10
 const EXPLORE_COST_FACTOR = 1.0
 const ATTACK_COST_FACTOR = 1.0
 const EXPLORE_FACTOR = 2.0
-const BASE_EXPLORE_RADIUS = 35.0
-const BASE_EXPLORE_VELOCITY = 10
-const BASE_ATTACK_RADIUS = 50
-const BASE_ATTACK_VELOCITY = 20
-const EXPAND_RADIUS_FACTOR = 1.1
+const BASE_EXPLORE_RADIUS = 20.0
+const BASE_EXPLORE_VELOCITY = 5
+const BASE_ATTACK_RADIUS = 5
+const BASE_ATTACK_VELOCITY = 10
+const EXPAND_RADIUS_FACTOR = 5
 const BASE_ACC_COST = 2000
 const BASE_ACC_BOTTOM = 3
 const BASE_TECH_COST= 10
@@ -80,7 +80,7 @@ func explore_cost(planet):
   return explore_distance(planet) * explore_radius(planet) * EXPLORE_COST_FACTOR
 
 func expand_cost(planet):
-  var expand_radius = ceil(planet.field_radius * EXPAND_RADIUS_FACTOR)
+  var expand_radius = planet.field_radius + EXPAND_RADIUS_FACTOR
   var increased_area = area(expand_radius) -  area(planet.field_radius)
   return increased_area * EXPAND_COST_FACTOR
 
@@ -97,12 +97,12 @@ func attack_distance(planet):
 # 技能效果允许对自身和世界产生影响
 func acc_effect(planet, game, extra_param):
   # bla bla
-  planet.tech_factor += 1
+  planet.tech_factor *= 2
 
 # 我写个示范
 func expand_effect(planet, game, extra_param):
   var old_r = planet.field_radius
-  var new_r = old_r * 1.1
+  var new_r = old_r + EXPAND_RADIUS_FACTOR
   if planet.is_me:
     var t = planet.get_node("Tween")
     var duration = 0.3
@@ -150,17 +150,17 @@ func global_pos_2_explore_pos(d, pos):
 ## special
 
 func explore_radius(planet):
-  return planet.level * BASE_EXPLORE_RADIUS * 1.0
+  return planet.level * planet.field_radius * 1.0 / MAX_LEVEL
 
 func attack_radius(planet):
-  return planet.level * BASE_ATTACK_RADIUS * 1.0
+  return planet.level * planet.field_radius * 0.2 / MAX_LEVEL
 
 # 单位 距离 / 秒
 func explore_velocity(planet):
-  return planet.level * BASE_EXPLORE_VELOCITY * 1.0 + 1
+  return planet.level * planet.field_radius / 5 * 1.0 + 1
 
 func attack_velocity(planet):
-  return planet.level * BASE_ATTACK_VELOCITY * 1.0 + 1
+  return planet.level * planet.field_radius / 30 * 1.0 + 1
 
 func explore_distance(planet):
   return planet.field_radius * EXPLORE_FACTOR
