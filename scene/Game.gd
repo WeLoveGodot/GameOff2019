@@ -122,8 +122,10 @@ func _on_DebugMenu_new_camera_scale(is_up):
     else:
       $Camera.zoom *= 1.2
 
-func on_destroy_planets(pos, r, level):
+func on_destroy_planets(pos, r, level, source):
   var planets = $Planets.get_planets_in_range(pos, r)
   for p in planets:
     if p.level <= level:
+      if source != null && is_instance_valid(source) && source.get_meta("type") == Global.ETag.P:
+        source.energy += p.energy
       p.destroy()

@@ -23,6 +23,7 @@ var progress: float = Global.tech_2_progress(Global.INITIAL_TECH)
 var is_me: bool = false
 
 func _ready():
+  set_meta("type", Global.ETag.P)
   pass
 
 # public
@@ -59,9 +60,10 @@ func update_progress():
   progress = Global.tech_2_progress(tech)
 
 func update_level():
-  level = Global.tech_2_level(tech)  
+  level = Global.tech_2_level(tech)
 
 func destroy():
+  set_meta("type", Global.ETag.NIL)
   if is_me:
     Log.log("warning", "i die")
     Global.to_result(false)

@@ -23,7 +23,7 @@ const PLANTE_GEN_PROB = 0.0001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
 ## 资源能量值
-const RESOURCE_ENERGY = 100000
+const RESOURCE_ENERGY = 50000
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
@@ -31,11 +31,11 @@ const MAX_PLANETS = 2000
 const ENERGY_DENSITY = 5
 const PAI = 3
 const COSMOS_RADIUS = 1024
- 
+
 const INITIAL_FIELD_RADIUS = 5
 const INITIAL_TECH = 16
 const INITIAL_DEVELOP_FACTOR = 2
- 
+
 const EXPAND_COST_FACTOR = 1.0
 const EXPLORE_COST_FACTOR = 1.0
 const ATTACK_COST_FACTOR = 1.0
@@ -47,9 +47,14 @@ const BASE_ATTACK_VELOCITY = 20
 const EXPAND_RADIUS_FACTOR = 1.1
 const BASE_ACC_COST = 2000
 const BASE_ACC_BOTTOM = 3
-const BASE_TECH_COST= 10  
+const BASE_TECH_COST= 10
 
 const BASE_ATTACK_FIELD_RADIUS = 8
+
+enum ETag {
+  NIL,
+  P,
+}
 
 # Int -> Int
 func tech_2_level(tech: int):

@@ -65,4 +65,4 @@ func _process(delta):
   pass
 
 func _destroy_planets():
-  emit_signal("destroy_planets", position, config.attack_r, config.level)
+  emit_signal("destroy_planets", position, config.attack_r, config.level, config.source)
