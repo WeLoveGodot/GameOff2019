@@ -14,7 +14,7 @@ func boom(pos: Vector2, r: float, duration: float):
   position = pos
   visible = true
   t.interpolate_property(self, "_s",
-        1, r / _size, duration,
+        r / _size, 1, duration,
         Tween.TRANS_EXPO, Tween.EASE_OUT, 0.15)
   t.interpolate_callback(self, duration, "on_remove")
   t.start()
