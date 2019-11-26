@@ -56,11 +56,11 @@ func _run_ai(planet):
   if planet.is_me:
     return
   var rd = randi() % 7
-  Log.log("ai", "rd = %s" % rd)
+  # Log.log("ai2", "rd = %s" % rd)
   match rd:
     0:
       return
-    [1, 2, 3]:
+    1, 2, 3:
       _ai_expr(planet)
     4:
       _ai_atk(planet)
@@ -82,7 +82,7 @@ func _ai_atk(planet):
     planet,
     Global.ESkill.ATK,
     {
-      pos = _get_random_pos(target.position, planet.field_radius)
+      pos = _get_random_pos(target.position, planet)
     }
   )
 
@@ -95,6 +95,7 @@ func _ai_expd(planet):
 
 func _ai_expr(planet):
   # ai expr完全只是假装用一下然后可能被玩家发现，没意义
+  Log.log("ai2", "expr")
   var dis = Global.explore_distance(planet) * max(0.5, randf())
   var deg = randf() * 2 * PI
   var target_pos = planet.position + Vector2(
@@ -117,8 +118,11 @@ func _ai_acc(planet):
     null
   )
 
-func _get_random_pos(pos, offset):
-  return Vector2(
-    pos.x + (randf() - 0.5) * offset * 2,
-    pos.y + (randf() - 0.5) * offset * 2
-  )
+func _get_random_pos(pos, source):
+  if source.position.distance_to(pos) <= source.field_radius:
+    return pos
+  else:
+    return Vector2(
+      pos.x + (randf() - 0.5) * source.field_radius * 2,
+      pos.y + (randf() - 0.5) * source.field_radius * 2
+    )

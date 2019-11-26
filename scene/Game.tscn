@@ -70,7 +70,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
 [node name="Holes" parent="." instance=ExtResource( 10 )]
-visible = false
 
 [node name="Tween" type="Tween" parent="."]
 

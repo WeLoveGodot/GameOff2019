@@ -1,6 +1,7 @@
 extends Node
 
 var _channel = {
+	ai2 = true,
 	ai = false,
 	loading = false,
 	debug = true, # 要经常关的
