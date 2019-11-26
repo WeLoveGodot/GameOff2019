@@ -6,9 +6,9 @@ var game
 func _ready():
 	 game = get_parent()
 
-func add_explore(r, speed, start: Vector2, target: Vector2, is_me):
+func add_explore(config):
 	var expr = Explore.instance()
-	expr.launch(r, speed, start, target, is_me)
+	expr.launch(config)
 	add_child(expr)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

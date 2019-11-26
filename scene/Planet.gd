@@ -13,7 +13,7 @@ var last: float = 0.0
 
 var field_radius = Global.DEFAULT_FIELD_RADIUS
 var level: int = Global.tech_2_level(Global.INITIAL_TECH)
-var energy : int = floor(Global.area(Global.DEFAULT_FIELD_RADIUS) * Global.ENERGY_DENSITY)
+var energy : int = 0
 # var energy : int = 3
 var tech: int = Global.INITIAL_TECH
 var tech_factor = Global.INITIAL_DEVELOP_FACTOR
@@ -23,57 +23,64 @@ var progress: float = Global.tech_2_progress(Global.INITIAL_TECH)
 var is_me: bool = false
 
 func _ready():
-	pass
+  set_meta("type", Global.ETag.P)
+  pass
 
 # public
 
 func set_coor(coor: Vector2):
-	set_position(coor)
+  set_position(coor)
 
 func update_scale(camera_zoom: Vector2):
-	$Sprite.set_scale(camera_zoom * EXTRA_SCALE)
+  $Sprite.set_scale(camera_zoom * EXTRA_SCALE)
 
 func try_cost(cost: int):
-	if cost > energy:
-		return false
-	else:
-		energy -= cost
-		emit_signal("energy_changed")
-		return true
+  if cost > energy:
+    return false
+  else:
+    energy -= cost
+    emit_signal("energy_changed")
+    return true
 
 func tick():
-	# field_radius += 200
-	update_tech()
-	update_progress()
-	update_level()
+  # field_radius += 200
+  if level < Global.MAX_LEVEL:
+    update_tech()
+    update_progress()
+    update_level()
 
 func update_tech():
-	tech = tech * tech_factor
+  var cost = (level + 1) * Global.BASE_TECH_COST
+  if try_cost(cost):
+    tech = tech + tech_factor
+  else:
+    tech = tech - tech_factor
 
 func update_progress():
-	progress = Global.tech_2_progress(tech)
+  progress = Global.tech_2_progress(tech)
 
 func update_level():
-	level = Global.tech_2_level(tech)	
+  level = Global.tech_2_level(tech)
 
 func destroy():
-	if is_me:
-		Log.log("warning", "i die")
-		get_tree().change_scene("res://scene/GUI/Menu.tscn")
-	else:
-		self.queue_free()
+  set_meta("type", Global.ETag.NIL)
+  if is_me:
+    Log.log("warning", "i die")
+    Global.to_result(false)
+  else:
+    self.queue_free()
 
 func get_coor():
-	return position
+  return position
 
 func get_energy():
-	return self.energy
+  return self.energy
 
 func set_energy(energy: int):
-	self.energy = energy
+  self.energy = energy
 
 func _process(delta):
-	var now = OS.get_ticks_msec()
-	if now > last + Global.TECH_INTERVAL:
-		tick()
-		last = now
+  var now = OS.get_ticks_msec()
+  if now > last + Global.TECH_INTERVAL:
+    tick()
+    last = now

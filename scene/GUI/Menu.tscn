@@ -23,6 +23,9 @@
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 961.843 ]
+}
 
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -40,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -269.5
-margin_top = -337.648
-margin_right = 269.5
-margin_bottom = -241.648
+margin_left = -312.892
+margin_top = -334.445
+margin_right = 278.108
+margin_bottom = -186.445
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )

@@ -96,10 +96,8 @@ func _physics_process(delta):
 	camera_movement = Vector2(0,0)
 	_prev_mouse_pos = get_local_mouse_position()
 
-	var pre_clamp_pos = get_global_mouse_position() - Vector2(0,0)
-	var pos_x = clamp( pre_clamp_pos.x, -Global.WINDOW_SIZE.x/2, Global.WINDOW_SIZE.x/2)
-	var pos_y = clamp( pre_clamp_pos.y, -Global.WINDOW_SIZE.y/2, Global.WINDOW_SIZE.y/2)
-	mouse_position = Vector2(pos_x, pos_y)
+	var pre_clamp_pos = get_global_mouse_position()
+	mouse_position = pre_clamp_pos
 
 func _input( event ):
 	if event is InputEventMouseButton:

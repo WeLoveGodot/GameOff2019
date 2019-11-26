@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explore_hover.png-636192f0ad4be470bd7e423166b05746.stex"
+path="res://.import/attack_pressed.png-d31db25421954538dfa4f40984fdc6ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resource/art/explore_hover.png"
-dest_files=[ "res://.import/explore_hover.png-636192f0ad4be470bd7e423166b05746.stex" ]
+source_file="res://resource/art/attack_pressed.png"
+dest_files=[ "res://.import/attack_pressed.png-d31db25421954538dfa4f40984fdc6ba.stex" ]
 
 [params]
 
