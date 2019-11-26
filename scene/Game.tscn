@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://resource/sound/DarkForest.ogg" type="AudioStream" id=2]
@@ -12,8 +12,10 @@
 [ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scene/Camera.gd" type="Script" id=11]
 [ext_resource path="res://scene/DebugUI.gd" type="Script" id=12]
-[ext_resource path="res://resource/sound/attack.ogg" type="AudioStream" id=13]
-[ext_resource path="res://resource/sound/explore.ogg" type="AudioStream" id=14]
+[ext_resource path="res://resource/sound/Emergency Human Male Voice Police Dispatch Proceed With Caution 01.wav" type="AudioStream" id=13]
+[ext_resource path="res://resource/sound/Emergency Human Male Voice Police Dispatch Transport Is On The Way 01.wav" type="AudioStream" id=14]
+[ext_resource path="res://resource/sound/Emergency Human Female Voice Police Radio Baker 5 Is In Route 01.wav" type="AudioStream" id=15]
+[ext_resource path="res://resource/sound/Emergency Human Female Voice Fire Dispatch All Engines Respond 01.wav" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -161,9 +163,19 @@ text = "acc"
 
 [node name="attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -10.0
 
 [node name="explore" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = -10.0
+
+[node name="expand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+
+[node name="accelerate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -10.0
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]

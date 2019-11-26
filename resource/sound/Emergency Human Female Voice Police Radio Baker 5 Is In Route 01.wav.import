@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Emergency Human Female Voice Police Radio Baker 5 Is In Route 01.wav-fe7665350b0afef4d3c239a787770866.sample"
+
+[deps]
+
+source_file="res://resource/sound/Emergency Human Female Voice Police Radio Baker 5 Is In Route 01.wav"
+dest_files=[ "res://.import/Emergency Human Female Voice Police Radio Baker 5 Is In Route 01.wav-fe7665350b0afef4d3c239a787770866.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

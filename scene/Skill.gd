@@ -3,11 +3,15 @@ extends Node2D
 var game
 var attack
 var explore
+var expand
+var accelerate
 
 func _ready():
   game = get_parent()
   attack = game.get_node("attack")
   explore = game.get_node("explore")
+  expand = game.get_node("expand")
+  accelerate = game.get_node("accelerate")
 
 func get_skill_table(skill):
   return Global.SKILL_DICT[skill]
@@ -37,6 +41,10 @@ func use_skill(planet, skill, extra_param):
         attack.play()
       elif skill == Global.ESkill.EXPR:
         explore.play()
+      elif skill == Global.ESkill.EXPD:
+        expand.play()
+      elif skill == Global.ESkill.ACC:
+        accelerate.play()
     skill_table.effect.call_func(planet, game, extra_param)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
