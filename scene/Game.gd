@@ -20,7 +20,7 @@ func _ready():
   $bgm.play()
   _loading = load("res://scene/Loading.tscn").instance()
   _loading.setup(self)
-  add_child(_loading)	
+  add_child(_loading)
   _loading.start_async_loading()
 
 func _process(delta):
@@ -130,3 +130,9 @@ func on_destroy_planets(pos, r, level, source):
       if source != null && is_instance_valid(source) && source.get_meta("type") == Global.ETag.P:
         source.energy += p.energy
       p.destroy()
+
+var _explosion_scene = preload("res://scene/Explosion.tscn")
+func add_explosion(pos, r, duration):
+  var _exps = _explosion_scene.instance()
+  $Explosions.add_child(_exps)
+  _exps.boom(pos, r, duration)

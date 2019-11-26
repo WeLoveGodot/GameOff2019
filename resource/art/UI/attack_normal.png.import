@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/expand_hover.png-992dc47995d57a16b2ae65373f436c04.stex"
+path="res://.import/attack_normal.png-46b76611d495f4cd07f7e240135bc737.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resource/art/expand_hover.png"
-dest_files=[ "res://.import/expand_hover.png-992dc47995d57a16b2ae65373f436c04.stex" ]
+source_file="res://resource/art/UI/attack_normal.png"
+dest_files=[ "res://.import/attack_normal.png-46b76611d495f4cd07f7e240135bc737.stex" ]
 
 [params]
 

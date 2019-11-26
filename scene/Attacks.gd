@@ -9,8 +9,9 @@ func _ready():
 func add_attack(config):
 	var atk = Attack.instance()
 	atk.connect("destroy_planets", game, "on_destroy_planets")
-	atk.launch(config)
+	atk.connect("new_explosion", game, "add_explosion")
 	add_child(atk)
+	atk.launch(config)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

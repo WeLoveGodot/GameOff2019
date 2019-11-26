@@ -44,6 +44,8 @@ script = ExtResource( 5 )
 [node name="Explores" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
+[node name="Explosions" type="Node2D" parent="."]
+
 [node name="Attacks" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
