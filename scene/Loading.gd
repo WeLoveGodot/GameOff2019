@@ -6,12 +6,15 @@ extends Node
 
 var _game
 
+var _noise
 func _ready():
   pass
 
 var _pcr
 var _rcr
 func setup(game):
+  randomize()
+  _noise = _make_noise()
   _game = game
   _pcr = _loading_planets_tick()
   _rcr = _loading_resources_tick()
@@ -75,7 +78,7 @@ var _planets_loading_state = {
   row = 0,
   col = 0
 }
-var _noise = _make_noise()
+
 
 func _loading_planets_tick():
   yield()
@@ -130,7 +133,7 @@ func _loading_resources_tick():
 
 func _make_noise():
   var noise = OpenSimplexNoise.new()
-  noise.seed = randf()
+  noise.seed = randi()
   noise.octaves = 4
   noise.period = 20.0
   noise.persistence = 0.8
