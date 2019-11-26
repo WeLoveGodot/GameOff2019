@@ -17,6 +17,7 @@ func _ready():
   _init_bg()
   # _gui = load("res://scene/GUI/MainGUI.tscn").instance()
   # add_child(_gui)
+  $bgm.play()
   _loading = load("res://scene/Loading.tscn").instance()
   _loading.setup(self)
   add_child(_loading)	

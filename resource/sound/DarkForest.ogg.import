@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DarkForest.ogg-a13f0c79deca0400cdc41375ac5d88d2.oggstr"
+
+[deps]
+
+source_file="res://resource/sound/DarkForest.ogg"
+dest_files=[ "res://.import/DarkForest.ogg-a13f0c79deca0400cdc41375ac5d88d2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

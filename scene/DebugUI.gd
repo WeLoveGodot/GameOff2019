@@ -4,6 +4,8 @@ signal new_camera_scale(is_up)
 
 var game
 var camera
+var explore
+var attack
 
 func _ready():
 	game = get_parent().get_parent()
