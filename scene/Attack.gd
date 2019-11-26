@@ -31,7 +31,6 @@ func launch(config):
   self.config = config
   var t = $Tween
   var dis = config.start.distance_to(config.target)
-  # FIXME: 刷屏报错了
   $Sprite.look_at(config.target)
   var duration = dis / config.speed
   t.interpolate_property(self, "position", config.start, config.target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
