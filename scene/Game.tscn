@@ -12,10 +12,10 @@
 [ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scene/Camera.gd" type="Script" id=11]
 [ext_resource path="res://scene/DebugUI.gd" type="Script" id=12]
-[ext_resource path="res://resource/sound/Emergency Human Male Voice Police Dispatch Proceed With Caution 01.wav" type="AudioStream" id=13]
-[ext_resource path="res://resource/sound/Emergency Human Male Voice Police Dispatch Transport Is On The Way 01.wav" type="AudioStream" id=14]
-[ext_resource path="res://resource/sound/Emergency Human Female Voice Police Radio Baker 5 Is In Route 01.wav" type="AudioStream" id=15]
-[ext_resource path="res://resource/sound/Emergency Human Female Voice Fire Dispatch All Engines Respond 01.wav" type="AudioStream" id=16]
+[ext_resource path="res://resource/sound/attack.wav" type="AudioStream" id=13]
+[ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=14]
+[ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=15]
+[ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
