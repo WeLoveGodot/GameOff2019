@@ -36,7 +36,6 @@ func get_in_range(pos, r):
 	return rs
 
 func delete_resources(rs):
-	print("delete", rs.size())
 	for r in rs:
 		r.queue_free()
 
