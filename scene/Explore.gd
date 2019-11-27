@@ -23,7 +23,7 @@ func launch(config):
   $Sprite.visible = true
   var t = $Tween
   var dis = config.start.distance_to(config.target)
-  $Sprite.look_at(config.target)
+  $Sprite.rotation = (config.target - config.start).angle()
   var duration = dis / config.speed
   # Log.log("debug", "explore: %s -> %s" % [start, target])
   t.interpolate_property(self, "position", config.start, config.target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)

@@ -57,7 +57,6 @@ func _run_ai(planet):
     return
   var rd = randi() % 7
   # Log.log("ai2", "rd = %s" % rd)
-  return
   match rd:
     0:
       return
@@ -97,7 +96,7 @@ func _ai_expd(planet):
 func _ai_expr(planet):
   # ai expr完全只是假装用一下然后可能被玩家发现，没意义
   Log.log("ai2", "expr")
-  var dis = Global.explore_distance(planet) * max(0.5, randf())
+  var dis = Global.explore_distance(planet) * max(0.5, randf()) * 2
   var deg = randf() * 2 * PI
   var target_pos = planet.position + Vector2(
     dis * sin(deg),

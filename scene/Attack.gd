@@ -31,7 +31,7 @@ func launch(config):
   self.config = config
   var t = $Tween
   var dis = config.start.distance_to(config.target)
-  $Sprite.look_at(config.target)
+  $Sprite.rotation = (config.target - config.start).angle()
   var duration = dis / config.speed# / 1000
   t.interpolate_property(self, "position", config.start, config.target, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
   t.interpolate_callback(self, duration, "on_reach")
