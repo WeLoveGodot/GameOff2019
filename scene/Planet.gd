@@ -46,7 +46,8 @@ func tick():
   if level < Global.MAX_LEVEL:
     update_tech()
     update_progress()
-    update_level()
+		update_level()
+
 
 func update_tech():
   var cost = (level + 1) * Global.BASE_TECH_COST

@@ -74,6 +74,8 @@ func _game_tick(delta):
   _check_result()
 
 func _check_result():
+  if me.level >= Global.MAX_LEVEL:
+    Global.to_result(Global.EResult.WIN)
   if $Planets.get_child_count() == 1 && $Planets.get_children()[0].is_me:
     Global.to_result(Global.EResult.WIN)
   elif me.tech <= 0:
