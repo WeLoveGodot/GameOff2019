@@ -55,18 +55,18 @@ func _continue_iterating():
 func _run_ai(planet):
   if planet.is_me:
     return
-  var rd = randi() % 8
+  var rd = randi() % 6
   # Log.log("ai2", "rd = %s" % rd)
   match rd:
     0:
       return
-    1, 2:
+    1:
       _ai_expr(planet)
-    4:
+    2:
       _ai_atk(planet)
-    5, 3, 7:
+    3, 4:
       _ai_expd(planet)
-    6:
+    5:
       _ai_acc(planet)
 
 func _ai_atk(planet):
