@@ -57,7 +57,6 @@ func _run_ai(planet):
     return
   var rd = randi() % 7
   # Log.log("ai2", "rd = %s" % rd)
-  return
   match rd:
     0:
       return
