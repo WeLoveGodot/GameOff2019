@@ -40,16 +40,16 @@ const INITIAL_FIELD_RADIUS = 5
 const INITIAL_TECH = 16
 const INITIAL_DEVELOP_FACTOR = 2
 
-const EXPAND_COST_FACTOR = 10
+const EXPAND_COST_FACTOR = 100
 const EXPLORE_COST_FACTOR = 1.0
 const ATTACK_COST_FACTOR = 1.0
 const EXPLORE_FACTOR = 2.0
 const BASE_EXPLORE_RADIUS = 20.0
-const BASE_EXPLORE_VELOCITY = 5
+const BASE_EXPLORE_VELOCITY = 50
 const BASE_ATTACK_RADIUS = 5
-const BASE_ATTACK_VELOCITY = 10
+const BASE_ATTACK_VELOCITY = 100
 const EXPAND_RADIUS_FACTOR = 5
-const BASE_ACC_COST = 2000
+const BASE_ACC_COST = 500
 const BASE_ACC_BOTTOM = 3
 const BASE_TECH_COST= 10
 
@@ -86,7 +86,7 @@ func explore_cost(planet):
 func expand_cost(planet):
   var expand_radius = planet.field_radius + EXPAND_RADIUS_FACTOR
   var increased_area = area(expand_radius) -  area(planet.field_radius)
-  return increased_area * EXPAND_COST_FACTOR
+  return increased_area * EXPAND_COST_FACTOR / (planet.level + 1)
 
 func attack_cost(planet):
   return area(attack_radius(planet)) * ATTACK_COST_FACTOR

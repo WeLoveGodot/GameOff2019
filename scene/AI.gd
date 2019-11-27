@@ -55,16 +55,16 @@ func _continue_iterating():
 func _run_ai(planet):
   if planet.is_me:
     return
-  var rd = randi() % 7
+  var rd = randi() % 8
   # Log.log("ai2", "rd = %s" % rd)
   match rd:
     0:
       return
-    1, 2, 3:
+    1, 2:
       _ai_expr(planet)
     4:
       _ai_atk(planet)
-    5:
+    5, 3, 7:
       _ai_expd(planet)
     6:
       _ai_acc(planet)
@@ -123,6 +123,6 @@ func _get_random_pos(pos, source):
     return pos
   else:
     return Vector2(
-      pos.x + (randf() - 0.5) * source.field_radius * 2,
-      pos.y + (randf() - 0.5) * source.field_radius * 2
+      pos.x,
+      pos.y
     )
