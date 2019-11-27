@@ -41,7 +41,7 @@ func on_reach():
   var t = $Tween
   var duration = 0.5
   t.interpolate_property(self, "r",
-        r, config.attack_r, DURATION_EXPLOSION,
+        0, config.attack_r, DURATION_EXPLOSION,
         Tween.TRANS_EXPO, Tween.EASE_OUT)
   $Sprite.visible = false
 
