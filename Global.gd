@@ -2,6 +2,7 @@ extends Node2D
 
 # --- 显示相关 ---#
 const ATTACK_BASE_SCALE = 0.1
+const RESOURCE_BASE_SCALE = 0.03
 # --- /显示相关 ---#
 
 # --------------------- 基础配置 ---------------------#

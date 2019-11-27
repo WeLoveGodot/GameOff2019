@@ -107,6 +107,7 @@ func update_camera_zoom():
 
 func eat_resource(p):
   var got_energy: int = $Resources.eat_resource(
+    p,
     p.position,
     p.field_radius
   )
@@ -136,3 +137,10 @@ func add_explosion(pos, r, duration):
   var _exps = _explosion_scene.instance()
   $Explosions.add_child(_exps)
   _exps.boom(pos, r, duration)
+
+var _re_scene = preload("res://scene/ResourceEffect.tscn")
+func add_resource_effect(pos):
+  var re = _re_scene.instance()
+  re.position = pos
+  $Effects.add_child(re)
+  re.start(self)
