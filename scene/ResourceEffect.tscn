@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resource/art/resource.png" type="Texture" id=1]
+[ext_resource path="res://scene/ResourceEffect.gd" type="Script" id=2]
+
+[node name="ResourceEffect" type="Sprite"]
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

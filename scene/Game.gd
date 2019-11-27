@@ -21,6 +21,7 @@ func _ready():
   _loading = load("res://scene/Loading.tscn").instance()
   _loading.setup(self)
   add_child(_loading)
+  _loading.connect("loading_finished", self, "post_load")
   _loading.start_async_loading()
 
 func _process(delta):
@@ -41,7 +42,7 @@ func add_planet(noise, row, col, half_size):
     var coor = Vector2(row - half_size, col - half_size)
     var p = $Planets.new_planet(coor)
     # Log.log("info", "add planet to %s %s" % [row, col])
-    eat_resource(p)
+    eat_resource(p, false)
     return true
   return false
 
@@ -56,7 +57,7 @@ func add_resource(noise, row, col, half_size):
 func add_me():
   me = $Planets.new_planet(Vector2(0, 0))
   me.is_me = true
-  eat_resource(me)
+  eat_resource(me, true)
 
 ## skills
 func add_explore(config):
@@ -105,10 +106,12 @@ func update_camera_zoom():
   var zoom = min(half_height * 2 / Global.WINDOW_SIZE.y, _zoom_limit)
   $Camera.zoom = Vector2(zoom, zoom)
 
-func eat_resource(p):
+func eat_resource(p, is_delay_effect):
   var got_energy: int = $Resources.eat_resource(
+    p,
     p.position,
-    p.field_radius
+    p.field_radius,
+    is_delay_effect
   )
   p.energy += got_energy
 
@@ -136,3 +139,18 @@ func add_explosion(pos, r, duration):
   var _exps = _explosion_scene.instance()
   $Explosions.add_child(_exps)
   _exps.boom(pos, r, duration)
+
+var _re_scene = preload("res://scene/ResourceEffect.tscn")
+func add_resource_effect(pos, delay):
+  var re = _re_scene.instance()
+  re.position = pos
+  $Effects.add_child(re)
+  re.start(self, delay)
+
+var _delayed_resource_effects = []
+func add_delayed_resource_effect(pos):
+  _delayed_resource_effects.append(pos)
+
+func post_load():
+  for pos in _delayed_resource_effects:
+    add_resource_effect(pos, 1.0)
