@@ -153,6 +153,13 @@ func add_explosion(pos, r, duration):
   var _exps = _explosion_scene.instance()
   $Explosions.add_child(_exps)
   _exps.boom(pos, r, duration)
+  _maybe_shake(pos)
+
+func _maybe_shake(pos):
+  var dis = pos.distance_to(Vector2(0, 0))
+  Log.log("debug", "try shake %s ? %s" %[dis, me.field_radius])
+  if dis < me.field_radius:
+    $Camera.shake_camera((me.field_radius - dis) * Global.SHAKE_FACTOR)
 
 var _re_scene = preload("res://scene/ResourceEffect.tscn")
 func add_resource_effect(pos, delay):

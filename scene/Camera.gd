@@ -46,6 +46,8 @@ var mouse_position
 
 onready var game = get_parent()
 
+var _shake_offset = 0.0
+
 func _ready():
   set_h_drag_enabled(false)
   set_v_drag_enabled(false)
@@ -57,8 +59,6 @@ func _process(delta):
   update()
 
 func _physics_process(delta):
-
-
   # Move camera by keys defined in InputMap (ui_left/top/right/bottom).
   if key:
     if __keys[0]:
@@ -98,6 +98,8 @@ func _physics_process(delta):
 
   var pre_clamp_pos = get_global_mouse_position()
   mouse_position = pre_clamp_pos
+
+  _handle_shake()
 
 func _input( event ):
   if event is InputEventMouseButton:
@@ -202,3 +204,16 @@ func _draw_circle_arc(center, radius, color):
 
     for index_point in range(nb_points):
         draw_line(points_arc[index_point], points_arc[index_point + 1], color)
+
+func shake_camera(offset: float):
+  _shake_offset = offset
+
+func _handle_shake():
+  if _shake_offset > 0.00001:
+    offset = Vector2(
+      rand_range(-_shake_offset, _shake_offset),
+      rand_range(-_shake_offset, _shake_offset)
+    )
+    _shake_offset *= 0.9
+  else:
+    _shake_offset = 0

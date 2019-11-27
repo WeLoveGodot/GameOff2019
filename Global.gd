@@ -3,6 +3,8 @@ extends Node2D
 # --- 显示相关 ---#
 const ATTACK_BASE_SCALE = 0.1
 const RESOURCE_BASE_SCALE = 0.03
+# 震动常数，越大震越厉害
+const SHAKE_FACTOR = 0.3
 # --- /显示相关 ---#
 
 # --------------------- 基础配置 ---------------------#
