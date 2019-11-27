@@ -12,6 +12,8 @@ const SHAKE_FACTOR = 0.3
 const SIZE = 4096
 const GEN_SIZE = SIZE * 0.75
 
+const TIME_LIMIT = 5 * 60 * 1000
+const TIME_CHECK_INTERVAL = 500
 # 满级
 const MAX_LEVEL = 10
 
@@ -208,9 +210,14 @@ var SKILL_DICT = {
 # --------------------- end ---------------------#
 
 enum EResult {
-  WIN,
-  FAIL,
-  NO_TECH,
+  ATK_WIN, # 灭别人
+  ATK_FAIL, # 被其他人灭
+  SUICIDE, # 被自己灭
+  TIME_LIMIT_FAIL, # 时间到
+  TECH_FAIL, # ai先满级
+  NO_TECH, #　科技耗尽
+  NO_ENERGY, # 能量耗尽
+  TECH_WIN, # 我满级
 }
 
 var result_type = null

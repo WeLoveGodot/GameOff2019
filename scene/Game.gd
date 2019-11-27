@@ -66,20 +66,31 @@ func add_explore(config):
 func add_attack(config):
   $Attacks.add_attack(config)
 
+
+var _last_check_time = 0
 func _game_tick(delta):
   if !is_debug_camera:
     update_camera_zoom()
   $Planets.update_planets(delta)
   draw_holes()
   _check_result()
+  var now = OS.get_ticks_msec()
+  if now - _last_check_time > Global.TIME_CHECK_INTERVAL:
+    _check_time(now)
+
+func _check_time(now):
+  if now - game_start_time > Global.TIME_LIMIT:
+    Global.to_result(Global.EResult.TIME_LIMIT_FAIL)
 
 func _check_result():
   if me.level >= Global.MAX_LEVEL:
-    Global.to_result(Global.EResult.WIN)
+    Global.to_result(Global.EResult.TECH_WIN)
   if $Planets.get_child_count() == 1 && $Planets.get_children()[0].is_me:
-    Global.to_result(Global.EResult.WIN)
-  elif me.tech <= 0:
+    Global.to_result(Global.EResult.ATK_WIN)
+  if me.tech <= 0:
     Global.to_result(Global.EResult.NO_TECH)
+  if me.energy <= 0:
+    Global.to_result(Global.EResult.NO_ENERGY)
 
 func draw_holes():
   collect_holes()
@@ -136,6 +147,8 @@ func on_destroy_planets(pos, r, level, source):
     if p.level <= level:
       if source != null && is_instance_valid(source) && source.get_meta("type") == Global.ETag.P:
         source.energy += p.energy
+        if source.is_me && p.is_me:
+          Global.to_result(Global.EResult.SUICIDE)
         if source.is_me:
           var n = min(
             50,
@@ -172,6 +185,8 @@ var _delayed_resource_effects = []
 func add_delayed_resource_effect(pos):
   _delayed_resource_effects.append(pos)
 
+var game_start_time
 func post_load():
+  game_start_time = OS.get_ticks_msec()
   for pos in _delayed_resource_effects:
     add_resource_effect(pos, 1.0)
