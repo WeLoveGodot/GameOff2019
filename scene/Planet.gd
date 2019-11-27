@@ -46,7 +46,9 @@ func tick():
   if level < Global.MAX_LEVEL:
     update_tech()
     update_progress()
-		update_level()
+    update_level()
+  elif !is_me:
+    Global.to_result(Global.EResult.TECH_FAIL)
 
 
 func update_tech():
@@ -66,7 +68,7 @@ func destroy():
   set_meta("type", Global.ETag.NIL)
   if is_me:
     Log.log("warning", "i die")
-    Global.to_result(Global.EResult.FAIL)
+    Global.to_result(Global.EResult.ATK_FAIL)
   else:
     self.queue_free()
 
