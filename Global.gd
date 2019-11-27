@@ -112,11 +112,11 @@ func expand_effect(planet, game, extra_param):
     var t = planet.get_node("Tween")
     var duration = 0.3
     t.interpolate_property(planet, "field_radius", old_r, new_r, duration, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
-    t.interpolate_callback(game, duration, "eat_resource", planet)
+    t.interpolate_callback(game, duration, "eat_resource", planet, false)
     t.start()
   else:
     planet.field_radius = new_r
-    game.eat_resource(planet)
+    game.eat_resource(planet, false)
   pass
 
 # 支持额外参数，一个dict，比如探索之类的用户输入可以从ui层, 或ai传入

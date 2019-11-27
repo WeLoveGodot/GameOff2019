@@ -4,6 +4,7 @@
 [ext_resource path="res://scene/ResourceEffect.gd" type="Script" id=2]
 
 [node name="ResourceEffect" type="Sprite"]
+scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

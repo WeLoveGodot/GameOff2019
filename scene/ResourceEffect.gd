@@ -12,24 +12,26 @@ var _scale = 1
 var _game
 
 # 抖两下然后飞到中间去
-func start(game):
+func start(game, delay):
   var t = $Tween
   _game = game
   t.interpolate_property(
     self,
     "position",
     position,
-    position + Vector2(randf(), randf()) * BASE_DISTANCE * _game.get_node("Camera").zoom,
+    position + Vector2(randf() - 0.5, randf() - 0.5) * BASE_DISTANCE * _game.get_node("Camera").zoom,
     D,
     Tween.TRANS_LINEAR,
-    Tween.EASE_IN_OUT
+    Tween.EASE_IN_OUT,
+    delay
   )
   t.interpolate_property(
     self, "_scale",
     1, 2,
     D,
     Tween.TRANS_LINEAR,
-    Tween.EASE_IN_OUT
+    Tween.EASE_IN_OUT,
+    delay
   )
   t.interpolate_property(
     self, "position",
@@ -38,11 +40,11 @@ func start(game):
     D2,
     Tween.TRANS_EXPO,
     Tween.EASE_OUT,
-    D
+    D + delay
   )
   t.interpolate_callback(
     self,
-    D + D2,
+    D + D2 + delay,
     "_delete"
   )
   t.start()

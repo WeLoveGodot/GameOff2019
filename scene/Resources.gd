@@ -9,10 +9,10 @@ func _ready():
 	game = get_parent()
 
 # 星球吃资源
-func eat_resource(source, pos, r):
+func eat_resource(source, pos, r, is_delay_effect):
 	var rs = get_in_range(pos, r)
 	var sum = calc_energy(rs)
-	delete_resources(rs, source.is_me)
+	delete_resources(rs, source.is_me, is_delay_effect)
 	return sum
 
 func add_resource(pos):
@@ -35,10 +35,13 @@ func get_in_range(pos, r):
 			rs.append(resource)
 	return rs
 
-func delete_resources(rs, is_need_effect):
+func delete_resources(rs, is_need_effect, is_delay_effect):
 	for r in rs:
 		if is_need_effect:
-			game.add_resource_effect(r.position)
+			if is_delay_effect:
+				game.add_delayed_resource_effect(r.position)
+			else:
+				game.add_resource_effect(r.position, 0)
 		r.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

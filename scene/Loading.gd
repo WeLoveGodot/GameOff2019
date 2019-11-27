@@ -23,8 +23,8 @@ enum ELoadingStage {
   DEFAULT,
 
   RESOURCES,
-  PLANETS,
   ME,
+  PLANETS,
 
   FINISH,
 }
@@ -64,10 +64,10 @@ func _next_loading_stage():
     ELoadingStage.DEFAULT:
       _loading_stage = ELoadingStage.RESOURCES
     ELoadingStage.RESOURCES:
-      _loading_stage = ELoadingStage.PLANETS
-    ELoadingStage.PLANETS:
       _loading_stage = ELoadingStage.ME
     ELoadingStage.ME:
+      _loading_stage = ELoadingStage.PLANETS
+    ELoadingStage.PLANETS:
       _loading_stage = ELoadingStage.FINISH
     ELoadingStage.FINISH:
       _loading_stage = ELoadingStage.DEFAULT
