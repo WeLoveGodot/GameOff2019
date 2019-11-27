@@ -134,6 +134,16 @@ func on_destroy_planets(pos, r, level, source):
     if p.level <= level:
       if source != null && is_instance_valid(source) && source.get_meta("type") == Global.ETag.P:
         source.energy += p.energy
+        if source.is_me:
+          var n = min(
+            50,
+            max(
+              floor(p.energy / Global.RESOURCE_EATING_INTERVAL / 200),
+              1
+            )
+          )
+          for i in range(0, n):
+            add_resource_effect(p.position, randf() * 0.5)
       p.destroy()
 
 var _explosion_scene = preload("res://scene/Explosion.tscn")

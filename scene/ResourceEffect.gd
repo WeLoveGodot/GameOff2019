@@ -5,7 +5,7 @@ func _ready():
 
 const D = 0.3
 const D2 = 0.4
-const BASE_DISTANCE = 20
+const BASE_DISTANCE = 50
 
 var _scale = 1
 
