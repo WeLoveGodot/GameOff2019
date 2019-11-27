@@ -12,28 +12,35 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="AttackWinLabel" type="Label" parent="AttackWin"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title" type="Label" parent="AttackWin"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "You Win !"
+text = "Universe Dominator"
 align = 1
 valign = 1
+
+[node name="Exp" type="Label" parent="AttackWin"]
+margin_left = 292.816
+margin_top = 272.0
+margin_right = 2919.82
+margin_bottom = 1022.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "You Win !"
 
 [node name="AttackFail" type="Control" parent="."]
 visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="AttackFailLabel" type="Label" parent="AttackFail"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title" type="Label" parent="AttackFail"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fail !"
+text = "Space Ruins"
 align = 1
 valign = 1
 
@@ -42,13 +49,12 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="TimeLimitLabel" type="Label" parent="TimeLimitFail"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title2" type="Label" parent="TimeLimitFail"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fail !"
+text = "Bug In Cosmic Constants"
 align = 1
 valign = 1
 
@@ -57,13 +63,12 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="SelfDestroyFailLabel" type="Label" parent="SelfDestroyFail"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title3" type="Label" parent="SelfDestroyFail"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fail !"
+text = "Bomb Player"
 align = 1
 valign = 1
 
@@ -72,13 +77,12 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="TechFailLabel" type="Label" parent="TechFail"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title4" type="Label" parent="TechFail"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fail !"
+text = "Restart Universe"
 align = 1
 valign = 1
 
@@ -87,13 +91,12 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="NoTechLabel" type="Label" parent="NoTech"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title5" type="Label" parent="NoTech"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "No Tech"
+text = "Primitive Times"
 align = 1
 valign = 1
 
@@ -102,28 +105,25 @@ visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="NoEnergyLabel" type="Label" parent="NoEnergy"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title6" type="Label" parent="NoEnergy"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "No Tech"
+text = "Black Out"
 align = 1
 valign = 1
 
 [node name="TechWin" type="Control" parent="."]
-visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="TechWinLabel" type="Label" parent="TechWin"]
-margin_left = 5.55176
-margin_top = 183.212
-margin_right = 1921.55
-margin_bottom = 646.212
+[node name="Title7" type="Label" parent="TechWin"]
+margin_left = 6.0
+margin_right = 1922.0
+margin_bottom = 342.0
 custom_fonts/font = ExtResource( 2 )
-text = "No Tech"
+text = "Devine Civilization"
 align = 1
 valign = 1
 
