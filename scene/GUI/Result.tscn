@@ -23,6 +23,7 @@ align = 1
 valign = 1
 
 [node name="Fail" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -34,6 +35,21 @@ margin_right = 1921.55
 margin_bottom = 646.212
 custom_fonts/font = ExtResource( 2 )
 text = "Fail !"
+align = 1
+valign = 1
+
+[node name="NoTech" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="NoTechLabel" type="Label" parent="NoTech"]
+margin_left = 5.55176
+margin_top = 183.212
+margin_right = 1921.55
+margin_bottom = 646.212
+custom_fonts/font = ExtResource( 2 )
+text = "No Tech"
 align = 1
 valign = 1
 

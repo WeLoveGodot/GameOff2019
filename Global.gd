@@ -205,7 +205,15 @@ var SKILL_DICT = {
 }
 # --------------------- end ---------------------#
 
-var is_win = false
-func to_result(is_win):
-  self.is_win = is_win
+enum EResult {
+  WIN,
+  FAIL,
+  NO_TECH,
+}
+
+var result_type = null
+
+
+func to_result(type):
+  self.result_type = type
   get_tree().change_scene("res://scene/GUI/Result.tscn")

@@ -71,11 +71,13 @@ func _game_tick(delta):
     update_camera_zoom()
   $Planets.update_planets(delta)
   draw_holes()
-  _check_win()
+  _check_result()
 
-func _check_win():
+func _check_result():
   if $Planets.get_child_count() == 1 && $Planets.get_children()[0].is_me:
-    Global.to_result(true)
+    Global.to_result(Global.EResult.WIN)
+  elif me.tech <= 0:
+    Global.to_result(Global.EResult.NO_TECH)
 
 func draw_holes():
   collect_holes()
