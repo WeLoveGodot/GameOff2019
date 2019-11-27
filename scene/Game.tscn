@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://resource/sound/DarkForest.ogg" type="AudioStream" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=14]
 [ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=15]
 [ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=16]
+[ext_resource path="res://scene/GUI/MainGUI.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -81,9 +82,9 @@ script = ExtResource( 11 )
 edge = false
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
+visible = false
 margin_right = 1916.0
 margin_bottom = 1079.0
 script = ExtResource( 12 )
@@ -179,6 +180,8 @@ stream = ExtResource( 16 )
 volume_db = -10.0
 
 [node name="Effects" type="Node2D" parent="."]
+
+[node name="MainGUI" parent="." instance=ExtResource( 17 )]
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]
