@@ -41,7 +41,7 @@ const INITIAL_FIELD_RADIUS = 5
 const INITIAL_TECH = 16
 const INITIAL_DEVELOP_FACTOR = 2
 
-const EXPAND_COST_FACTOR = 100
+const EXPAND_COST_FACTOR = 10
 const EXPLORE_COST_FACTOR = 1.0
 const ATTACK_COST_FACTOR = 1.0
 const EXPLORE_FACTOR = 2.0
@@ -87,7 +87,7 @@ func explore_cost(planet):
 func expand_cost(planet):
   var expand_radius = planet.field_radius + EXPAND_RADIUS_FACTOR
   var increased_area = area(expand_radius) -  area(planet.field_radius)
-  return increased_area * EXPAND_COST_FACTOR / (planet.level + 1)
+  return increased_area * EXPAND_COST_FACTOR
 
 func attack_cost(planet):
   return area(attack_radius(planet)) * ATTACK_COST_FACTOR
@@ -205,7 +205,15 @@ var SKILL_DICT = {
 }
 # --------------------- end ---------------------#
 
-var is_win = false
-func to_result(is_win):
-  self.is_win = is_win
+enum EResult {
+  WIN,
+  FAIL,
+  NO_TECH,
+}
+
+var result_type = null
+
+
+func to_result(type):
+  self.result_type = type
   get_tree().change_scene("res://scene/GUI/Result.tscn")

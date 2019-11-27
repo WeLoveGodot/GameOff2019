@@ -14,7 +14,6 @@ var last: float = 0.0
 var field_radius = Global.DEFAULT_FIELD_RADIUS
 var level: int = Global.tech_2_level(Global.INITIAL_TECH)
 var energy : int = 0
-# var energy : int = 3
 var tech: int = Global.INITIAL_TECH
 var tech_factor = Global.INITIAL_DEVELOP_FACTOR
 var progress: float = Global.tech_2_progress(Global.INITIAL_TECH)
@@ -66,7 +65,7 @@ func destroy():
   set_meta("type", Global.ETag.NIL)
   if is_me:
     Log.log("warning", "i die")
-    Global.to_result(false)
+    Global.to_result(Global.EResult.FAIL)
   else:
     self.queue_free()
 

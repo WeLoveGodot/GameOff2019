@@ -4,15 +4,14 @@ extends CanvasLayer
 # var a = 2
 # var b = "text"
 
-# Called when the node enters the scene tree for the first time.
+onready var _end_table = {
+  Global.EResult.WIN: $Win,
+  Global.EResult.FAIL: $Fail,
+  Global.EResult.NO_TECH: $NoTech,
+}
 func _ready():
-  var is_win = Global.is_win
-  $Win.visible = is_win
-  $Fail.visible = !is_win
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  pass
+  var type = Global.result_type
+  _end_table[type].visible = true
 
 
 func _on_RetryButton_pressed():
