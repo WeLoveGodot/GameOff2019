@@ -22,13 +22,18 @@ align = 1
 valign = 1
 
 [node name="Exp" type="Label" parent="AttackWin"]
-margin_left = 292.816
+margin_left = 293.0
 margin_top = 272.0
-margin_right = 2919.82
+margin_right = 2920.0
 margin_bottom = 1022.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 2 )
-text = "You Win !"
+text = "Congrats! You are really good at these  destroying planets stuffs.
+But there is no any other civilization left.
+Maybe you could restart the universe and have another adventure.
+Good Luck!"
+align = 3
+autowrap = true
 
 [node name="AttackFail" type="Control" parent="."]
 visible = false
@@ -44,6 +49,20 @@ text = "Space Ruins"
 align = 1
 valign = 1
 
+[node name="Exp2" type="Label" parent="AttackFail"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1022.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "We are sorry to inform you that your beautiful and prosperous homeland has just become ruins.
+But this is life. 
+You may be destroyed, but will never be defeated. Right?
+It's the time to come over again."
+align = 3
+autowrap = true
+
 [node name="TimeLimitFail" type="Control" parent="."]
 visible = false
 margin_right = 1920.0
@@ -57,6 +76,21 @@ custom_fonts/font = ExtResource( 2 )
 text = "Bug In Cosmic Constants"
 align = 1
 valign = 1
+
+[node name="Exp3" type="Label" parent="TimeLimitFail"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1022.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Oops! It seems like you take more time than usual to finish the game. Apparently, something went wrong with the generation of your cosmic constants.
+Maybe the Planck constant? Or the light speed?
+Don't worry! We will fix this on the next Big Bang.
+Good Luck!
+"
+align = 3
+autowrap = true
 
 [node name="SelfDestroyFail" type="Control" parent="."]
 visible = false
@@ -72,6 +106,21 @@ text = "Bomb Player"
 align = 1
 valign = 1
 
+[node name="Exp4" type="Label" parent="SelfDestroyFail"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1116.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Oh dear! You BLOW UP yourself!
+Obviously, your civilization level cannot match your weapon power.
+Out of impulse? Out of misoperation?
+I have to say: What a pity!
+And play it again."
+align = 3
+autowrap = true
+
 [node name="TechFail" type="Control" parent="."]
 visible = false
 margin_right = 1920.0
@@ -85,6 +134,20 @@ custom_fonts/font = ExtResource( 2 )
 text = "Restart Universe"
 align = 1
 valign = 1
+
+[node name="Exp5" type="Label" parent="TechFail"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1116.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "The universe is just restarted by another civilization reaching top level a little bit faster than yours.
+They choose to restart the universe to prevent the universe from falling into heat death in the accelerating expansion. 
+Maybe your technology policy is too preservative.
+See you next time."
+align = 3
+autowrap = true
 
 [node name="NoTech" type="Control" parent="."]
 visible = false
@@ -100,6 +163,20 @@ text = "Primitive Times"
 align = 1
 valign = 1
 
+[node name="Exp6" type="Label" parent="NoTech"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1116.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Research is energy-consuming.
+And the energy in the inverse is quite limited. It sounds pretty cruel. 
+But there are always two sides to everything. You give up your advanced productivity and live in a naive and primitive times.
+"
+align = 3
+autowrap = true
+
 [node name="NoEnergy" type="Control" parent="."]
 visible = false
 margin_right = 1920.0
@@ -114,7 +191,23 @@ text = "Black Out"
 align = 1
 valign = 1
 
+[node name="Exp7" type="Label" parent="NoEnergy"]
+margin_left = 293.0
+margin_top = 272.0
+margin_right = 2920.0
+margin_bottom = 1116.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Check!
+You have just run out of all of your energy.
+Use your energy wisely rather than focusing on only one skill will be better.
+You should try it.
+There is nothing you can do but retry."
+align = 3
+autowrap = true
+
 [node name="TechWin" type="Control" parent="."]
+visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
@@ -126,6 +219,20 @@ custom_fonts/font = ExtResource( 2 )
 text = "Devine Civilization"
 align = 1
 valign = 1
+
+[node name="Exp8" type="Label" parent="TechWin"]
+margin_left = 290.21
+margin_top = 272.0
+margin_right = 2917.21
+margin_bottom = 1116.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Congrats!
+Your civilization has passed the big filter and become the one and the only god of the universe.
+You can choose to restart the universe with a flamboyant explosion or just make the world turn to empty.
+It's on your decision."
+align = 3
+autowrap = true
 
 [node name="RetryButton" type="Button" parent="."]
 margin_left = 682.98
