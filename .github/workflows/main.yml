@@ -17,7 +17,7 @@ jobs:
         mkdir ~/.cache
         mkdir -p ~/.config/godot
         unzip Godot_v3.1.1-stable_linux_headless.64.zip
-        mv Godot_v3.1.1-stable_linux_headless.64 godot_dir
+        mv Godot_v3.1.1-stable_linux_headless.64 ~/godot_dir
     - name: Setup Godot Template
       run: |
         wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
@@ -27,34 +27,56 @@ jobs:
         rm -f Godot_v3.1.1-stable_export_templates.tpz
     - name: Build Game
       run: |
+        # debug
         # where i am
+        echo "==> pwd
         pwd
         # tell me
+        echo "==> ls"
         ls
         # try ls godot_dir
-        ls godot_dir
+        echo "==> godot_dir"
+        ls ~/godot_dir
+        echo "==> start build"
+
         # Export for linux
+        echo "==> building linux"
         mkdir -p ./build/linux
-        ./godot_dir/godot --export Linux/X11 ./build/linux/dark-forest
+        ~/godot_dir/godot --export Linux/X11 ./build/linux/dark-forest
+        zip linux ./build/linux
 
         # Export for Windows
+        echo "==> building windows"
         mkdir -p ./build/windows
-        ./godot_dir/godot --export "Windows Desktop" ./build/windows/dark-forest.exe
+        ~/godot_dir/godot --export "Windows Desktop" ./build/windows/dark-forest.exe
+        zip windows ./build/windows
 
         # Export for OSX
+        echo "==> building mac"
         mkdir -p ./builds/mac
-        ./godot_dir/godot --export "Mac OSX" ./build/mac/dark-forest
+        ~/godot_dir/godot --export "Mac OSX" ./build/mac/dark-forest
+        zip max ./build/mac
+
+        echo "==> building finish"
+
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v1.0.0
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: |
-          Changes in this Release
-          - First Change
-          - Second Change
         draft: false
         prerelease: false
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+        asset_path: ./windows
+        asset_name: windows.zip
+        asset_content_type: application/zip
