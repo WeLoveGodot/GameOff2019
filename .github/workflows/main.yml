@@ -8,17 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     name: build game
     steps:
-    - name: Setup environment
+    - uses: actions/checkout@v1
+    - name: Setup Docker
       uses: aBARICHELLO/godot-ci@v3.1.1
-    #   run: |
-        # wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
-
-        # mkdir ~/.cache
-        # mkdir -p ~/.config/godot
-        # mkdir -p ~/.local/share/godot/templates/3.1.1.stable
-        # unzip Godot_v3.1.1-stable_export_templates.tpz
-        # mv templates/* ~/.local/share/godot/templates/3.1.1.stable
-        # rm -f Godot_v3.1.1-stable_export_templates.tpz
+    - name: Setup Environment
+      run: |
+        wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
+        mkdir ~/.cache
+        mkdir -p ~/.config/godot
+        mkdir -p ~/.local/share/godot/templates/3.1.1.stable
+        unzip Godot_v3.1.1-stable_export_templates.tpz
+        mv templates/* ~/.local/share/godot/templates/3.1.1.stable
+        rm -f Godot_v3.1.1-stable_export_templates.tpz
     - name: just run
       run: |
         # Export for linux
