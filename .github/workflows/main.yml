@@ -17,7 +17,7 @@ jobs:
         mkdir ~/.cache
         mkdir -p ~/.config/godot
         unzip Godot_v3.1.1-stable_linux_headless.64.zip
-        mv Godot_v3.1.1-stable_linux_headless.64 ~/godot_dir
+        mv Godot_v3.1.1-stable_linux_headless.64 ~/godot
     - name: Setup Godot Template
       run: |
         wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
@@ -35,26 +35,24 @@ jobs:
         echo "==> ls"
         ls
         # try ls godot_dir
-        echo "==> godot_dir"
-        ls ~/godot_dir
         echo "==> start build"
 
         # Export for linux
         echo "==> building linux"
         mkdir -p ./build/linux
-        ~/godot_dir/godot --export Linux/X11 ./build/linux/dark-forest
+        ~/godot --export Linux/X11 ./build/linux/dark-forest
         zip linux ./build/linux
 
         # Export for Windows
         echo "==> building windows"
         mkdir -p ./build/windows
-        ~/godot_dir/godot --export "Windows Desktop" ./build/windows/dark-forest.exe
+        ~/godot --export "Windows Desktop" ./build/windows/dark-forest.exe
         zip windows ./build/windows
 
         # Export for OSX
         echo "==> building mac"
         mkdir -p ./builds/mac
-        ~/godot_dir/godot --export "Mac OSX" ./build/mac/dark-forest
+        ~/godot --export "Mac OSX" ./build/mac/dark-forest
         zip max ./build/mac
 
         echo "==> building finish"
