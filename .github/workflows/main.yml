@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: build game
     steps:
-    # - name: Setup environment
+    - name: Setup environment
+      uses: aBARICHELLO/godot-ci
     #   run: |
         # wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
 
@@ -16,7 +17,6 @@ jobs:
         # mv templates/* ~/.local/share/godot/templates/3.1.1.stable
         # rm -f Godot_v3.1.1-stable_export_templates.tpz
     - name: just run
-      uses: aBARICHELLO/godot-ci
       run: |
         # Export for linux
         mkdir -p ./build/linux
