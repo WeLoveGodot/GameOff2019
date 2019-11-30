@@ -71,7 +71,7 @@ func tech_2_level(tech: int):
 
 # Int -> float(0~1)
 func tech_2_progress(tech: int):
-  return tech / pow(10, MAX_LEVEL)
+  return log(tech)/(10 * log(10))
 
 func _ready():
   WINDOW_SIZE = get_viewport().size

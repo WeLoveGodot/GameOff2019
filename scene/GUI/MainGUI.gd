@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-# Declare member variables here. Examples:
 
 # Game Variables
 var game
@@ -10,6 +9,7 @@ var attack
 
 # GUI const values
 const BUTTON_EXPAND_DURATION = 0.2
+const BUTTON_INFO_DURATION = 0.4
 const BUTTON_EXPAND_FACOTR = 1.2
 const BUTTON_NORMAL_SCALE = Vector2(1,1)
 
@@ -24,6 +24,8 @@ onready var progressor = get_node("Progressor")
 onready var player_level = get_node("Level/Num")
 onready var player_tech = get_node("Tech_Factor/Num")
 onready var player_resource = get_node("Resource/Num")
+onready var button_info = get_node("ButtonInfo")
+onready var button_info_text = get_node("ButtonInfo/Label")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,18 +50,17 @@ func _process(delta):
 	
 
 
-func _on_Upgrade_pressed():
-  print("Upgrade Button Clicked")
-  #$ProgressBar.value += delta_tech
-  print($ProgressBar.value)
-  #$Resource
-
-
 func _on_Accelerate_mouse_entered():
-	print(accelerate_button.get("rect_scale"))
 	menu_animator.interpolate_property(accelerate_button, "rect_scale",\
 									 accelerate_button.get_scale(), accelerate_button.get_scale() * BUTTON_EXPAND_FACOTR,\
 									 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	var cost = Global.SKILL_DICT[Global.ESkill.ACC].cost.call_func(game.me)
+	menu_animator.interpolate_property(button_info, "modulate",\
+								 Color(1,1,1,0), Color(1,1,1,1),\
+								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	button_info_text.set_text("Accelerate\n"+
+							  "Energy cost : " + str(cost) + "\n" +
+							  "Effect : Growth Rate x 2")
 	menu_animator.start()
 
 
@@ -67,12 +68,22 @@ func _on_Accelerate_mouse_exited():
 	menu_animator.interpolate_property(accelerate_button, "rect_scale",\
 								 accelerate_button.get_scale(), BUTTON_NORMAL_SCALE,\
 								 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	menu_animator.interpolate_property(button_info, "modulate",\
+								 Color(1,1,1,1), Color(1,1,1,0),\
+								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	menu_animator.start()
 
 func _on_Explore_mouse_entered():
 	menu_animator.interpolate_property(explore_button, "rect_scale",\
 								 explore_button.get_scale(), explore_button.get_scale() * BUTTON_EXPAND_FACOTR,\
 								 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	var cost = Global.SKILL_DICT[Global.ESkill.EXPR].cost.call_func(game.me)
+	menu_animator.interpolate_property(button_info, "modulate",\
+								 Color(1,1,1,0), Color(1,1,1,1),\
+								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	button_info_text.set_text("Explore\n"+
+							  "Energy cost : " + str(cost) + "\n" +
+							  "Effect : Launch a explorer")
 	menu_animator.start()
 
 
@@ -80,6 +91,9 @@ func _on_Explore_mouse_exited():
 	menu_animator.interpolate_property(explore_button, "rect_scale",\
 							 explore_button.get_scale(), BUTTON_NORMAL_SCALE,\
 							 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	menu_animator.interpolate_property(button_info, "modulate",\
+							 Color(1,1,1,1), Color(1,1,1,0),\
+							 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	menu_animator.start()
 
 
@@ -87,24 +101,44 @@ func _on_Expand_mouse_entered():
 	menu_animator.interpolate_property(expand_button, "rect_scale",\
 							 expand_button.get_scale(), expand_button.get_scale() * BUTTON_EXPAND_FACOTR,\
 							 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	var cost = Global.SKILL_DICT[Global.ESkill.EXPD].cost.call_func(game.me)
+	menu_animator.interpolate_property(button_info, "modulate",\
+								 Color(1,1,1,0), Color(1,1,1,1),\
+								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	button_info_text.set_text("Expand\n"+
+							  "Energy cost : " + str(cost) + "\n" +
+							  "Effect : Enlarge the filed of vision")
 	menu_animator.start()
 
 func _on_Expand_mouse_exited():
 	menu_animator.interpolate_property(expand_button, "rect_scale",\
 							 expand_button.get_scale(), BUTTON_NORMAL_SCALE,\
 							 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	menu_animator.interpolate_property(button_info, "modulate",\
+							 Color(1,1,1,1), Color(1,1,1,0),\
+							 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	menu_animator.start()
 
 func _on_Attack_mouse_entered():
 	menu_animator.interpolate_property(attack_button, "rect_scale",\
 							 attack_button.get_scale(), attack_button.get_scale() * BUTTON_EXPAND_FACOTR,\
 							 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	var cost = Global.SKILL_DICT[Global.ESkill.ATK].cost.call_func(game.me)
+	menu_animator.interpolate_property(button_info, "modulate",\
+								 Color(1,1,1,0), Color(1,1,1,1),\
+								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	button_info_text.set_text("Attack\n"+
+							  "Energy cost : " + str(cost) + "\n" +
+							  "Effect : Attack other planet")
 	menu_animator.start()
 
 func _on_Attack_mouse_exited():
 	menu_animator.interpolate_property(attack_button, "rect_scale",\
 							 attack_button.get_scale(), BUTTON_NORMAL_SCALE,\
 							 BUTTON_EXPAND_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	menu_animator.interpolate_property(button_info, "modulate",\
+							 Color(1,1,1,1), Color(1,1,1,0),\
+							 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	menu_animator.start()
 
 func _on_Accelerate_pressed():

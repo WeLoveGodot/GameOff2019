@@ -1,24 +1,30 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scene/GUI/MainGUI.gd" type="Script" id=1]
 [ext_resource path="res://resource/raw_fonts/Orbitron/static/Orbitron-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://resource/art/progress_bar.png" type="Texture" id=3]
-[ext_resource path="res://resource/art/accelerate_normal.png" type="Texture" id=4]
-[ext_resource path="res://resource/art/accelerate_pressed.png" type="Texture" id=5]
-[ext_resource path="res://resource/art/accelerate_hover.png" type="Texture" id=6]
-[ext_resource path="res://resource/art/expand_normal.png" type="Texture" id=7]
-[ext_resource path="res://resource/art/expand_pressed.png" type="Texture" id=8]
-[ext_resource path="res://resource/art/expand_hover.png" type="Texture" id=9]
-[ext_resource path="res://resource/art/explore_normal.png" type="Texture" id=10]
-[ext_resource path="res://resource/art/explore_pressed.png" type="Texture" id=11]
-[ext_resource path="res://resource/art/explore_hover.png" type="Texture" id=12]
-[ext_resource path="res://resource/art/attack_normal.png" type="Texture" id=13]
-[ext_resource path="res://resource/art/attack_pressed.png" type="Texture" id=14]
-[ext_resource path="res://resource/art/attack_hover.png" type="Texture" id=15]
+[ext_resource path="res://resource/art/UI/Info.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/accelerate_normal.png" type="Texture" id=5]
+[ext_resource path="res://resource/art/accelerate_pressed.png" type="Texture" id=6]
+[ext_resource path="res://resource/art/accelerate_hover.png" type="Texture" id=7]
+[ext_resource path="res://resource/art/expand_normal.png" type="Texture" id=8]
+[ext_resource path="res://resource/art/expand_pressed.png" type="Texture" id=9]
+[ext_resource path="res://resource/art/expand_hover.png" type="Texture" id=10]
+[ext_resource path="res://resource/art/explore_normal.png" type="Texture" id=11]
+[ext_resource path="res://resource/art/explore_pressed.png" type="Texture" id=12]
+[ext_resource path="res://resource/art/explore_hover.png" type="Texture" id=13]
+[ext_resource path="res://resource/art/attack_normal.png" type="Texture" id=14]
+[ext_resource path="res://resource/art/attack_pressed.png" type="Texture" id=15]
+[ext_resource path="res://resource/art/attack_hover.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
 use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_color = Color( 0, 0.733333, 0.92549, 1 )
 font_data = ExtResource( 2 )
 
 [node name="MainGUI" type="CanvasLayer"]
@@ -74,19 +80,39 @@ text = "LEVEL : 0"
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -21.0
+margin_left = 2.54932
+margin_top = -23.5493
+margin_right = 2.54932
+margin_bottom = -2.54932
 rect_pivot_offset = Vector2( 0, 21 )
 value = 10.0
 texture_progress = ExtResource( 3 )
 
-[node name="ButtonHelp" type="HBoxContainer" parent="."]
-margin_left = 1312.5
-margin_top = 907.01
-margin_right = 1312.5
-margin_bottom = 1037.01
+[node name="ButtonInfo" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -315.0
+margin_top = -324.0
+margin_right = 315.0
+margin_bottom = -194.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="ButtonInfo"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -222.5
+margin_top = -46.0
+margin_right = 222.5
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 2 )
+text = "Test"
 
 [node name="MainGUIButtons" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -101,36 +127,36 @@ custom_constants/separation = 37
 margin_right = 130.0
 margin_bottom = 130.0
 rect_pivot_offset = Vector2( 65, 65 )
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 
 [node name="Expand" type="TextureButton" parent="MainGUIButtons"]
 margin_left = 167.0
 margin_right = 297.0
 margin_bottom = 130.0
 rect_pivot_offset = Vector2( 65, 65 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
-texture_hover = ExtResource( 9 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
 
 [node name="Explore" type="TextureButton" parent="MainGUIButtons"]
 margin_left = 334.0
 margin_right = 464.0
 margin_bottom = 130.0
 rect_pivot_offset = Vector2( 65, 65 )
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 12 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 13 )
 
 [node name="Attack" type="TextureButton" parent="MainGUIButtons"]
 margin_left = 501.0
 margin_right = 631.0
 margin_bottom = 130.0
 rect_pivot_offset = Vector2( 65, 65 )
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 14 )
-texture_hover = ExtResource( 15 )
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 16 )
 
 [node name="Animator" type="Tween" parent="."]
 
