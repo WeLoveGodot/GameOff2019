@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
+config/name="DarkForest"
 run/main_scene="res://scene/GUI/Menu.tscn"
 config/icon="res://resource/art/icon.png"
 

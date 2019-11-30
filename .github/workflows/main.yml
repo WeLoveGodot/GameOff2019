@@ -13,14 +13,15 @@ jobs:
     #   uses: aBARICHELLO/godot-ci@v3.1.1
     - name: Setup Godot
       run: |
-        wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_linux_headless.64.zip
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_linux_headless.64.zip
         mkdir ~/.cache
         mkdir -p ~/.config/godot
         unzip Godot_v3.1.1-stable_linux_headless.64.zip
-        mv Godot_v3.1.1-stable_linux_headless.64 ~/godot
+        mv Godot_v3.1.1-stable_linux_headless.64 godot
+        chmod +x godot
     - name: Setup Godot Template
       run: |
-        wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
         unzip Godot_v3.1.1-stable_export_templates.tpz
         mkdir -p ~/.local/share/godot/templates/3.1.1.stable
         mv templates/* ~/.local/share/godot/templates/3.1.1.stable
@@ -34,25 +35,29 @@ jobs:
         # tell me
         echo "==> ls"
         ls
-        # try ls godot_dir
-        echo "==> start build"
 
-        # Export for linux
-        echo "==> building linux"
-        mkdir -p ./build/linux
-        ~/godot --export Linux/X11 ./build/linux/dark-forest
-        zip linux ./build/linux
+        echo "==> ls templates"
+        ls ~/.local/share/godot/templates/3.1.1.stable
+
+        echo "==> start build"
 
         # Export for Windows
         echo "==> building windows"
-        mkdir -p ./build/windows
-        ~/godot --export "Windows Desktop" ./build/windows/dark-forest.exe
+        mkdir -p win64
+        godot --export win64 project.godot "win64/dark-forest.exe"
         zip windows ./build/windows
 
+        # Export for linux
+        echo "==> building linux"
+        mkdir -p linux64
+        godot --export linux project.godot "linux64/dark-forest"
+        zip linux ./build/linux
+
+ 
         # Export for OSX
         echo "==> building mac"
-        mkdir -p ./builds/mac
-        ~/godot --export "Mac OSX" ./build/mac/dark-forest
+        mkdir -p mac
+        godot --export mac project.godot "mac/dark-forest"
         zip max ./build/mac
 
         echo "==> building finish"
