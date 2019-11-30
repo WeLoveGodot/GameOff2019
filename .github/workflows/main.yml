@@ -14,17 +14,17 @@ jobs:
     - name: Setup Godot
       run: |
         wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_linux_headless.64.zip
-        mkdir ~/.cache
-        mkdir -p ~/.config/godot
+        mkdir $HOME/.cache
+        mkdir -p $HOME/.config/godot
         unzip Godot_v3.1.1-stable_linux_headless.64.zip
-        mv Godot_v3.1.1-stable_linux_headless.64 ~/godot
-        chmod +x ~/godot
+        mv Godot_v3.1.1-stable_linux_headless.64 $HOME/godot
+        chmod +x $HOME/godot
     - name: Setup Godot Template
       run: |
         wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
         unzip Godot_v3.1.1-stable_export_templates.tpz
-        mkdir -p ~/.local/share/godot/templates/3.1.1.stable
-        mv templates/* ~/.local/share/godot/templates/3.1.1.stable
+        mkdir -p $HOME/.local/share/godot/templates/3.1.1.stable
+        mv templates/* $HOME/.local/share/godot/templates/3.1.1.stable
         rm -f Godot_v3.1.1-stable_export_templates.tpz
     - name: Build Game
       run: |
@@ -32,31 +32,34 @@ jobs:
         # where i am
         echo "==> pwd"
         pwd
+        # home
+        echo "==> home"
+        echo $HOME
         # tell me
         echo "==> ls"
         ls
 
         echo "==> ls templates"
-        ls ~/.local/share/godot/templates/3.1.1.stable
+        ls $HOME/.local/share/godot/templates/3.1.1.stable
 
         echo "==> start build"
 
         # Export for Windows
         echo "==> building windows"
         mkdir -p win64
-        HOME=~ && ~/godot --export "Windows Desktop" project.godot "win64/dark-forest.exe"
+        $HOME/godot --export "Windows Desktop" project.godot "win64/dark-forest.exe"
         zip windows ./build/windows
 
         # Export for linux
         echo "==> building linux"
         mkdir -p linux64
-        HOME=~ && ~/godot --export "Linux/X11" project.godot "linux64/dark-forest"
+        $HOME/godot --export "Linux/X11" project.godot "linux64/dark-forest"
         zip linux ./build/linux
 
         # Export for OSX
         echo "==> building mac"
         mkdir -p mac
-        HOME=~ && ~/godot --export "Mac OSX" project.godot "mac/dark-forest"
+        $HOME/godot --export "Mac OSX" project.godot "mac/dark-forest"
         zip max ./build/mac
 
         echo "==> building finish"
