@@ -44,20 +44,19 @@ jobs:
         # Export for Windows
         echo "==> building windows"
         mkdir -p win64
-        ~/godot --export win64 project.godot "win64/dark-forest.exe"
+        HOME=~ && ~/godot --export "Windows Desktop" project.godot "win64/dark-forest.exe"
         zip windows ./build/windows
 
         # Export for linux
         echo "==> building linux"
         mkdir -p linux64
-        ~/godot --export linux project.godot "linux64/dark-forest"
+        HOME=~ && ~/godot --export "Linux/X11" project.godot "linux64/dark-forest"
         zip linux ./build/linux
 
- 
         # Export for OSX
         echo "==> building mac"
         mkdir -p mac
-        ~/godot --export mac project.godot "mac/dark-forest"
+        HOME=~ && ~/godot --export "Mac OSX" project.godot "mac/dark-forest"
         zip max ./build/mac
 
         echo "==> building finish"
