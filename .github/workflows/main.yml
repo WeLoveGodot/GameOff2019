@@ -83,13 +83,33 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Windows
+      id: upload-release-asset-win
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: ./windows
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./windows.zip
         asset_name: windows.zip
+        asset_content_type: application/zip
+    - name: Upload Linux
+      id: upload-release-asset-linux
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./linux.zip
+        asset_name: linux.zip
+        asset_content_type: application/zip
+    - name: Upload Mac
+      id: upload-release-asset-mac
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./mac.zip
+        asset_name: mac.zip
         asset_content_type: application/zip
