@@ -6,6 +6,9 @@
 
 [node name="Result" type="CanvasLayer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 960.631 ]
+}
 
 [node name="AttackWin" type="Control" parent="."]
 visible = false
@@ -235,18 +238,18 @@ align = 3
 autowrap = true
 
 [node name="RetryButton" type="Button" parent="."]
-margin_left = 682.98
-margin_top = 735.771
-margin_right = 1214.98
-margin_bottom = 833.771
+margin_left = 683.0
+margin_top = 710.0
+margin_right = 940.0
+margin_bottom = 773.0
 custom_fonts/font = ExtResource( 3 )
 text = "Retry"
 
 [node name="BackButton" type="Button" parent="."]
-margin_left = 681.687
-margin_top = 883.1
-margin_right = 1213.69
-margin_bottom = 981.1
+margin_left = 979.0
+margin_top = 709.0
+margin_right = 1221.0
+margin_bottom = 773.0
 custom_fonts/font = ExtResource( 3 )
 text = "Back To Menu"
 [connection signal="pressed" from="RetryButton" to="." method="_on_RetryButton_pressed"]

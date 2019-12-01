@@ -32,7 +32,7 @@ const PLANTE_GEN_PROB = 0.0001
 ## 资源生成概率
 const RESOURCE_GEN_PROB = 0.003
 ## 资源能量值
-const RESOURCE_ENERGY = 100000
+const RESOURCE_ENERGY = 50000
 ## 星球生成上限
 const MAX_PLANETS = 2000
 
