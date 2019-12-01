@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://resource/sound/DarkForest.ogg" type="AudioStream" id=2]
@@ -7,20 +7,19 @@
 [ext_resource path="res://scene/Resources.gd" type="Script" id=5]
 [ext_resource path="res://scene/Explores.gd" type="Script" id=6]
 [ext_resource path="res://scene/Attacks.gd" type="Script" id=7]
-[ext_resource path="res://resource/shader/new_shadermaterial.material" type="Material" id=8]
-[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scene/Camera.gd" type="Script" id=11]
-[ext_resource path="res://resource/sound/attack.wav" type="AudioStream" id=12]
-[ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=13]
-[ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=14]
-[ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=15]
-[ext_resource path="res://scene/GUI/MainGUI.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=17]
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scene/Camera.gd" type="Script" id=10]
+[ext_resource path="res://resource/sound/attack.wav" type="AudioStream" id=11]
+[ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=12]
+[ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=13]
+[ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=14]
+[ext_resource path="res://scene/GUI/MainGUI.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 9 )
+font_data = ExtResource( 8 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -52,15 +51,6 @@ script = ExtResource( 6 )
 [node name="Attacks" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
-[node name="Fog" type="ColorRect" parent="."]
-visible = false
-material = ExtResource( 8 )
-margin_left = -2048.0
-margin_top = -2048.0
-margin_right = 2048.0
-margin_bottom = 2048.0
-color = Color( 0, 0, 0, 1 )
-
 [node name="Label" type="Label" parent="."]
 visible = false
 margin_left = 23.9166
@@ -70,7 +60,7 @@ margin_bottom = 167.35
 custom_fonts/font = SubResource( 1 )
 text = "Game Scene"
 
-[node name="Holes" parent="." instance=ExtResource( 10 )]
+[node name="Holes" parent="." instance=ExtResource( 9 )]
 
 [node name="SideRectL" type="ColorRect" parent="."]
 margin_right = 40.0
@@ -88,29 +78,29 @@ color = Color( 1, 0, 0, 1 )
 current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 drag = false
 edge = false
 
 [node name="attack" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource( 11 )
 volume_db = -10.0
 
 [node name="explore" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 volume_db = -10.0
 
 [node name="expand" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
+stream = ExtResource( 13 )
 volume_db = -10.0
 
 [node name="accelerate" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
+stream = ExtResource( 14 )
 volume_db = -10.0
 
 [node name="Effects" type="Node2D" parent="."]
 
-[node name="MainGUI" parent="." instance=ExtResource( 16 )]
+[node name="MainGUI" parent="." instance=ExtResource( 15 )]
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
 
@@ -119,7 +109,7 @@ editor/display_folded = true
 visible = false
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 17 )
+script = ExtResource( 16 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37

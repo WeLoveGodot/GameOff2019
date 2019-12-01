@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/GUI/About.gd" type="Script" id=1]
 [ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=2]
-[ext_resource path="res://resource/art/UI/ButtonFrame.png" type="Texture" id=3]
-[ext_resource path="res://resource/art/UI/ButtonFramePressed.png" type="Texture" id=4]
-[ext_resource path="res://resource/art/UI/ButtonFrameHover.png" type="Texture" id=5]
+[ext_resource path="res://resource/raw_fonts/Raleway/Raleway-ExtraLight.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://resource/art/UI/ButtonFrame.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/UI/ButtonFramePressed.png" type="Texture" id=5]
+[ext_resource path="res://resource/art/UI/ButtonFrameHover.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
 
 [node name="About" type="CanvasLayer"]
 layer = 3
@@ -33,15 +38,17 @@ margin_top = 254.0
 margin_right = 1920.0
 margin_bottom = 904.0
 rect_min_size = Vector2( 0, 650 )
-custom_fonts/font = ExtResource( 2 )
-text = "Created by:
-Kleon
-HubertSun7
-Nalleyer
+custom_fonts/font = SubResource( 1 )
+text = "===Created by===
+- HubertSun7
+- Kleon
+- Nalleyer
 
-Credit:
-Music & Sound from: xxxx
-Fonts from: xxxxx"
+===Credit===
+[Music]: Dark Crisis
+[Sound from]: from Abobe
+[Fonts]: Orbitron, Raleway
+"
 align = 1
 valign = 1
 
@@ -52,9 +59,9 @@ margin_right = 1110.0
 margin_bottom = 1028.0
 rect_min_size = Vector2( 300, 120 )
 size_flags_horizontal = 4
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 5 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="Label" type="Label" parent="VBoxContainer/Button"]

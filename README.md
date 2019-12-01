@@ -3,7 +3,7 @@
 
 repo for our game for game off 2019([itch.io](https://itch.io/jam/game-off-2019))
 
-# theme(copy from itch)
+# Theme(copy from itch)
 
 > Game Off is our annual game jam, where participants spend the month of November creating games based on a secret theme. 
 >
@@ -22,7 +22,31 @@ repo for our game for game off 2019([itch.io](https://itch.io/jam/game-off-2019)
 >
 >Good luck and have fun!
 
-# contributors
+# About This Game
+
+You are a ...
+
+# Contributors
 * nalleyer
 * HubertSun7
 * kleon
+
+# Credits
+
+## Music
+[Dark Crisis](https://music.163.com/#/song?id=528480666)
+
+## Sound
+[from Adobe](https://offers.adobe.com/en/na/audition/offers/audition_dlc/AdobeAuditionDLCSFX.html)
+
+## Fonts:
+[Orbitron](https://fonts.google.com/specimen/Orbitron)
+
+[Raleway](https://fonts.google.com/specimen/Raleway)
+
+## Special Thanks
+
+Thanks to [Gonkee's shader](https://github.com/Gonkee/Gonkees-Shaders) even if we finally deleted the shaders
+
+
+Thanks to WG who always being in our wechat group and supporting us.
