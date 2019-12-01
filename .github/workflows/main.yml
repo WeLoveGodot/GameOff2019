@@ -69,11 +69,9 @@ jobs:
 
         # Export for OSX
         echo "==> building mac"
-        mkdir -p mac
-        $HOME/godot --export "mac" project.godot "mac/dark-forest"
+        $HOME/godot --export "mac" project.godot "mac.zip"
         echo "==> build mac ok"
-        ls mac
-        zip -r mac mac
+        # zip -r mac mac
 
         echo "==> building finish"
 
