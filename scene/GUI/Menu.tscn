@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/GUI/Menu.gd" type="Script" id=1]
-[ext_resource path="res://resource/art/dark_forest.png" type="Texture" id=2]
-[ext_resource path="res://resource/art/start_normal.png" type="Texture" id=3]
-[ext_resource path="res://resource/art/start_hover.png" type="Texture" id=4]
-[ext_resource path="res://resource/art/settings.png" type="Texture" id=5]
-[ext_resource path="res://scene/GUI/HelpButton.gd" type="Script" id=6]
-[ext_resource path="res://scene/GUI/SettingMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resource/art/IMG_0151.PNG" type="Texture" id=2]
+[ext_resource path="res://resource/art/dark_forest.png" type="Texture" id=3]
+[ext_resource path="res://resource/art/start_normal.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/start_hover.png" type="Texture" id=5]
+[ext_resource path="res://resource/art/settings.png" type="Texture" id=6]
+[ext_resource path="res://scene/GUI/HelpButton.gd" type="Script" id=7]
+[ext_resource path="res://scene/GUI/SettingMenu.tscn" type="PackedScene" id=8]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -14,32 +15,33 @@ __meta__ = {
 "_edit_vertical_guides_": [ 961.843 ]
 }
 
-[node name="Title" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -534.5
-margin_top = -376.084
-margin_right = -534.0
-margin_bottom = -25.084
-rect_scale = Vector2( 1.16779, 1.10371 )
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 2 )
 
-[node name="StartButton" type="TextureButton" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
+margin_left = -471.38
+margin_right = 426.62
+margin_bottom = 351.0
+rect_scale = Vector2( 1.16779, 1.10371 )
+texture = ExtResource( 3 )
+
+[node name="StartButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -312.892
-margin_top = -334.445
-margin_right = 278.108
-margin_bottom = -186.445
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
+margin_left = -623.0
+margin_top = -148.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 
 [node name="HelpButton" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 1762.47, 116.136 )
 rotation = 4.29351
 __meta__ = {
@@ -51,9 +53,9 @@ margin_left = -46.1759
 margin_top = -46.2451
 margin_right = 45.8241
 margin_bottom = 45.7549
-texture_normal = ExtResource( 5 )
-script = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+script = ExtResource( 7 )
 
-[node name="SettingMenu" parent="." instance=ExtResource( 7 )]
+[node name="SettingMenu" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="help_button_clicked" from="HelpButton/HelpButton" to="." method="_on_HelpButton_help_button_clicked"]
