@@ -57,4 +57,3 @@ script = ExtResource( 6 )
 [node name="SettingMenu" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="help_button_clicked" from="HelpButton/HelpButton" to="." method="_on_HelpButton_help_button_clicked"]
-[connection signal="show_about" from="SettingMenu" to="." method="_on_SettingMenu_show_about"]
