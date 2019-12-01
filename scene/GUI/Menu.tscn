@@ -21,8 +21,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -534.5
 margin_top = -376.084
-margin_right = 534.5
+margin_right = -534.0
 margin_bottom = -25.084
+rect_scale = Vector2( 1.16779, 1.10371 )
 texture = ExtResource( 2 )
 
 [node name="StartButton" type="TextureButton" parent="."]
