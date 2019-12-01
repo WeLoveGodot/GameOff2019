@@ -13,6 +13,9 @@ const BUTTON_INFO_DURATION = 0.4
 const BUTTON_EXPAND_FACOTR = 1.2
 const BUTTON_NORMAL_SCALE = Vector2(1,1)
 
+var MENU_DURATION = 0.5
+var MENU_LENGTH = Vector2(450.0, 0.0)
+
 # GUI variables
 var arrow = load("res://resource/art/arrow.png")
 var menu_animator = null
@@ -26,6 +29,10 @@ onready var player_tech = get_node("Tech_Factor/Num")
 onready var player_resource = get_node("Resource/Num")
 onready var button_info = get_node("ButtonInfo")
 onready var button_info_text = get_node("ButtonInfo/Label")
+
+onready var setting_animator = get_node("SettingMenu/Animator")
+onready var setting_menu = get_node("SettingMenu")
+onready var is_setting_menu_open = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -159,3 +166,20 @@ func _on_Explore_pressed():
 
 func _on_Attack_pressed():
 	camera.enter_draw_arrow_mode(Global.ESkill.ATK, BUTTON_LEFT, game.me)
+
+func _unhandled_input(event):
+	if event.pressed and event.scancode == KEY_ESCAPE:
+		if is_setting_menu_open == false:
+			is_setting_menu_open = true
+			print(setting_menu.get("position"))
+			setting_animator.interpolate_property(setting_menu, "position",
+										 setting_menu.get_position(), setting_menu.get_position() - MENU_LENGTH, \
+										 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			setting_animator.start()
+			print(setting_menu.get("position"))
+		else:
+			is_setting_menu_open = false
+			setting_animator.interpolate_property(setting_menu, "position", 
+										 setting_menu.get_position(), setting_menu.get_position() + MENU_LENGTH, \
+										 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			setting_animator.start()

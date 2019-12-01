@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scene/GUI/MainGUI.gd" type="Script" id=1]
 [ext_resource path="res://resource/raw_fonts/Orbitron/static/Orbitron-Regular.ttf" type="DynamicFontData" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://resource/art/attack_normal.png" type="Texture" id=14]
 [ext_resource path="res://resource/art/attack_pressed.png" type="Texture" id=15]
 [ext_resource path="res://resource/art/attack_hover.png" type="Texture" id=16]
+[ext_resource path="res://scene/GUI/SettingMenu.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -89,6 +90,7 @@ value = 10.0
 texture_progress = ExtResource( 3 )
 
 [node name="ButtonInfo" type="TextureRect" parent="."]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 1.0
@@ -113,6 +115,7 @@ custom_fonts/font = SubResource( 2 )
 text = "Test"
 
 [node name="MainGUIButtons" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -163,6 +166,9 @@ texture_hover = ExtResource( 16 )
 [node name="PopupPanel" type="PopupPanel" parent="."]
 margin_right = 8.0
 margin_bottom = 8.0
+
+[node name="SettingMenu" parent="." instance=ExtResource( 17 )]
+position = Vector2( 8.95203, -24.3066 )
 [connection signal="mouse_entered" from="MainGUIButtons/Accelerate" to="." method="_on_Accelerate_mouse_entered"]
 [connection signal="mouse_exited" from="MainGUIButtons/Accelerate" to="." method="_on_Accelerate_mouse_exited"]
 [connection signal="pressed" from="MainGUIButtons/Accelerate" to="." method="_on_Accelerate_pressed"]
