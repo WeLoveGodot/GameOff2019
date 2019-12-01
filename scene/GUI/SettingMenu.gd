@@ -2,20 +2,22 @@ extends Node2D
 
 var full_screen_button = null
 
+onready var full_screen_labal = get_node("VBoxContainer/FullScreenButton/Label")
+
 func _ready():
-	full_screen_button = get_node("VBoxContainer/FullScreenButton")
+	pass
+
+func set_is_in_game():
+	get_node("VBoxContainer/RetryButton").visible = true
+	get_node("VBoxContainer/MenuButton").visible = true
 
 func _on_FullScreenButton_pressed():
 	if OS.is_window_fullscreen():
 		OS.set_window_fullscreen(false)
-		full_screen_button.set_normal_texture(load("res://resource/art/UI/FullScreenButton_Normal.png"))
-		full_screen_button.set_pressed_texture(load("res://resource/art/UI/FullScreenButton_Pressed.png"))
-		full_screen_button.set_hover_texture(load("res://resource/art/UI/FullScreenButton_Hover.png"))
+		full_screen_labal.set_text("FULL SCREEN")
 	else:
-		full_screen_button.set_normal_texture(load("res://resource/art/UI/WindowedButton_Normal.png"))
-		full_screen_button.set_pressed_texture(load("res://resource/art/UI/WindowedButton_Pressed.png"))
-		full_screen_button.set_hover_texture(load("res://resource/art/UI/WindowedButton_Hover.png"))
 		OS.set_window_fullscreen(true)
+		full_screen_labal.set_text("WINDOWED")
 func _on_CloseButton_pressed():
 	get_tree().quit()
 
@@ -27,3 +29,10 @@ func _on_AboutButton_pressed():
 func _on_HelpButton_pressed():
 		var _tutorial_ui = load("res://scene/GUI/Tutorial.tscn").instance()
 		get_tree().get_root().add_child(_tutorial_ui)
+
+func _on_MenuButton_pressed():
+	get_tree().change_scene("res://scene/GUI/Menu.tscn")
+
+
+func _on_RetryButton_pressed():
+	get_tree().reload_current_scene()

@@ -44,7 +44,8 @@ func _ready():
 	game = get_parent()
 	camera = game.get_node("Camera")
 	progressor.set_max(100)
-	
+	setting_menu.set_is_in_game()
+
 #  $ProgressBar.value = _tech
   #$Resource.text = String(_resource)
 
@@ -184,7 +185,7 @@ func _unhandled_input(event):
 			print(setting_menu.get("position"))
 		else:
 			is_setting_menu_open = false
-			setting_animator.interpolate_property(setting_menu, "position", 
+			setting_animator.interpolate_property(setting_menu, "position",
 										 setting_menu.get_position(), setting_menu.get_position() + MENU_LENGTH, \
 										 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			setting_animator.start()

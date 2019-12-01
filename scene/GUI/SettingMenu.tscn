@@ -1,19 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scene/GUI/SettingMenu.gd" type="Script" id=1]
 [ext_resource path="res://resource/art/UI/SettingMenuBG.png" type="Texture" id=2]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Normal.png" type="Texture" id=3]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Pressed.png" type="Texture" id=4]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Hover.png" type="Texture" id=5]
-[ext_resource path="res://resource/art/UI/TutorialButton_Normal.png" type="Texture" id=6]
-[ext_resource path="res://resource/art/UI/TutorialButton_Pressed.png" type="Texture" id=7]
-[ext_resource path="res://resource/art/UI/TutorialButton_Hover.png" type="Texture" id=8]
-[ext_resource path="res://resource/art/UI/AboutButton_Normal.png" type="Texture" id=9]
-[ext_resource path="res://resource/art/UI/AboutButton_Hover.png" type="Texture" id=10]
-[ext_resource path="res://resource/art/UI/AboutButton_Pressed.png" type="Texture" id=11]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Normal.png" type="Texture" id=12]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Pressed.png" type="Texture" id=13]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Hover.png" type="Texture" id=14]
+[ext_resource path="res://resource/art/UI/ButtonFrame.png" type="Texture" id=3]
+[ext_resource path="res://resource/art/UI/ButtonFramePressed.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/UI/ButtonFrameHover.png" type="Texture" id=5]
+[ext_resource path="res://resource/fonts/SettingMenu_Button_Font.tres" type="DynamicFont" id=6]
 
 [node name="SettingMenu" type="Node2D"]
 position = Vector2( 7.038, 0 )
@@ -31,41 +23,129 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 2023.68
-margin_top = 326.917
+margin_top = 276.917
 margin_right = 2267.68
-margin_bottom = 751.917
+margin_bottom = 794.917
+alignment = 1
 
 [node name="FullScreenButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 87.0
 margin_right = 243.0
-margin_bottom = 83.0
+margin_bottom = 170.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
 
-[node name="HelpButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 87.0
-margin_right = 243.0
-margin_bottom = 170.0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 8 )
+[node name="Label" type="Label" parent="VBoxContainer/FullScreenButton"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 223.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "FULL SCREEN"
+align = 1
+valign = 1
 
-[node name="AboutButton" type="TextureButton" parent="VBoxContainer"]
+[node name="HelpButton" type="TextureButton" parent="VBoxContainer"]
 margin_top = 174.0
 margin_right = 243.0
 margin_bottom = 257.0
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 11 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
 
-[node name="CloseButton" type="TextureButton" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HelpButton"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 223.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "TUTORIAL"
+align = 1
+valign = 1
+
+[node name="AboutButton" type="TextureButton" parent="VBoxContainer"]
 margin_top = 261.0
 margin_right = 243.0
 margin_bottom = 344.0
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 13 )
-texture_hover = ExtResource( 14 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/AboutButton"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 223.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "ABOUT"
+align = 1
+valign = 1
+
+[node name="RetryButton" type="TextureButton" parent="VBoxContainer"]
+visible = false
+margin_top = 261.0
+margin_right = 243.0
+margin_bottom = 344.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/RetryButton"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 223.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "RETRY"
+align = 1
+valign = 1
+
+[node name="MenuButton" type="TextureButton" parent="VBoxContainer"]
+visible = false
+margin_top = 304.0
+margin_right = 243.0
+margin_bottom = 387.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuButton"]
+margin_left = 16.2041
+margin_top = 20.3492
+margin_right = 223.204
+margin_bottom = 67.3492
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "MENU"
+align = 1
+valign = 1
+
+[node name="CloseButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 348.0
+margin_right = 243.0
+margin_bottom = 431.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/CloseButton"]
+margin_left = 16.2041
+margin_top = 19.3492
+margin_right = 223.204
+margin_bottom = 66.3492
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0.752941, 1, 1 )
+text = "QUIT GAME"
+align = 1
+valign = 1
 [connection signal="pressed" from="VBoxContainer/FullScreenButton" to="." method="_on_FullScreenButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HelpButton" to="." method="_on_HelpButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
