@@ -36,31 +36,36 @@ jobs:
         echo "==> home"
         echo $HOME
         # tell me
-        echo "==> ls"
-        ls
-
-        echo "==> ls templates"
-        ls $HOME/.local/share/godot/templates/3.1.1.stable
-
         echo "==> start build"
 
         # Export for Windows
-        echo "==> building windows"
+        echo "==> building windows 64"
         mkdir -p win64
         $HOME/godot --export "win64" project.godot "win64/dark-forest.exe"
 
-        echo "==> build windows ok"
-        ls win64
-        zip -r windows ./win64
+        echo "==> build windows 64 ok"
+        zip -r win64 ./win64
 
+        echo "==> building windows 32"
+        mkdir -p win32
+        $HOME/godot --export "win32" project.godot "win32/dark-forest.exe"
+
+        echo "==> build windows 32 ok"
+        zip -r win32 ./win32
 
         # Export for linux
-        echo "==> building linux"
+        echo "==> building linux 64"
         mkdir -p linux64
-        $HOME/godot --export "linux" project.godot "linux64/dark-forest"
-        echo "==> build linux ok"
-        ls linux64
-        zip -r linux linux64
+        $HOME/godot --export "linux64" project.godot "linux64/dark-forest"
+        echo "==> build linux 64 ok"
+        zip -r linux64 linux64
+
+        echo "==> building linux 32"
+        mkdir -p linux32
+        $HOME/godot --export "linux32" project.godot "linux32/dark-forest"
+        echo "==> build linux 32 ok"
+        zip -r linux32 linux32
+
 
         # Export for OSX
         echo "==> building mac"
@@ -83,26 +88,48 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Windows
-      id: upload-release-asset-win
+    - name: Upload Windows 64
+      id: upload-release-asset-win-64
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./windows.zip
-        asset_name: windows.zip
+        asset_path: ./win64.zip
+        asset_name: win64.zip
         asset_content_type: application/zip
-    - name: Upload Linux
-      id: upload-release-asset-linux
+    - name: Upload Windows 32
+      id: upload-release-asset-win-32
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./linux.zip
-        asset_name: linux.zip
+        asset_path: ./win32.zip
+        asset_name: win32.zip
         asset_content_type: application/zip
+
+    - name: Upload Linux 64
+      id: upload-release-asset-linux-64
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./linux64.zip
+        asset_name: linux64.zip
+        asset_content_type: application/zip
+    - name: Upload Linux 32
+      id: upload-release-asset-linux-32
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./linux32.zip
+        asset_name: linux32.zip
+        asset_content_type: application/zip
+
     - name: Upload Mac
       id: upload-release-asset-mac
       uses: actions/upload-release-asset@v1.0.1
