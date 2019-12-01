@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 # Game Variables
 var game
 var camera
@@ -12,6 +11,9 @@ const BUTTON_EXPAND_DURATION = 0.2
 const BUTTON_INFO_DURATION = 0.4
 const BUTTON_EXPAND_FACOTR = 1.2
 const BUTTON_NORMAL_SCALE = Vector2(1,1)
+
+const ENERGY_BLINK_TIMES = 3
+const ENERGY_BLINK_COLOR = Color(1, 0, 0)
 
 var MENU_DURATION = 0.5
 var MENU_LENGTH = Vector2(450.0, 0.0)
@@ -27,6 +29,7 @@ onready var progressor = get_node("Progressor")
 onready var player_level = get_node("Level/Num")
 onready var player_tech = get_node("Tech_Factor/Num")
 onready var player_resource = get_node("Resource/Num")
+onready var player_resource_anim = get_node("Resource/Num/EnergyAnim")
 onready var button_info = get_node("ButtonInfo")
 onready var button_info_text = get_node("ButtonInfo/Label")
 
@@ -53,8 +56,6 @@ func _process(delta):
 		player_resource.set_text("ENERGY : " + String(game.me.energy))
 		print(str(game.me.tech) + " : " + str(game.me.progress))
 		progressor.set_value( game.me.progress * 100)
-	pass
-	
 
 
 func _on_Accelerate_mouse_entered():
@@ -149,23 +150,27 @@ func _on_Attack_mouse_exited():
 	menu_animator.start()
 
 func _on_Accelerate_pressed():
-	game.get_node("Skill").use_skill(
-		game.me,
-		Global.ESkill.ACC,
-		null
-	)
+	if check_skill(Global.ESkill.ACC):
+		game.get_node("Skill").use_skill(
+			game.me,
+			Global.ESkill.ACC,
+			null
+		)
 
 
 func _on_Expand_pressed():
-	game.get_node("Skill").use_skill(game.me, Global.ESkill.EXPD, null)
+	if check_skill(Global.ESkill.EXPD):
+		game.get_node("Skill").use_skill(game.me, Global.ESkill.EXPD, null)
 
 
 func _on_Explore_pressed():
-	camera.enter_draw_arrow_mode(Global.ESkill.EXPR, BUTTON_LEFT, null)
+	if check_skill(Global.ESkill.EXPR):
+		camera.enter_draw_arrow_mode(Global.ESkill.EXPR, BUTTON_LEFT, null)
 
 
 func _on_Attack_pressed():
-	camera.enter_draw_arrow_mode(Global.ESkill.ATK, BUTTON_LEFT, game.me)
+	if check_skill(Global.ESkill.ATK):
+		camera.enter_draw_arrow_mode(Global.ESkill.ATK, BUTTON_LEFT, game.me)
 
 func _unhandled_input(event):
 	if event.pressed and event.scancode == KEY_ESCAPE:
@@ -183,3 +188,16 @@ func _unhandled_input(event):
 										 setting_menu.get_position(), setting_menu.get_position() + MENU_LENGTH, \
 										 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			setting_animator.start()
+
+func can_use(skill):
+	return game.get_node("Skill").can_use_skill(game.me, skill)
+
+func check_skill(skill):
+	if can_use(skill):
+		return true
+	else:
+		shake_energy()
+
+func shake_energy():
+	player_resource_anim.stop()
+	player_resource_anim.play("blink")
