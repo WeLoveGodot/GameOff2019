@@ -112,8 +112,17 @@ func _init_camera():
 
 func _init_bg():
   var bg = $ColorRect
-  bg.rect_size = Vector2(Global.SIZE / Global.WINDOW_SIZE.y * Global.WINDOW_SIZE.x, Global.SIZE)
+  var big_x = Global.SIZE / Global.WINDOW_SIZE.y * Global.WINDOW_SIZE.x
+  bg.rect_size = Vector2(big_x, Global.SIZE)
   bg.rect_position = - bg.rect_size / 2
+  var l = $SideRectL
+  var r = $SideRectR
+  l.rect_size = Vector2((big_x - Global.SIZE) / 2, Global.SIZE)
+  r.rect_size = Vector2((big_x - Global.SIZE) / 2, Global.SIZE)
+  l.rect_position = Vector2(- big_x / 2, -bg.rect_size.y / 2)
+  r.rect_position = Vector2(big_x / 2 - r.rect_size.x, -bg.rect_size.y / 2)
+  l.color = Color(0, 0, 0)
+  r.color = Color(0, 0, 0)
 
 func update_camera_zoom():
   var half_height = Global.explore_radius(me) + Global.explore_distance(me)
