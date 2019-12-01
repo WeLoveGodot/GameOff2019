@@ -9,6 +9,7 @@ export (bool) var key = true
 export (bool) var drag = true
 export (bool) var edge = true
 export (bool) var wheel = true
+export (int) var cancel_skill_key = BUTTON_RIGHT
 
 export (int) var zoom_out_limit = 100
 
@@ -126,19 +127,23 @@ func _input( event ):
         camera_zoom += camera_zoom_speed
         set_zoom(camera_zoom)
 
-    if event.button_index == end_draw_arrow_key  and draw_arrow_mode == true:
-      draw_arrow_mode = false
-      game.get_node("Skill").use_skill(
-        # 这里假定 Camera 只有玩家能用
-        game.me,
-        end_draw_arrow_action,
-        {
-          pos = mouse_position
-        }
-      )
-      end_draw_arrow_action = null
-      end_draw_arrow_key = null
-
+    if draw_arrow_mode == true:
+      if event.button_index == cancel_skill_key:
+        draw_arrow_mode = false
+        end_draw_arrow_action = null
+        end_draw_arrow_key = null
+      elif event.button_index == end_draw_arrow_key:
+        draw_arrow_mode = false
+        game.get_node("Skill").use_skill(
+          # 这里假定 Camera 只有玩家能用
+          game.me,
+          end_draw_arrow_action,
+          {
+            pos = mouse_position
+          }
+        )
+        end_draw_arrow_action = null
+        end_draw_arrow_key = null
   # Control the input of keyboard
   if event is InputEventKey:
     if event.pressed and event.scancode == KEY_SPACE:

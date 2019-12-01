@@ -79,6 +79,7 @@ current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 script = ExtResource( 11 )
+drag = false
 edge = false
 
 [node name="DebugUI" type="CanvasLayer" parent="."]

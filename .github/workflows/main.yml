@@ -47,20 +47,28 @@ jobs:
         # Export for Windows
         echo "==> building windows"
         mkdir -p win64
-        $HOME/godot --export "Windows Desktop" project.godot "win64/dark-forest.exe"
-        zip windows ./build/windows
+        $HOME/godot --export "win64" project.godot "win64/dark-forest.exe"
+
+        echo "==> build windows ok"
+        ls win64
+        zip -r windows ./win64
+
 
         # Export for linux
         echo "==> building linux"
         mkdir -p linux64
-        $HOME/godot --export "Linux/X11" project.godot "linux64/dark-forest"
-        zip linux ./build/linux
+        $HOME/godot --export "linux" project.godot "linux64/dark-forest"
+        echo "==> build linux ok"
+        ls linux64
+        zip -r linux linux64
 
         # Export for OSX
         echo "==> building mac"
         mkdir -p mac
-        $HOME/godot --export "Mac OSX" project.godot "mac/dark-forest"
-        zip max ./build/mac
+        $HOME/godot --export "mac" project.godot "mac/dark-forest"
+        echo "==> build mac ok"
+        ls mac
+        zip -r mac mac
 
         echo "==> building finish"
 
@@ -75,13 +83,33 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Windows
+      id: upload-release-asset-win
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: ./windows
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./windows.zip
         asset_name: windows.zip
+        asset_content_type: application/zip
+    - name: Upload Linux
+      id: upload-release-asset-linux
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./linux.zip
+        asset_name: linux.zip
+        asset_content_type: application/zip
+    - name: Upload Mac
+      id: upload-release-asset-mac
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./mac.zip
+        asset_name: mac.zip
         asset_content_type: application/zip

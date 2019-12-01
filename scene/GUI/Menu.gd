@@ -35,3 +35,11 @@ func _on_HelpButton_help_button_clicked():
 									 setting_menu.get_position(), setting_menu.get_position() + MENU_LENGTH, \
 									 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 		setting_animator.start()
+
+var _about_ui
+func _on_SettingMenu_show_about():
+	if _about_ui == null:
+		_about_ui = load("res://scene/GUI/About.tscn").instance()
+		add_child(_about_ui)
+	else:
+		_about_ui.visible = true
