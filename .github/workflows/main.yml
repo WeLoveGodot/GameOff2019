@@ -26,18 +26,8 @@ jobs:
         mkdir -p $HOME/.local/share/godot/templates/3.1.1.stable
         mv templates/* $HOME/.local/share/godot/templates/3.1.1.stable
         rm -f Godot_v3.1.1-stable_export_templates.tpz
-    - name: Build Game
+    - name: Build Win64
       run: |
-        # debug
-        # where i am
-        echo "==> pwd"
-        pwd
-        # home
-        echo "==> home"
-        echo $HOME
-        # tell me
-        echo "==> start build"
-
         # Export for Windows
         echo "==> building windows 64"
         mkdir -p win64
@@ -46,6 +36,8 @@ jobs:
         echo "==> build windows 64 ok"
         zip -r win64 ./win64
 
+    - name: Build Win32
+      run: |
         echo "==> building windows 32"
         mkdir -p win32
         $HOME/godot --export "win32" project.godot "win32/dark-forest.exe"
@@ -53,13 +45,16 @@ jobs:
         echo "==> build windows 32 ok"
         zip -r win32 ./win32
 
-        # Export for linux
+    - name: Build Linux64
+      run: |
         echo "==> building linux 64"
         mkdir -p linux64
         $HOME/godot --export "linux64" project.godot "linux64/dark-forest"
         echo "==> build linux 64 ok"
         zip -r linux64 linux64
 
+    - name: Build Linux32
+      run: |
         echo "==> building linux 32"
         mkdir -p linux32
         $HOME/godot --export "linux32" project.godot "linux32/dark-forest"
@@ -67,11 +62,12 @@ jobs:
         zip -r linux32 linux32
 
 
-        # Export for OSX
+    - name: Build Mac
+      run: |
         echo "==> building mac"
-        $HOME/godot --export "mac" project.godot "mac.zip"
+        $HOME/godot --export "mac" project.godot "mac"
+        mv mac mac.zip
         echo "==> build mac ok"
-        # zip -r mac mac
 
         echo "==> building finish"
 
