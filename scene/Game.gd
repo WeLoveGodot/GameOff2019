@@ -196,6 +196,16 @@ func add_delayed_resource_effect(pos):
 
 var game_start_time
 func post_load():
+  maybe_show_tutorial()
   game_start_time = OS.get_ticks_msec()
   for pos in _delayed_resource_effects:
     add_resource_effect(pos, 1.0)
+
+func maybe_show_tutorial():
+  Global.load_game()
+  if !Global.save_dict.is_tutorial_shown == true:
+    var _tutorial_ui = load("res://scene/GUI/Tutorial.tscn").instance()
+    get_tree().get_root().add_child(_tutorial_ui)
+    Global.save_dict.is_tutorial_shown = true
+    Global.save_game()
+

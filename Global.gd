@@ -226,3 +226,26 @@ var result_type = null
 func to_result(type):
   self.result_type = type
   get_tree().change_scene("res://scene/GUI/Result.tscn")
+
+
+# ------------ 存储用数据 --------------#
+var save_dict = {
+  is_tutorial_shown = false,
+}
+
+func save_game():
+  var save_game = File.new()
+  save_game.open("user://savegame.save", File.WRITE)
+  var json = to_json(save_dict)
+  Log.log("info", json)
+  save_game.store_line(json)
+  save_game.close()
+
+func load_game():
+  var save_game = File.new()
+  if not save_game.file_exists("user://savegame.save"):
+      return
+  save_game.open("user://savegame.save", File.READ)
+  var content = save_game.get_as_text()
+  Log.log("info", content)
+  save_dict = parse_json(content)
