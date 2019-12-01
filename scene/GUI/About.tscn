@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/GUI/About.gd" type="Script" id=1]
+[ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=2]
+
+[node name="About" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1097.0
+color = Color( 0.113725, 0.105882, 0.133333, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1082.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 250 )
+custom_fonts/font = ExtResource( 2 )
+text = "About This Game"
+align = 1
+valign = 1
+
+[node name="Title2" type="Label" parent="VBoxContainer"]
+margin_top = 254.0
+margin_right = 1920.0
+margin_bottom = 904.0
+rect_min_size = Vector2( 0, 650 )
+custom_fonts/font = ExtResource( 2 )
+text = "Created by:
+Kleon
+HubertSun7
+Nalleyer
+
+Credit:
+Music & Sound from: xxxx
+Fonts from: xxxxx"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_left = 710.0
+margin_top = 908.0
+margin_right = 1210.0
+margin_bottom = 1008.0
+rect_min_size = Vector2( 500, 100 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Back"
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

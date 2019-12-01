@@ -120,5 +120,5 @@ texture_hover = ExtResource( 20 )
 [connection signal="help_button_clicked" from="HelpButton/HelpButton" to="." method="_on_HelpButton_help_button_clicked"]
 [connection signal="pressed" from="SettingMenu/VBoxContainer/FullScreenButton" to="SettingMenu" method="_on_FullScreenButton_pressed"]
 [connection signal="pressed" from="SettingMenu/VBoxContainer/HelpButton" to="SettingMenu" method="_on_HelpButton_pressed"]
-[connection signal="pressed" from="SettingMenu/VBoxContainer/AboutButton" to="SettingMenu" method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="SettingMenu/VBoxContainer/AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="SettingMenu/VBoxContainer/CloseButton" to="SettingMenu" method="_on_CloseButton_pressed"]

@@ -20,8 +20,5 @@ func _on_FullScreenButton_pressed():
 func _on_HelpButton_pressed():
 	pass 
 
-func _on_AboutButton_pressed():
-	pass
-
 func _on_CloseButton_pressed():
 	get_tree().quit()
