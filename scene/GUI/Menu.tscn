@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/GUI/Menu.gd" type="Script" id=1]
 [ext_resource path="res://resource/art/dark_forest.png" type="Texture" id=2]
@@ -6,20 +6,7 @@
 [ext_resource path="res://resource/art/start_hover.png" type="Texture" id=4]
 [ext_resource path="res://resource/art/settings.png" type="Texture" id=5]
 [ext_resource path="res://scene/GUI/HelpButton.gd" type="Script" id=6]
-[ext_resource path="res://scene/GUI/SettingMenu.gd" type="Script" id=7]
-[ext_resource path="res://resource/art/UI/SettingMenuBG.png" type="Texture" id=8]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Normal.png" type="Texture" id=9]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Pressed.png" type="Texture" id=10]
-[ext_resource path="res://resource/art/UI/FullScreenButton_Hover.png" type="Texture" id=11]
-[ext_resource path="res://resource/art/UI/TutorialButton_Normal.png" type="Texture" id=12]
-[ext_resource path="res://resource/art/UI/TutorialButton_Pressed.png" type="Texture" id=13]
-[ext_resource path="res://resource/art/UI/TutorialButton_Hover.png" type="Texture" id=14]
-[ext_resource path="res://resource/art/UI/AboutButton_Normal.png" type="Texture" id=15]
-[ext_resource path="res://resource/art/UI/AboutButton_Hover.png" type="Texture" id=16]
-[ext_resource path="res://resource/art/UI/AboutButton_Pressed.png" type="Texture" id=17]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Normal.png" type="Texture" id=18]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Pressed.png" type="Texture" id=19]
-[ext_resource path="res://resource/art/UI/QuitGameButton_Hover.png" type="Texture" id=20]
+[ext_resource path="res://scene/GUI/SettingMenu.tscn" type="PackedScene" id=7]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -52,6 +39,7 @@ texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 
 [node name="HelpButton" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 1762.47, 116.136 )
 rotation = 4.29351
 __meta__ = {
@@ -66,59 +54,7 @@ margin_bottom = 45.7549
 texture_normal = ExtResource( 5 )
 script = ExtResource( 6 )
 
-[node name="SettingMenu" type="Node2D" parent="."]
-position = Vector2( 7.038, 0 )
-script = ExtResource( 7 )
-
-[node name="Animator" type="Tween" parent="SettingMenu"]
-
-[node name="BackGround" type="Sprite" parent="SettingMenu"]
-position = Vector2( 2137.94, 538.012 )
-scale = Vector2( 1.15834, 1.15834 )
-texture = ExtResource( 8 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingMenu"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 2023.68
-margin_top = 326.917
-margin_right = 2267.68
-margin_bottom = 751.917
-
-[node name="FullScreenButton" type="TextureButton" parent="SettingMenu/VBoxContainer"]
-margin_right = 243.0
-margin_bottom = 83.0
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 11 )
-
-[node name="HelpButton" type="TextureButton" parent="SettingMenu/VBoxContainer"]
-margin_top = 87.0
-margin_right = 243.0
-margin_bottom = 170.0
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 13 )
-texture_hover = ExtResource( 14 )
-
-[node name="AboutButton" type="TextureButton" parent="SettingMenu/VBoxContainer"]
-margin_top = 174.0
-margin_right = 243.0
-margin_bottom = 257.0
-texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 17 )
-
-[node name="CloseButton" type="TextureButton" parent="SettingMenu/VBoxContainer"]
-margin_top = 261.0
-margin_right = 243.0
-margin_bottom = 344.0
-texture_normal = ExtResource( 18 )
-texture_pressed = ExtResource( 19 )
-texture_hover = ExtResource( 20 )
+[node name="SettingMenu" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="help_button_clicked" from="HelpButton/HelpButton" to="." method="_on_HelpButton_help_button_clicked"]
-[connection signal="pressed" from="SettingMenu/VBoxContainer/FullScreenButton" to="SettingMenu" method="_on_FullScreenButton_pressed"]
-[connection signal="pressed" from="SettingMenu/VBoxContainer/HelpButton" to="SettingMenu" method="_on_HelpButton_pressed"]
-[connection signal="pressed" from="SettingMenu/VBoxContainer/AboutButton" to="." method="_on_AboutButton_pressed"]
-[connection signal="pressed" from="SettingMenu/VBoxContainer/CloseButton" to="SettingMenu" method="_on_CloseButton_pressed"]
+[connection signal="show_about" from="SettingMenu" to="." method="_on_SettingMenu_show_about"]

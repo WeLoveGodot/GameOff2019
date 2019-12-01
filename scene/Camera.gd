@@ -141,8 +141,6 @@ func _input( event ):
 
   # Control the input of keyboard
   if event is InputEventKey:
-    if event.pressed and event.scancode == KEY_ESCAPE:
-      get_tree().quit()
     if event.pressed and event.scancode == KEY_SPACE:
       position = Vector2(0, 0)
     if event.pressed and event.scancode == end_draw_arrow_key  and draw_arrow_mode == true:

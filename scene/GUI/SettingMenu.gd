@@ -1,5 +1,7 @@
 extends Node2D
 
+signal show_about
+
 var full_screen_button = null
 
 func _ready():
@@ -22,3 +24,7 @@ func _on_HelpButton_pressed():
 
 func _on_CloseButton_pressed():
 	get_tree().quit()
+
+
+func _on_AboutButton_pressed():
+	emit_signal("show_about")

@@ -37,7 +37,7 @@ func _on_HelpButton_help_button_clicked():
 		setting_animator.start()
 
 var _about_ui
-func _on_AboutButton_pressed():
+func _on_SettingMenu_show_about():
 	if _about_ui == null:
 		_about_ui = load("res://scene/GUI/About.tscn").instance()
 		add_child(_about_ui)
