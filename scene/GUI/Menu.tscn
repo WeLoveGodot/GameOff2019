@@ -3,8 +3,8 @@
 [ext_resource path="res://scene/GUI/Menu.gd" type="Script" id=1]
 [ext_resource path="res://resource/art/IMG_0151.PNG" type="Texture" id=2]
 [ext_resource path="res://resource/art/dark_forest.png" type="Texture" id=3]
-[ext_resource path="res://resource/art/start_normal.png" type="Texture" id=4]
-[ext_resource path="res://resource/art/start_hover.png" type="Texture" id=5]
+[ext_resource path="res://resource/art/start_hover.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/start_normal.png" type="Texture" id=5]
 [ext_resource path="res://resource/art/settings.png" type="Texture" id=6]
 [ext_resource path="res://scene/GUI/HelpButton.gd" type="Script" id=7]
 [ext_resource path="res://scene/GUI/SettingMenu.tscn" type="PackedScene" id=8]
@@ -37,11 +37,10 @@ anchor_bottom = 1.0
 margin_left = -623.0
 margin_top = -148.0
 texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
 
 [node name="HelpButton" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1762.47, 116.136 )
 rotation = 4.29351
 __meta__ = {
