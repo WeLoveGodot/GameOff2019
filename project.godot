@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="New Game Project"
 run/main_scene="res://scene/GUI/Menu.tscn"
-config/icon="res://resource/art/icon.png"
+config/icon="res://resource/art/planet.png"
 
 [autoload]
 

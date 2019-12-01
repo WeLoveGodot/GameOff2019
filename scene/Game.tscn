@@ -11,12 +11,12 @@
 [ext_resource path="res://resource/raw_fonts/Raleway/Raleway-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://scene/Holes.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scene/Camera.gd" type="Script" id=11]
-[ext_resource path="res://scene/DebugUI.gd" type="Script" id=12]
-[ext_resource path="res://resource/sound/attack.wav" type="AudioStream" id=13]
-[ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=14]
-[ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=15]
-[ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=16]
-[ext_resource path="res://scene/GUI/MainGUI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://resource/sound/attack.wav" type="AudioStream" id=12]
+[ext_resource path="res://resource/sound/explore.wav" type="AudioStream" id=13]
+[ext_resource path="res://resource/sound/expand.wav" type="AudioStream" id=14]
+[ext_resource path="res://resource/sound/acc.wav" type="AudioStream" id=15]
+[ext_resource path="res://scene/GUI/MainGUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scene/DebugUI.gd" type="Script" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -72,6 +72,16 @@ text = "Game Scene"
 
 [node name="Holes" parent="." instance=ExtResource( 10 )]
 
+[node name="SideRectL" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 1, 0.0392157, 1 )
+
+[node name="SideRectR" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 1, 0, 0, 1 )
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -82,13 +92,34 @@ script = ExtResource( 11 )
 drag = false
 edge = false
 
+[node name="attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -10.0
+
+[node name="explore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
+
+[node name="expand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+
+[node name="accelerate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="MainGUI" parent="." instance=ExtResource( 16 )]
+
 [node name="DebugUI" type="CanvasLayer" parent="."]
 
 [node name="DebugMenu" type="Control" parent="DebugUI"]
+editor/display_folded = true
 visible = false
 margin_right = 1916.0
 margin_bottom = 1079.0
-script = ExtResource( 12 )
+script = ExtResource( 17 )
 
 [node name="CheckBox" type="CheckBox" parent="DebugUI/DebugMenu"]
 margin_left = 1689.37
@@ -163,26 +194,6 @@ margin_right = 1843.17
 margin_bottom = 222.342
 rect_pivot_offset = Vector2( 144.06, 32 )
 text = "acc"
-
-[node name="attack" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-volume_db = -10.0
-
-[node name="explore" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-volume_db = -10.0
-
-[node name="expand" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-volume_db = -10.0
-
-[node name="accelerate" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-volume_db = -10.0
-
-[node name="Effects" type="Node2D" parent="."]
-
-[node name="MainGUI" parent="." instance=ExtResource( 17 )]
 [connection signal="debug_camera" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_debug_camera"]
 [connection signal="new_camera_scale" from="DebugUI/DebugMenu" to="." method="_on_DebugMenu_new_camera_scale"]
 [connection signal="toggled" from="DebugUI/DebugMenu/CheckBox" to="DebugUI/DebugMenu" method="_on_CheckBox_toggled"]
