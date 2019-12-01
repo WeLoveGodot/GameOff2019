@@ -3,7 +3,8 @@
 [ext_resource path="res://scene/GUI/About.gd" type="Script" id=1]
 [ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=2]
 
-[node name="About" type="Node2D"]
+[node name="About" type="CanvasLayer"]
+layer = 3
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

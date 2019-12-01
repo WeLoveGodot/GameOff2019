@@ -1,7 +1,5 @@
 extends Node2D
 
-signal show_about
-
 var full_screen_button = null
 
 func _ready():
@@ -18,13 +16,14 @@ func _on_FullScreenButton_pressed():
 		full_screen_button.set_pressed_texture(load("res://resource/art/UI/WindowedButton_Pressed.png"))
 		full_screen_button.set_hover_texture(load("res://resource/art/UI/WindowedButton_Hover.png"))
 		OS.set_window_fullscreen(true)
-
-func _on_HelpButton_pressed():
-	pass 
-
 func _on_CloseButton_pressed():
 	get_tree().quit()
 
 
 func _on_AboutButton_pressed():
-	emit_signal("show_about")
+		var _about_ui = load("res://scene/GUI/About.tscn").instance()
+		get_tree().get_root().add_child(_about_ui)
+
+func _on_HelpButton_pressed():
+		var _tutorial_ui = load("res://scene/GUI/Tutorial.tscn").instance()
+		get_tree().get_root().add_child(_tutorial_ui)
