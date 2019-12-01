@@ -23,12 +23,10 @@ func _on_StartButton_pressed():
 func _on_HelpButton_help_button_clicked():
 	if is_setting_menu_open == false:
 		is_setting_menu_open = true
-		print(setting_menu.get("position"))
 		setting_animator.interpolate_property(setting_menu, "position",
 									 setting_menu.get_position(), setting_menu.get_position() - MENU_LENGTH, \
 									 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 		setting_animator.start()
-		print(setting_menu.get("position"))
 	else:
 		is_setting_menu_open = false
 		setting_animator.interpolate_property(setting_menu, "position", 

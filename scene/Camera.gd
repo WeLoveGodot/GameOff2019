@@ -113,8 +113,6 @@ func _input( event ):
     if wheel:
       # Checking if future zoom won't be under 0.
       # In that cause engine will flip screen.
-      print(wheel)
-      print(camera_zoom)
       if event.button_index == BUTTON_WHEEL_UP and\
       camera_zoom.x - camera_zoom_speed.x > 0 and\
       camera_zoom.y - camera_zoom_speed.y > 0:

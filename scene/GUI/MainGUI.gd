@@ -55,7 +55,6 @@ func _process(delta):
 		player_level.set_text("LEVEL : " + String(game.me.level))
 		player_tech.set_text("GROTH RATE : " + String(game.me.tech_factor))
 		player_resource.set_text("ENERGY : " + String(game.me.energy))
-		print(str(game.me.tech) + " : " + str(game.me.progress))
 		progressor.set_value( game.me.progress * 100)
 
 
@@ -177,12 +176,10 @@ func _unhandled_input(event):
 	if event.pressed and event.scancode == KEY_ESCAPE:
 		if is_setting_menu_open == false:
 			is_setting_menu_open = true
-			print(setting_menu.get("position"))
 			setting_animator.interpolate_property(setting_menu, "position",
 										 setting_menu.get_position(), setting_menu.get_position() - MENU_LENGTH, \
 										 MENU_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			setting_animator.start()
-			print(setting_menu.get("position"))
 		else:
 			is_setting_menu_open = false
 			setting_animator.interpolate_property(setting_menu, "position",
