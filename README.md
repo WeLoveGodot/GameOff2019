@@ -1,7 +1,7 @@
-# GameOff2019
+# DarkForest
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-repo for our game for game off 2019([itch.io](https://itch.io/jam/game-off-2019))
+repo for our game 'DarkForest' for the GameOff2019 jam([itch.io](https://itch.io/jam/game-off-2019))
 
 # Theme(copy from itch)
 
