@@ -66,7 +66,7 @@ func _on_Accelerate_mouse_entered():
 								 Color(1,1,1,0), Color(1,1,1,1),\
 								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	button_info_text.set_text("Accelerate\n"+
-							  "Energy cost : " + str(cost) + "\n" +
+							  "Energy cost : " + str(ceil(cost)) + "\n" +
 							  "Effect : Growth Rate x 2")
 	menu_animator.start()
 
@@ -89,7 +89,7 @@ func _on_Explore_mouse_entered():
 								 Color(1,1,1,0), Color(1,1,1,1),\
 								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	button_info_text.set_text("Explore\n"+
-							  "Energy cost : " + str(cost) + "\n" +
+							  "Energy cost : " + str(ceil(cost)) + "\n" +
 							  "Effect : Launch a explorer")
 	menu_animator.start()
 
@@ -113,7 +113,7 @@ func _on_Expand_mouse_entered():
 								 Color(1,1,1,0), Color(1,1,1,1),\
 								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	button_info_text.set_text("Expand\n"+
-							  "Energy cost : " + str(cost) + "\n" +
+							  "Energy cost : " + str(ceil(cost)) + "\n" +
 							  "Effect : Enlarge the filed of vision")
 	menu_animator.start()
 
@@ -135,7 +135,7 @@ func _on_Attack_mouse_entered():
 								 Color(1,1,1,0), Color(1,1,1,1),\
 								 BUTTON_INFO_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	button_info_text.set_text("Attack\n"+
-							  "Energy cost : " + str(cost) + "\n" +
+							  "Energy cost : " + str(ceil(cost)) + "\n" +
 							  "Effect : Attack other planet")
 	menu_animator.start()
 
