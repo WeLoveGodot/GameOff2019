@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/GUI/Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=2]
+
+[node name="Tutorial" type="CanvasLayer"]
+layer = 3
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CloseButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -188.885
+margin_top = -159.113
+margin_right = 197.115
+margin_bottom = -53.1128
+custom_fonts/font = ExtResource( 2 )
+text = "Close"
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
