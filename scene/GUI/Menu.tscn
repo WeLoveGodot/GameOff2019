@@ -40,7 +40,6 @@ texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 
 [node name="HelpButton" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1762.47, 116.136 )
 rotation = 4.29351
 __meta__ = {

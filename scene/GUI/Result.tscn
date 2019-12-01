@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scene/GUI/Result.gd" type="Script" id=1]
 [ext_resource path="res://resource/fonts/Result_Font_Big.res" type="DynamicFont" id=2]
-[ext_resource path="res://resource/fonts/Result_Font_Normal.tres" type="DynamicFont" id=3]
+[ext_resource path="res://resource/art/UI/ButtonFrame.png" type="Texture" id=3]
+[ext_resource path="res://resource/art/UI/ButtonFramePressed.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/UI/ButtonFrameHover.png" type="Texture" id=5]
+[ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=6]
 
 [node name="Result" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -237,20 +240,44 @@ It's on your decision."
 align = 3
 autowrap = true
 
-[node name="RetryButton" type="Button" parent="."]
-margin_left = 683.0
-margin_top = 710.0
-margin_right = 940.0
-margin_bottom = 773.0
-custom_fonts/font = ExtResource( 3 )
-text = "Retry"
+[node name="RetryButton" type="TextureButton" parent="."]
+margin_left = 630.871
+margin_top = 678.234
+margin_right = 930.871
+margin_bottom = 798.234
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
 
-[node name="BackButton" type="Button" parent="."]
-margin_left = 979.0
-margin_top = 709.0
-margin_right = 1221.0
-margin_bottom = 773.0
-custom_fonts/font = ExtResource( 3 )
-text = "Back To Menu"
+[node name="Label" type="Label" parent="RetryButton"]
+margin_left = 35.9124
+margin_top = 27.5005
+margin_right = 267.912
+margin_bottom = 93.5005
+custom_fonts/font = ExtResource( 6 )
+text = "Retry"
+align = 1
+valign = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 960.871
+margin_top = 678.234
+margin_right = 1260.87
+margin_bottom = 798.234
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="BackButton"]
+margin_left = 35.4722
+margin_top = 29.7011
+margin_right = 267.472
+margin_bottom = 95.7011
+custom_fonts/font = ExtResource( 6 )
+text = "Menu"
+align = 1
+valign = 1
 [connection signal="pressed" from="RetryButton" to="." method="_on_RetryButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

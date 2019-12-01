@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/GUI/About.gd" type="Script" id=1]
 [ext_resource path="res://resource/fonts/MainGUI_Font_ExtraLight_1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resource/art/UI/ButtonFrame.png" type="Texture" id=3]
+[ext_resource path="res://resource/art/UI/ButtonFramePressed.png" type="Texture" id=4]
+[ext_resource path="res://resource/art/UI/ButtonFrameHover.png" type="Texture" id=5]
 
 [node name="About" type="CanvasLayer"]
 layer = 3
@@ -42,13 +45,25 @@ Fonts from: xxxxx"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 710.0
+[node name="Button" type="TextureButton" parent="VBoxContainer"]
+margin_left = 810.0
 margin_top = 908.0
-margin_right = 1210.0
-margin_bottom = 1008.0
-rect_min_size = Vector2( 500, 100 )
+margin_right = 1110.0
+margin_bottom = 1028.0
+rect_min_size = Vector2( 300, 120 )
 size_flags_horizontal = 4
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Button"]
+margin_left = 20.0
+margin_top = 29.0
+margin_right = 279.0
+margin_bottom = 96.0
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
+align = 1
+valign = 1
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
